@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Luxury Wedding Portfolio - Glowing Elegance</title>
+<title>Luxury Wedding Portfolio - Design Genius Titles</title>
 <style>
   /* Glowing Luxury Color Palette */
   :root {
@@ -15,8 +15,8 @@
     --text-primary: #f3f4f6;
   }
 
-  /* Typography */
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@400;600&display=swap');
+  /* DESIGN GENIUS TYPOGRAPHY - Sans Serif + Handwritten Magic */
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@400;600;800&family=Dancing+Script:wght@700&family=Great+Vibes&display=swap');
 
   * {
     box-sizing: border-box;
@@ -32,7 +32,78 @@
     overflow-x: hidden;
   }
 
-  h1, h2, h3 {
+  /* GENIUS TITLE SYSTEM */
+  .genius-title {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--hermes-orange-text), #ff9a63, #ffb689);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    letter-spacing: -0.02em;
+  }
+
+  .genius-title::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 124, 59, 0.6) 50%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(20px);
+    z-index: -1;
+    animation: geniusGlow 2s ease-in-out infinite alternate;
+  }
+
+  .genius-title .sans-serif-part {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+  }
+
+  .genius-title .handwritten-part {
+    font-family: 'Great Vibes', cursive;
+    font-weight: 400;
+    font-size: 1.1em;
+    position: relative;
+    transform: rotate(-2deg);
+  }
+
+  .genius-title .handwritten-part::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: -15px;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--hermes-orange-text), transparent);
+    border-radius: 2px;
+    filter: blur(1px);
+  }
+
+  @keyframes geniusGlow {
+    0% { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.05); }
+  }
+
+  h2.genius-subtitle {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    color: var(--hermes-orange-text);
+    text-shadow: 0 0 30px rgba(255, 124, 59, 0.8);
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  h1, h2:not(.genius-subtitle), h3 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     margin-top: 0;
@@ -68,29 +139,17 @@
     overflow: hidden;
   }
 
-  .container::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 124, 59, 0.1) 0%, transparent 70%);
-    animation: glow 4s ease-in-out infinite alternate;
-    pointer-events: none;
-  }
-
-  @keyframes glow {
-    0% { opacity: 0.3; transform: scale(1); }
-    100% { opacity: 0.6; transform: scale(1.1); }
-  }
-
   /* Mobile responsive */
   @media (max-width: 768px) {
     .container {
       margin: 0 0.5rem 1.5rem;
       padding: 2rem 1.5rem;
       border-radius: 25px;
+    }
+    
+    .genius-title .handwritten-part {
+      transform: rotate(-1deg);
+      font-size: 1.05em;
     }
   }
 
@@ -108,12 +167,6 @@
     border-bottom: 2px solid var(--hermes-orange-text);
     padding-bottom: 2rem;
     margin-bottom: 2rem;
-  }
-
-  header h1 {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 0 30px rgba(255, 124, 59, 0.8);
   }
 
   nav {
@@ -174,13 +227,6 @@
     100% { opacity: 0.7; }
   }
 
-  .hero h2 {
-    font-size: 3.2rem;
-    margin-bottom: 1.5rem;
-    position: relative;
-    z-index: 1;
-  }
-
   .hero p {
     font-size: 1.3rem;
     max-width: 700px;
@@ -189,7 +235,7 @@
     z-index: 1;
   }
 
-  /* Smaller gallery - NO CLICKABLE */
+  /* Gallery */
   .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -234,16 +280,14 @@
     font-size: 1rem;
     border-top: 2px solid rgba(255, 124, 59, 0.6);
   }
-
-  footer p {
-    margin: 0;
-    text-shadow: 0 0 10px rgba(255, 124, 59, 0.3);
-  }
 </style>
 </head>
 <body>
   <header class="container">
-    <h1>Élégance Mariage</h1>
+    <div class="genius-title">
+      <span class="sans-serif-part">ELÉGANCE</span>
+      <span class="handwritten-part">Mariage</span>
+    </div>
     <nav>
       <a href="#portfolio">Portfolio</a>
       <a href="#about">À Propos</a>
@@ -253,7 +297,7 @@
 
   <section class="container">
     <div class="hero">
-      <h2>Photography de Mariage Luxe</h2>
+      <h2 class="genius-subtitle">Photography de Mariage Luxe</h2>
       <p>Instants éternels capturés avec élégance dans les couleurs Hermès orange et bleu royal.</p>
     </div>
 
