@@ -1,69 +1,111 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Luxury Boutique — Photo Collection</title>
+  <title>Luxury Liquid Glass Portfolio</title>
+
   <style>
-    /* ---- COLORS ---- */
+    /* ----------------------------------------- */
+    /*  COLOR PALETTE — ROYAL BLUE + HERMÈS ORANGE */
+    /* ----------------------------------------- */
     :root {
       --hermes-orange: #ff7a00;
-      --deep-blue: #1a2233;
-      --soft-beige: #f4f1ec;
-      --paper-bg: #fbfaf8;
+      --royal-blue: #1a2aff;          /* Main deep royal blue */
+      --royal-blue-dark: #10154a;     /* Luxury shadow blue */
+      --matte-beige: #f2eee7;         /* Matte tactile background */
     }
 
-    /* ---- GLOBAL ---- */
+    /* ----------------------------------------- */
+    /*  GLOBAL / BACKGROUND  */
+    /* ----------------------------------------- */
     body {
       margin: 0;
       padding: 0;
-      background: var(--soft-beige);
+      background: var(--matte-beige);
       font-family: "Helvetica Neue", sans-serif;
-      color: var(--deep-blue);
-      letter-spacing: -0.2px;
-      line-height: 1.45;
+      color: var(--royal-blue-dark);
       -webkit-font-smoothing: antialiased;
+      line-height: 1.45;
+      letter-spacing: -0.2px;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    /* Texture */
+    /* Matte paper texture */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
+      background: url("https://www.transparenttextures.com/patterns/paper.png");
+      opacity: 0.18;
       pointer-events: none;
-      background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-      opacity: 0.15;
+      z-index: -2;
+    }
+
+    /* Subtle liquid glass light reflection */
+    body::after {
+      content: "";
+      position: fixed;
+      top: -20%;
+      left: -20%;
+      width: 140%;
+      height: 140%;
+      background: radial-gradient(
+        circle at 30% 20%,
+        rgba(255,255,255,0.25),
+        rgba(255,255,255,0) 60%
+      );
+      filter: blur(40px);
+      opacity: 0.3;
+      mix-blend-mode: screen;
       z-index: -1;
     }
 
-    /* ---- HEADER ---- */
+    /* ----------------------------------------- */
+    /*  HEADER */
+    /* ----------------------------------------- */
     header {
       padding: 80px 50px;
-      background: var(--paper-bg);
-      border-bottom: 2px solid var(--hermes-orange);
+      background: var(--royal-blue-dark);
+      color: white;
+      border-bottom: 6px solid var(--hermes-orange);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
     }
 
     h1 {
-      font-size: 3.2rem;
-      font-weight: 600;
+      font-size: 3.3rem;
       margin: 0 0 10px;
-    }
-
-    h2.section-title {
-      font-size: 1.6rem;
       font-weight: 600;
-      margin-bottom: 30px;
-      border-left: 6px solid var(--hermes-orange);
-      padding-left: 14px;
     }
 
-    /* ---- LAYOUT ---- */
+    p.header-sub {
+      max-width: 480px;
+      font-size: 1rem;
+      opacity: 0.85;
+    }
+
+    /* ----------------------------------------- */
+    /*  SECTION TITLE */
+    /* ----------------------------------------- */
     .section {
       padding: 70px 50px;
     }
 
-    /* ---- BOUTIQUE PRODUCT-STYLE PHOTO GRID ---- */
+    .section-title {
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin-bottom: 40px;
+      color: var(--royal-blue);
+      border-left: 8px solid var(--hermes-orange);
+      padding-left: 14px;
+    }
+
+    /* ----------------------------------------- */
+    /*  PHOTO GRID WITH LIQUID GLASS + RAW MATTE */
+    /* ----------------------------------------- */
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -71,84 +113,98 @@
     }
 
     .photo-item {
-      background: var(--paper-bg);
-      border: 1px solid rgba(0,0,0,0.12);
-      border-radius: 14px;
-      padding: 20px;
-      transition: 0.3s ease;
       position: relative;
+      background: white;
+      border-radius: 18px;
+      padding: 22px;
+      border: 1px solid rgba(0,0,0,0.1);
+      box-shadow: 
+        0 0 0 6px var(--matte-beige),
+        0 14px 36px rgba(0,0,0,0.1);
+      transition: 0.35s ease;
     }
 
-    /* Luxury accent top edge */
-    .photo-item::before {
+    /* Liquid glass “sheen” on top */
+    .photo-item::after {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 6px;
-      background: var(--hermes-orange);
-      border-radius: 14px 14px 0 0;
-      opacity: 0.9;
+      inset: 0;
+      border-radius: 18px;
+      background: linear-gradient(
+        120deg,
+        rgba(255,255,255,0.25),
+        rgba(255,255,255,0.05) 30%,
+        rgba(255,255,255,0) 70%
+      );
+      pointer-events: none;
+      mix-blend-mode: screen;
+      opacity: 0.6;
+      transform: translateY(-10px);
     }
 
     .photo-item:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 48px rgba(0,0,0,0.12);
+      transform: translateY(-8px);
+      box-shadow: 
+        0 0 0 6px var(--matte-beige),
+        0 18px 48px rgba(0,0,0,0.15);
     }
 
     .photo-item img {
       width: 100%;
-      height: auto;
-      border-radius: 10px;
+      border-radius: 12px;
+      border: 3px solid var(--royal-blue);
+      box-shadow:
+        0 0 0 8px var(--matte-beige),
+        0 0 0 14px var(--hermes-orange);
       object-fit: cover;
       margin-bottom: 18px;
-      border: 2px solid var(--deep-blue);
-      box-shadow:
-        0 0 0 6px var(--soft-beige),
-        0 0 0 12px var(--hermes-orange);
     }
 
     .photo-label {
-      font-size: 1rem;
-      opacity: 0.85;
       text-align: center;
-      margin-top: 8px;
+      font-size: 1rem;
+      opacity: 0.9;
+      color: var(--royal-blue-dark);
     }
 
-    /* ---- FOOTER ---- */
+    /* ----------------------------------------- */
+    /* FOOTER */
+    /* ----------------------------------------- */
     footer {
-      padding: 40px;
+      padding: 45px;
       text-align: center;
-      font-size: 0.9rem;
-      border-top: 2px solid var(--hermes-orange);
-      opacity: 0.75;
+      border-top: 4px solid var(--royal-blue);
+      background: var(--royal-blue-dark);
+      color: white;
+      font-size: 0.95rem;
     }
   </style>
 </head>
+
 <body>
 
   <header>
-    <h1>Luxury Boutique Gallery</h1>
-    <p style="max-width: 480px; opacity: 0.75;">A curated selection of photographs displayed with the elegance of a high-end boutique.</p>
+    <h1>Royal + Hermès Luxury Gallery</h1>
+    <p class="header-sub">Liquid glass reflections, tactile raw textures, and bold colors curated into a luxury experience.</p>
   </header>
 
   <section class="section">
     <h2 class="section-title">Photo Collection</h2>
+
     <div class="photo-grid">
 
       <div class="photo-item">
-        <img src="https://source.unsplash.com/random/800x1000?texture" alt="Artwork 1">
+        <img src="https://source.unsplash.com/random/800x1000?texture" alt="Piece 1">
         <div class="photo-label">Collection Piece #01</div>
       </div>
 
       <div class="photo-item">
-        <img src="https://source.unsplash.com/random/800x1000?craft" alt="Artwork 2">
+        <img src="https://source.unsplash.com/random/800x1000?craft" alt="Piece 2">
         <div class="photo-label">Collection Piece #02</div>
       </div>
 
       <div class="photo-item">
-        <img src="https://source.unsplash.com/random/800x1000?design" alt="Artwork 3">
+        <img src="https://source.unsplash.com/random/800x1000?design" alt="Piece 3">
         <div class="photo-label">Collection Piece #03</div>
       </div>
 
@@ -156,8 +212,10 @@
   </section>
 
   <footer>
-    Curated Presentation • Boutique Luxury Style
+    Crafted with Royal Luxury • Liquid Glass • Hermès Orange Identity
   </footer>
 
 </body>
 </html>
+
+
