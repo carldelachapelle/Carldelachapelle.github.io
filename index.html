@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Luxury Wedding Portfolio - Mobile Friendly</title>
+<title>Luxury Wedding Portfolio - Unified Style</title>
 <style>
-  /* Soft Color Palette */
+  /* Unified Soft Color Palette */
   :root {
     --hermes-orange: #ff7c3b;
     --royal-blue: #2a4d9b;
-    --background: #faf9f8;
+    --soft-bg: #faf9f8;
+    --cream-bg: #fff9f4;
     --text-primary: #4a4a4a;
     --text-light: #7a7a7a;
   }
@@ -17,10 +18,14 @@
   /* Typography */
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@400;600&display=swap');
 
+  * {
+    box-sizing: border-box;
+  }
+
   body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    background: var(--background);
+    background: var(--soft-bg);
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
@@ -42,170 +47,183 @@
 
   a:hover {
     color: #ff9a63;
-    text-decoration: underline;
   }
 
-  /* Responsive container with safe margins on mobile */
+  /* UNIFIED CONTAINER - SAME STYLE EVERYWHERE */
   .container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 1.5rem 1.2rem; /* Safe padding for mobile */
+    padding: 2rem 1.5rem;
+    background: var(--cream-bg);
+    border-radius: 25px;
+    box-shadow: 0 8px 20px rgba(42, 77, 155, 0.12);
+    margin-bottom: 2rem;
   }
 
-  /* Mobile-first responsive adjustments */
+  /* Mobile responsive */
   @media (max-width: 768px) {
     .container {
-      padding: 1rem 1.5rem; /* Extra side padding on mobile */
-      max-width: 100%;
-    }
-    
-    header {
-      flex-direction: column;
-      text-align: center;
-      gap: 1rem;
-      padding-bottom: 1.5rem;
-    }
-    
-    header h1 {
-      font-size: 2.2rem;
-    }
-    
-    nav {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-    }
-    
-    nav a {
-      font-size: 1rem;
-      padding: 0.5rem 1rem;
-    }
-    
-    .hero {
-      padding: 3rem 1.5rem;
-      margin: 1rem 0;
-      border-radius: 25px;
-    }
-    
-    .hero h2 {
-      font-size: 2.3rem;
-    }
-    
-    .hero p {
-      font-size: 1.1rem;
-    }
-    
-    .gallery {
-      gap: 1.2rem;
-      padding: 0 0.5rem;
-    }
-    
-    .gallery img {
-      border-radius: 18px;
+      margin: 0 0.5rem 1.5rem;
+      padding: 1.5rem 1.2rem;
+      border-radius: 20px;
     }
   }
 
   @media (max-width: 480px) {
     .container {
-      padding: 1rem 1.8rem; /* Even more padding on small phones */
-    }
-    
-    header h1 {
-      font-size: 1.9rem;
-    }
-    
-    .hero h2 {
-      font-size: 2rem;
-    }
-    
-    .hero {
-      padding: 2.5rem 1.5rem;
+      margin: 0 0.3rem 1rem;
+      padding: 1.2rem 1rem;
+      border-radius: 18px;
     }
   }
 
-  /* Header with improved mobile spacing */
+  /* Header */
   header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align: center;
     border-bottom: 1.5px solid var(--royal-blue);
-    padding-bottom: 1rem;
-    background: #fff9f4;
-    border-radius: 0 0 20px 20px;
-    box-shadow: 0 4px 12px rgba(42, 77, 155, 0.15);
-    margin-bottom: 1rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   header h1 {
-    font-size: 2.6rem;
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
   }
 
   nav a {
-    margin-left: 1.4rem;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
   }
 
-  /* Hero Section */
+  nav a:hover {
+    background: var(--hermes-orange);
+    color: white;
+  }
+
+  /* Hero */
   .hero {
     text-align: center;
-    padding: 5rem 2rem 3rem; /* Extra horizontal padding */
+    padding: 3rem 1rem;
     background: linear-gradient(135deg, var(--hermes-orange) 0%, #ffd8b4 100%);
-    color: #ffffffcc;
-    font-family: 'Playfair Display', serif;
-    border-radius: 30px;
-    box-shadow: 0 8px 14px rgba(255, 124, 59, 0.4);
-    margin: 2rem 0;
+    color: white;
+    border-radius: 25px;
+    box-shadow: 0 12px 25px rgba(255, 124, 59, 0.3);
+    margin-bottom: 2rem;
   }
-  
+
   .hero h2 {
-    font-size: 3rem;
+    font-size: 2.8rem;
     margin-bottom: 1rem;
-    text-shadow: 2px 2px 6px rgba(0,0,0,0.12);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.15);
   }
-  
+
   .hero p {
     font-size: 1.2rem;
-    font-weight: 400;
     max-width: 600px;
     margin: 0 auto;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.1);
   }
 
-  /* Gallery with breathing room */
+  /* Smaller, clickable gallery */
   .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-    gap: 1.8rem;
-    margin-top: 3rem;
-    padding: 0 0.5rem; /* Extra padding to prevent edge touching */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
   }
 
-  .gallery img {
+  .gallery-item {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(42, 77, 155, 0.15);
+    cursor: pointer;
+    transition: all 0.4s ease;
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(42, 77, 155, 0.25);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.1);
+  }
+
+  /* Fullscreen Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    animation: fadeIn 0.3s ease;
+  }
+
+  .modal-content {
+    position: relative;
+    margin: auto;
+    max-width: 90%;
+    max-height: 90%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 15px;
+  }
+
+  .modal img {
     width: 100%;
     height: auto;
-    border-radius: 20px;
-    box-shadow: 0 6px 15px rgba(42, 77, 155, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-height: 90vh;
+    border-radius: 15px;
+  }
+
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
     cursor: pointer;
   }
 
-  .gallery img:hover {
-    transform: scale(1.04);
-    box-shadow: 0 15px 30px rgba(42, 77, 155, 0.2);
+  .close:hover {
+    color: var(--hermes-orange);
   }
 
-  /* Footer */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Footer - SAME UNIFIED STYLE */
   footer {
     text-align: center;
-    padding: 2rem 2rem; /* Extra padding */
-    margin-top: 4rem;
-    border-top: 1.5px solid var(--royal-blue);
+    padding: 2rem 1.5rem;
     color: var(--text-light);
-    font-size: 0.9rem;
-    background: #fff9f4;
-    border-radius: 20px 20px 0 0;
-    box-shadow: 0 -4px 8px rgba(42, 77, 155, 0.1);
+    font-size: 0.95rem;
+    border-top: 1.5px solid var(--royal-blue);
   }
 </style>
 </head>
@@ -214,29 +232,72 @@
     <h1>Élégance Mariage</h1>
     <nav>
       <a href="#portfolio">Portfolio</a>
-      <a href="#about">About us</a>
+      <a href="#about">À Propos</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <h2>Luxury Wedding Photography</h2>
-    <p>Capturing timeless moments with elegance and sophistication in the colors of Hermes orange & royal blue.</p>
+  <section class="container">
+    <div class="hero">
+      <h2>Photography de Mariage Luxe</h2>
+      <p>Instants éternels capturés avec élégance dans les couleurs Hermès orange et bleu royal.</p>
+    </div>
+
+    <main id="portfolio">
+      <div class="gallery">
+        <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1506744038136-46273834b3fb')">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Moment 1" />
+        </div>
+        <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1497551060073-4c5ab6435f21')">
+          <img src="https://images.unsplash.com/photo-1497551060073-4c5ab6435f21" alt="Moment 2" />
+        </div>
+        <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1524504388940-b1c1722653e1')">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1" alt="Moment 3" />
+        </div>
+        <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1500534623283-312aade485b7')">
+          <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7" alt="Moment 4" />
+        </div>
+        <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1505685296765-3a2736de412f')">
+          <img src="https://images.unsplash.com/photo-1505685296765-3a2736de412f" alt="Moment 5" />
+        </div>
+        <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1517487881594-2787fef5ebf7')">
+          <img src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7" alt="Moment 6" />
+        </div>
+      </div>
+    </main>
   </section>
 
-  <main class="container" id="portfolio">
-    <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Wedding Moment 1" />
-      <img src="https://images.unsplash.com/photo-1497551060073-4c5ab6435f21" alt="Wedding Moment 2" />
-      <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1" alt="Wedding Moment 3" />
-      <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7" alt="Wedding Moment 4" />
-      <img src="https://images.unsplash.com/photo-1505685296765-3a2736de412f" alt="Wedding Moment 5" />
-      <img src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7" alt="Wedding Moment 6" />
-    </div>
-  </main>
-
-  <footer>
-    &copy; 2025 Élégance Mariage. Crafted with love and royal colors.
+  <footer class="container">
+    <p>&copy; 2025 Élégance Mariage. Créé avec amour et couleurs royales.</p>
   </footer>
+
+  <!-- Fullscreen Modal -->
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+      <img id="modalImage" src="" alt="Fullscreen Image">
+    </div>
+  </div>
+
+  <script>
+    function openModal(imageSrc) {
+      document.getElementById('imageModal').style.display = 'block';
+      document.getElementById('modalImage').src = imageSrc;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('imageModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside image
+    window.onclick = function(event) {
+      const modal = document.getElementById('imageModal');
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+  </script>
 </body>
 </html>
