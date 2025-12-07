@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Luxury Wedding Portfolio - Unified Style</title>
+<title>Luxury Wedding Portfolio - Glowing Elegance</title>
 <style>
-  /* Unified Soft Color Palette */
+  /* Glowing Luxury Color Palette */
   :root {
-    --hermes-orange: #ff7c3b;
-    --royal-blue: #2a4d9b;
-    --soft-bg: #faf9f8;
-    --cream-bg: #fff9f4;
-    --text-primary: #4a4a4a;
-    --text-light: #7a7a7a;
+    --royal-blue-bg: #1e3a5f;
+    --hermes-orange-text: #ff7c3b;
+    --beige-section: #fdf7e8;
+    --cream-glow: #fff9f4;
+    --text-light: #d1d5db;
+    --text-primary: #f3f4f6;
   }
 
   /* Typography */
@@ -25,9 +25,10 @@
   body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    background: var(--soft-bg);
+    background: linear-gradient(135deg, var(--royal-blue-bg) 0%, #2a4d9b 100%);
     color: var(--text-primary);
     line-height: 1.6;
+    min-height: 100vh;
     overflow-x: hidden;
   }
 
@@ -35,126 +36,183 @@
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     margin-top: 0;
-    color: var(--royal-blue);
+    color: var(--hermes-orange-text);
     letter-spacing: 0.05em;
+    text-shadow: 0 0 20px rgba(255, 124, 59, 0.6);
   }
 
   a {
-    color: var(--hermes-orange);
+    color: var(--hermes-orange-text);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px rgba(255, 124, 59, 0.5);
   }
 
   a:hover {
     color: #ff9a63;
+    text-shadow: 0 0 20px rgba(255, 154, 99, 0.8);
   }
 
-  /* UNIFIED CONTAINER - SAME STYLE EVERYWHERE */
+  /* UNIFIED GLOWING CONTAINERS */
   .container {
     max-width: 1100px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-    background: var(--cream-bg);
-    border-radius: 25px;
-    box-shadow: 0 8px 20px rgba(42, 77, 155, 0.12);
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem;
+    padding: 2.5rem 2rem;
+    background: var(--beige-section);
+    border-radius: 30px;
+    box-shadow: 
+      0 20px 40px rgba(42, 77, 155, 0.4),
+      0 0 40px rgba(255, 124, 59, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 124, 59, 0.1) 0%, transparent 70%);
+    animation: glow 4s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+
+  @keyframes glow {
+    0% { opacity: 0.3; transform: scale(1); }
+    100% { opacity: 0.6; transform: scale(1.1); }
   }
 
   /* Mobile responsive */
   @media (max-width: 768px) {
     .container {
       margin: 0 0.5rem 1.5rem;
-      padding: 1.5rem 1.2rem;
-      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      border-radius: 25px;
     }
   }
 
   @media (max-width: 480px) {
     .container {
       margin: 0 0.3rem 1rem;
-      padding: 1.2rem 1rem;
-      border-radius: 18px;
+      padding: 1.5rem 1.2rem;
+      border-radius: 20px;
     }
   }
 
   /* Header */
   header {
     text-align: center;
-    border-bottom: 1.5px solid var(--royal-blue);
-    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--hermes-orange-text);
+    padding-bottom: 2rem;
     margin-bottom: 2rem;
   }
 
   header h1 {
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 30px rgba(255, 124, 59, 0.8);
   }
 
   nav {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 2.5rem;
     flex-wrap: wrap;
   }
 
   nav a {
     font-weight: 600;
-    font-size: 1.1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+    font-size: 1.2rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    background: rgba(255, 124, 59, 0.2);
+    backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 124, 59, 0.3);
   }
 
   nav a:hover {
-    background: var(--hermes-orange);
+    background: var(--hermes-orange-text);
     color: white;
+    box-shadow: 0 8px 25px rgba(255, 124, 59, 0.6);
+    transform: translateY(-2px);
   }
 
   /* Hero */
   .hero {
     text-align: center;
-    padding: 3rem 1rem;
-    background: linear-gradient(135deg, var(--hermes-orange) 0%, #ffd8b4 100%);
-    color: white;
-    border-radius: 25px;
-    box-shadow: 0 12px 25px rgba(255, 124, 59, 0.3);
-    margin-bottom: 2rem;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(255, 124, 59, 0.15) 0%, rgba(255, 216, 180, 0.1) 100%);
+    color: var(--hermes-orange-text);
+    border: 2px solid rgba(255, 124, 59, 0.4);
+    border-radius: 30px;
+    box-shadow: 
+      0 25px 50px rgba(42, 77, 155, 0.5),
+      0 0 50px rgba(255, 124, 59, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(255, 124, 59, 0.2) 0%, transparent 50%);
+    animation: heroGlow 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes heroGlow {
+    0% { opacity: 0.4; }
+    100% { opacity: 0.7; }
   }
 
   .hero h2 {
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.15);
+    font-size: 3.2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
   }
 
   .hero p {
-    font-size: 1.2rem;
-    max-width: 600px;
+    font-size: 1.3rem;
+    max-width: 700px;
     margin: 0 auto;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1;
   }
 
-  /* Smaller, clickable gallery */
+  /* Smaller gallery - NO CLICKABLE */
   .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    gap: 1.8rem;
     margin-top: 1rem;
   }
 
   .gallery-item {
-    position: relative;
     aspect-ratio: 4/3;
     overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(42, 77, 155, 0.15);
-    cursor: pointer;
+    border-radius: 25px;
+    box-shadow: 
+      0 12px 30px rgba(42, 77, 155, 0.3),
+      0 0 25px rgba(255, 124, 59, 0.2);
     transition: all 0.4s ease;
+    border: 2px solid rgba(255, 124, 59, 0.2);
   }
 
   .gallery-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(42, 77, 155, 0.25);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 
+      0 25px 50px rgba(42, 77, 155, 0.5),
+      0 0 40px rgba(255, 124, 59, 0.5);
   }
 
   .gallery-item img {
@@ -165,65 +223,21 @@
   }
 
   .gallery-item:hover img {
-    transform: scale(1.1);
+    transform: scale(1.12);
   }
 
-  /* Fullscreen Modal */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.95);
-    animation: fadeIn 0.3s ease;
-  }
-
-  .modal-content {
-    position: relative;
-    margin: auto;
-    max-width: 90%;
-    max-height: 90%;
-    top: 50%;
-    transform: translateY(-50%);
-    border-radius: 15px;
-  }
-
-  .modal img {
-    width: 100%;
-    height: auto;
-    max-height: 90vh;
-    border-radius: 15px;
-  }
-
-  .close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: white;
-    font-size: 3rem;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  .close:hover {
-    color: var(--hermes-orange);
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  /* Footer - SAME UNIFIED STYLE */
+  /* Footer */
   footer {
     text-align: center;
-    padding: 2rem 1.5rem;
+    padding: 2.5rem 2rem;
     color: var(--text-light);
-    font-size: 0.95rem;
-    border-top: 1.5px solid var(--royal-blue);
+    font-size: 1rem;
+    border-top: 2px solid rgba(255, 124, 59, 0.6);
+  }
+
+  footer p {
+    margin: 0;
+    text-shadow: 0 0 10px rgba(255, 124, 59, 0.3);
   }
 </style>
 </head>
@@ -245,22 +259,22 @@
 
     <main id="portfolio">
       <div class="gallery">
-        <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1506744038136-46273834b3fb')">
+        <div class="gallery-item">
           <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Moment 1" />
         </div>
-        <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1497551060073-4c5ab6435f21')">
+        <div class="gallery-item">
           <img src="https://images.unsplash.com/photo-1497551060073-4c5ab6435f21" alt="Moment 2" />
         </div>
-        <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1524504388940-b1c1722653e1')">
+        <div class="gallery-item">
           <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1" alt="Moment 3" />
         </div>
-        <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1500534623283-312aade485b7')">
+        <div class="gallery-item">
           <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7" alt="Moment 4" />
         </div>
-        <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1505685296765-3a2736de412f')">
+        <div class="gallery-item">
           <img src="https://images.unsplash.com/photo-1505685296765-3a2736de412f" alt="Moment 5" />
         </div>
-        <div class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1517487881594-2787fef5ebf7')">
+        <div class="gallery-item">
           <img src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7" alt="Moment 6" />
         </div>
       </div>
@@ -270,34 +284,5 @@
   <footer class="container">
     <p>&copy; 2025 Élégance Mariage. Créé avec amour et couleurs royales.</p>
   </footer>
-
-  <!-- Fullscreen Modal -->
-  <div id="imageModal" class="modal" onclick="closeModal()">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <div class="modal-content">
-      <img id="modalImage" src="" alt="Fullscreen Image">
-    </div>
-  </div>
-
-  <script>
-    function openModal(imageSrc) {
-      document.getElementById('imageModal').style.display = 'block';
-      document.getElementById('modalImage').src = imageSrc;
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      document.getElementById('imageModal').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
-    // Close modal when clicking outside image
-    window.onclick = function(event) {
-      const modal = document.getElementById('imageModal');
-      if (event.target == modal) {
-        closeModal();
-      }
-    }
-  </script>
 </body>
 </html>
