@@ -3,174 +3,118 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tactile Neon-Noir Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <title>Soft Raw Portfolio</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #05060a; color: white; overflow-x: hidden; }
+    /* ---- GLOBAL ---- */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f5f3ef; /* soft raw beige */
+      font-family: "Helvetica Neue", sans-serif;
+      color: #222;
+      letter-spacing: -0.2px;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    /* NOISE TEXTURE */
-    .noise {
-      pointer-events: none;
+    /* Subtle paper texture */
+    body::before {
+      content: "";
       position: fixed;
       inset: 0;
-      opacity: .20;
-      mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='0.8' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5' /></svg>");
-      background-size: 260px;
-      z-index: 100;
+      pointer-events: none;
+      background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      opacity: 0.25;
+      z-index: -1;
     }
 
-    header { max-width: 1200px; margin: auto; padding: 40px 20px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 10; }
-    header nav a { margin-left: 20px; text-decoration: none; color: white; opacity: .8; transition: .2s; font-size: 14px; }
-    header nav a:hover { opacity: 1; }
-
-    .logo-box {
-      width: 55px; height: 55px; border-radius: 16px;
-      background: linear-gradient(to bottom right, #00ffd5, #7a00ff, #ff00d0);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .logo-inner { width: 100%; height: 100%; border-radius: 14px; background: rgba(0,0,0,.7); display:flex;align-items:center;justify-content:center; font-size: 12px; letter-spacing: 1px; }
-
-    /* HERO */
-    .hero { max-width: 1200px; margin: auto; padding: 60px 20px; display: grid; grid-template-columns: 1fr; gap: 40px; position: relative; z-index: 10; }
-    @media (min-width: 850px){ .hero { grid-template-columns: 1.1fr 1fr; } }
-
-    .hero-title {
-      font-size: 54px; font-weight: 900; line-height: 1.05;
-      background: linear-gradient(90deg, white, #eaeaff);
-      -webkit-background-clip: text; color: transparent; position: relative;
-    }
-    .hero-title::after {
-      content:""; position:absolute; inset:0; filter:blur(14px); opacity:.6;
-      background: linear-gradient(90deg,#7a00ff,#00ffd5);
-      mix-blend-mode: screen;
+    h1, h2 {
+      font-weight: 600;
+      margin: 0 0 10px;
     }
 
-    .hero-img-box { border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,.05); position: relative; }
-    .hero-img-box img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(.9); }
-
-    /* PROJECT GRID */
-    .projects { max-width: 1200px; margin: auto; padding: 40px 20px; }
-    .grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
-    @media (min-width: 700px){ .grid { grid-template-columns: 1fr 1fr; } }
-    @media (min-width: 1100px){ .grid { grid-template-columns: 1fr 1fr 1fr; } }
-
-    .card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 18px;
-      overflow: hidden;
-      transition: transform .4s;
-    }
-    .card:hover { transform: scale(1.02); }
-    .card img { width: 100%; height: 210px; object-fit: cover; transition: .5s; }
-    .card:hover img { transform: scale(1.08); }
-
-    .card-info { padding: 15px; background: rgba(0,0,0,.3); border-top: 1px solid rgba(255,255,255,.05); }
-    .tags { font-size: 11px; opacity: .6; }
-
-    /* ABOUT */
-    .about { max-width: 1200px; margin:auto; padding:60px 20px; display:grid; gap:40px; }
-    @media(min-width:900px){ .about{grid-template-columns:2fr 1fr;} }
-
-    .contact-box{
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.1);
-      padding: 25px; border-radius: 18px;
+    h1 {
+      font-size: 3rem;
+      line-height: 1.1;
     }
 
-    footer { text-align: center; padding: 40px 0; opacity: .55; font-size: 14px; }
+    h2 {
+      font-size: 1.4rem;
+      opacity: 0.85;
+    }
+
+    /* ---- LAYOUT ---- */
+    header {
+      padding: 60px 40px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .section { padding: 60px 40px; }
+
+    /* ---- PROJECTS ---- */
+    .project-list {
+      display: grid;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .project {
+      padding: 25px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #faf9f7;
+      transition: 0.2s ease;
+    }
+
+    /* soft tactile hover */
+    .project:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      padding: 40px;
+      text-align: center;
+      font-size: 0.9rem;
+      border-top: 1px solid #ddd;
+      opacity: 0.6;
+    }
   </style>
 </head>
 <body>
-  <div class="noise"></div>
 
   <header>
-    <div style="display:flex; align-items:center; gap:15px;">
-      <div class="logo-box"><div class="logo-inner">SQG</div></div>
-      <div>
-        <div style="font-size:13px; opacity:.8; text-transform:uppercase; letter-spacing:1px;">Squeegee — Designer</div>
-        <div style="font-size:11px; opacity:.6;">Tactile Craft • Neon‑noir • Motion</div>
-      </div>
-    </div>
-
-    <nav>
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <h1>My Portfolio</h1>
+    <h2>Soft. Raw. Human.</h2>
+    <p>Simple work. Honest textures. Minimal digital craft.</p>
   </header>
 
-  <section class="hero">
-    <div>
-      <h1 class="hero-title">Tactile Craft<br> & Neon‑Noir.</h1>
-      <p style="margin-top:20px; max-width:480px; opacity:.8; line-height:1.5;">I blend smooth digital gradients with raw, imperfect printed textures for a human feel. High‑contrast neon, motion and analog grit.</p>
+  <section class="section">
+    <h2>Projects</h2>
+    <div class="project-list">
 
-      <div style="margin-top:25px; display:flex; gap:15px;">
-        <a href="#projects" style="padding:12px 22px; background:linear-gradient(90deg,#7a00ff,#00ffd5); border-radius:10px; font-weight:600; text-decoration:none; color:white;">View work</a>
+      <div class="project">
+        <h3>Project One</h3>
+        <p>A raw, minimal visual piece blending tactile textures with soft gradients.</p>
       </div>
-    </div>
 
-    <div class="hero-img-box">
-      <img src="https://images.unsplash.com/photo-1506152983158-9e3b7f3f8b6e?q=80" alt="hero" />
-    </div>
-  </section>
+      <div class="project">
+        <h3>Project Two</h3>
+        <p>Printed-style imperfections mixed with clean digital layout.</p>
+      </div>
 
-  <section id="projects" class="projects">
-    <h2 style="font-size:28px; font-weight:700; margin-bottom:20px;">Selected Projects</h2>
+      <div class="project">
+        <h3>Project Three</h3>
+        <p>A soft-touch experimental composition with grain and subtle motion.</p>
+      </div>
 
-    <div class="grid">
-      <a class="card" href="#">
-        <img src="https://images.unsplash.com/photo-1506152983158-9e3b7f3f8b6e?q=80" />
-        <div class="card-info">
-          <div style="font-size:14px; font-weight:600;">Analog Print Study</div>
-          <div style="font-size:12px; opacity:.7;">Silkscreen textures explored in UI</div>
-          <div class="tags">print • texture • experiment</div>
-        </div>
-      </a>
-
-      <a class="card" href="#">
-        <img src="https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80" />
-        <div class="card-info">
-          <div style="font-size:14px; font-weight:600;">Neon Poster Series</div>
-          <div style="font-size:12px; opacity:.7;">High-contrast type & motion blur</div>
-          <div class="tags">neon • branding • motion</div>
-        </div>
-      </a>
-
-      <a class="card" href="#">
-        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80" />
-        <div class="card-info">
-          <div style="font-size:14px; font-weight:600;">Mixed Media Packaging</div>
-          <div style="font-size:12px; opacity:.7;">Digitally‑enhanced tactile finishes</div>
-          <div class="tags">package • craft • material</div>
-        </div>
-      </a>
     </div>
   </section>
 
-  <section id="about" class="about">
-    <div>
-      <h3 style="font-size:24px; font-weight:700;">About the work</h3>
-      <p style="margin-top:15px; opacity:.8; line-height:1.6;">
-        I design systems that combine digital polish with analog nuance — printed imperfections, tactile layers, grain and edges. My process mixes physical making (print, collage, paper) with digital explorations.
-      </p>
-      <ul style="margin-top:20px; opacity:.8; line-height:1.8; font-size:14px;">
-        <li>• Silkscreen & risograph experiments</li>
-        <li>• Neon-noir posters & identity</li>
-        <li>• Material-driven packaging</li>
-        <li>• Motion & micro-interactions</li>
-      </ul>
-    </div>
+  <footer>
+    Made by Me • Crafted slowly
+  </footer>
 
-    <div class="contact-box" id="contact">
-      <h4 style="font-size:14px; text-transform:uppercase; opacity:.8;">Let's build</h4>
-      <p style="margin-top:10px; font-size:14px; opacity:.7;">Available for commissions and collaborations.</p>
-      <a href="mailto:hello@example.com" style="margin-top:15px; display:inline-block; padding:10px 18px; background:linear-gradient(90deg,#00ffd5,#ff00d0); border-radius:10px; text-decoration:none; color:white; font-weight:600;">hello@example.com</a>
-    </div>
-  </section>
-
-  <footer>© 2025 Squeegee — tactile craft & neon-noir</footer>
 </body>
 </html>
