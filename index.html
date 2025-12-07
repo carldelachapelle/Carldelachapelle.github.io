@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Luxury Wedding Portfolio - Soft Touch</title>
+<title>Luxury Wedding Portfolio - Mobile Friendly</title>
 <style>
   /* Soft Color Palette */
   :root {
-    --hermes-orange: #ff7c3b; /* softer orange */
-    --royal-blue: #2a4d9b; /* softer blue */
+    --hermes-orange: #ff7c3b;
+    --royal-blue: #2a4d9b;
     --background: #faf9f8;
     --text-primary: #4a4a4a;
     --text-light: #7a7a7a;
@@ -23,6 +23,7 @@
     background: var(--background);
     color: var(--text-primary);
     line-height: 1.6;
+    overflow-x: hidden;
   }
 
   h1, h2, h3 {
@@ -44,14 +45,85 @@
     text-decoration: underline;
   }
 
-  /* Layout container with gentle padding and rounded edges */
+  /* Responsive container with safe margins on mobile */
   .container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 3rem 1.5rem;
+    padding: 1.5rem 1.2rem; /* Safe padding for mobile */
   }
 
-  /* Header */
+  /* Mobile-first responsive adjustments */
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem 1.5rem; /* Extra side padding on mobile */
+      max-width: 100%;
+    }
+    
+    header {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+      padding-bottom: 1.5rem;
+    }
+    
+    header h1 {
+      font-size: 2.2rem;
+    }
+    
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    
+    nav a {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+    }
+    
+    .hero {
+      padding: 3rem 1.5rem;
+      margin: 1rem 0;
+      border-radius: 25px;
+    }
+    
+    .hero h2 {
+      font-size: 2.3rem;
+    }
+    
+    .hero p {
+      font-size: 1.1rem;
+    }
+    
+    .gallery {
+      gap: 1.2rem;
+      padding: 0 0.5rem;
+    }
+    
+    .gallery img {
+      border-radius: 18px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 1rem 1.8rem; /* Even more padding on small phones */
+    }
+    
+    header h1 {
+      font-size: 1.9rem;
+    }
+    
+    .hero h2 {
+      font-size: 2rem;
+    }
+    
+    .hero {
+      padding: 2.5rem 1.5rem;
+    }
+  }
+
+  /* Header with improved mobile spacing */
   header {
     display: flex;
     justify-content: space-between;
@@ -61,6 +133,7 @@
     background: #fff9f4;
     border-radius: 0 0 20px 20px;
     box-shadow: 0 4px 12px rgba(42, 77, 155, 0.15);
+    margin-bottom: 1rem;
   }
 
   header h1 {
@@ -73,10 +146,10 @@
     font-size: 1rem;
   }
 
-  /* Hero Section with soft gradient and rounded corners */
+  /* Hero Section */
   .hero {
     text-align: center;
-    padding: 5rem 1rem 3rem;
+    padding: 5rem 2rem 3rem; /* Extra horizontal padding */
     background: linear-gradient(135deg, var(--hermes-orange) 0%, #ffd8b4 100%);
     color: #ffffffcc;
     font-family: 'Playfair Display', serif;
@@ -99,12 +172,13 @@
     text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
   }
 
-  /* Gallery with soft shadows, rounded corners, and subtle hover */
+  /* Gallery with breathing room */
   .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
     gap: 1.8rem;
     margin-top: 3rem;
+    padding: 0 0.5rem; /* Extra padding to prevent edge touching */
   }
 
   .gallery img {
@@ -121,10 +195,10 @@
     box-shadow: 0 15px 30px rgba(42, 77, 155, 0.2);
   }
 
-  /* Footer with lighter text and soft border */
+  /* Footer */
   footer {
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 2rem 2rem; /* Extra padding */
     margin-top: 4rem;
     border-top: 1.5px solid var(--royal-blue);
     color: var(--text-light);
