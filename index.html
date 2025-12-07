@@ -8,7 +8,7 @@
     /* ---- COLORS ---- */
     :root {
       --hermes-orange: #ff7a00;
-      --deep-blue: #1a2233;
+      --royal-blue: #1a2233;
       --soft-beige: #f4f1ec;
       --paper-bg: #fbfaf8;
     }
@@ -17,9 +17,9 @@
     body {
       margin: 0;
       padding: 0;
-      background: var(--soft-beige);
+      background: var(--mat-raw);
       font-family: "Helvetica Neue", sans-serif;
-      color: var(--deep-blue);
+      color: var(--royal-blue);
       letter-spacing: -0.2px;
       line-height: 1.45;
       -webkit-font-smoothing: antialiased;
@@ -39,7 +39,9 @@
     /* ---- HEADER ---- */
     header {
       padding: 80px 50px;
-      background: var(--paper-bg);
+      background: var(--glass-white);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
       border-bottom: 2px solid var(--hermes-orange);
     }
 
@@ -102,7 +104,7 @@
       border-radius: 10px;
       object-fit: cover;
       margin-bottom: 18px;
-      border: 2px solid var(--deep-blue);
+      border: 2px solid var(--royal-blue);
       box-shadow: 0 0 0 6px var(--soft-beige), 0 0 0 12px var(--hermes-orange);
     }
 
