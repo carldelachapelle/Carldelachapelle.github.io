@@ -1,332 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Luxury Wedding Portfolio - Design Genius Titles</title>
-<style>
-  /* Glowing Luxury Color Palette */
-  :root {
-    --royal-blue-bg: #1e3a5f;
-    --hermes-orange-text: #ff7c3b;
-    --beige-section: #fdf7e8;
-    --cream-glow: #fff9f4;
-    --text-light: #d1d5db;
-    --text-primary: #f3f4f6;
-  }
-
-  /* DESIGN GENIUS TYPOGRAPHY - Sans Serif + Handwritten Magic */
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@400;600;800&family=Dancing+Script:wght@700&family=Great+Vibes&display=swap');
-
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg, var(--royal-blue-bg) 0%, #2a4d9b 100%);
-    color: var(--text-primary);
-    line-height: 1.6;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* GENIUS TITLE SYSTEM */
-  .genius-title {
-    display: flex;
-    align-items: baseline;
-    gap: 0.3rem;
-    font-size: clamp(2.5rem, 8vw, 4rem);
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--hermes-orange-text), #ff9a63, #ffb689);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    position: relative;
-    letter-spacing: -0.02em;
-  }
-
-  .genius-title::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: linear-gradient(45deg, transparent 30%, rgba(255, 124, 59, 0.6) 50%, transparent 70%);
-    border-radius: 50%;
-    filter: blur(20px);
-    z-index: -1;
-    animation: geniusGlow 2s ease-in-out infinite alternate;
-  }
-
-  .genius-title .sans-serif-part {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    position: relative;
-  }
-
-  .genius-title .handwritten-part {
-    font-family: 'Great Vibes', cursive;
-    font-weight: 400;
-    font-size: 1.1em;
-    position: relative;
-    transform: rotate(-2deg);
-  }
-
-  .genius-title .handwritten-part::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    right: -15px;
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--hermes-orange-text), transparent);
-    border-radius: 2px;
-    filter: blur(1px);
-  }
-
-  @keyframes geniusGlow {
-    0% { opacity: 0.6; transform: scale(1); }
-    100% { opacity: 1; transform: scale(1.05); }
-  }
-
-  h2.genius-subtitle {
-    font-family: 'Dancing Script', cursive;
-    font-size: clamp(2rem, 6vw, 3.2rem);
-    color: var(--hermes-orange-text);
-    text-shadow: 0 0 30px rgba(255, 124, 59, 0.8);
-    margin-bottom: 1rem;
-    font-weight: 700;
-  }
-
-  h1, h2:not(.genius-subtitle), h3 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    margin-top: 0;
-    color: var(--hermes-orange-text);
-    letter-spacing: 0.05em;
-    text-shadow: 0 0 20px rgba(255, 124, 59, 0.6);
-  }
-
-  a {
-    color: var(--hermes-orange-text);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    text-shadow: 0 0 10px rgba(255, 124, 59, 0.5);
-  }
-
-  a:hover {
-    color: #ff9a63;
-    text-shadow: 0 0 20px rgba(255, 154, 99, 0.8);
-  }
-
-  /* UNIFIED GLOWING CONTAINERS */
-  .container {
-    max-width: 1100px;
-    margin: 0 auto 2rem;
-    padding: 2.5rem 2rem;
-    background: var(--beige-section);
-    border-radius: 30px;
-    box-shadow: 
-      0 20px 40px rgba(42, 77, 155, 0.4),
-      0 0 40px rgba(255, 124, 59, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8);
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* Mobile responsive */
-  @media (max-width: 768px) {
-    .container {
-      margin: 0 0.5rem 1.5rem;
-      padding: 2rem 1.5rem;
-      border-radius: 25px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>De la Chapelle</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      font-family: "Courier New", monospace;
+      overflow: hidden;
     }
-    
-    .genius-title .handwritten-part {
-      transform: rotate(-1deg);
-      font-size: 1.05em;
+    .bg-video {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -100;
+      transform: translateX(-50%) translateY(-50%);
+      object-fit: cover;
     }
-  }
 
-  @media (max-width: 480px) {
-    .container {
-      margin: 0 0.3rem 1rem;
-      padding: 1.5rem 1.2rem;
-      border-radius: 20px;
+    .camera-screen {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      color: #9fef00;
+      
+      aspect-ratio: 4/3;
+      max-width: 100vw;
+      max-height: 100vh;
+      margin: auto;
+      
+      background: 
+        radial-gradient(circle at center, rgba(34,34,34,0.8) 0%, rgba(0,0,0,0.95) 70%);
+      background-blend-mode: overlay;
+      filter: blur(0.5px);
     }
-  }
 
-  /* Header */
-  header {
-    text-align: center;
-    border-bottom: 2px solid var(--hermes-orange-text);
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
-  }
+    @media (max-width: 768px) and (orientation: portrait) {
+      .camera-screen {
+        aspect-ratio: 3/4;
+        width: 100vh;
+        height: 100vw;
+        max-width: 100vh;
+        max-height: 100vw;
+      }
+    }
 
-  nav {
-    display: flex;
-    justify-content: center;
-    gap: 2.5rem;
-    flex-wrap: wrap;
-  }
+    /* Phone landscape: 4:3 */
+    @media (max-width: 768px) and (orientation: landscape) {
+      .camera-screen {
+        aspect-ratio: 4/3;
+        width: 100vw;
+        height: 100vh;
+      }
+    }
 
-  nav a {
-    font-weight: 600;
-    font-size: 1.2rem;
-    padding: 0.8rem 1.5rem;
-    border-radius: 25px;
-    background: rgba(255, 124, 59, 0.2);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 124, 59, 0.3);
-  }
+    .title {
+      position: absolute;
+      top: 34vh; 
+      left: 34vw; 
+      font-size: clamp(20px, 5vw, 32px);
+      letter-spacing: 0.4em;
+      text-shadow: 0 0 4px #000, 0 0 8px rgba(159,239,0,0.5);
+      z-index: 20;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
 
-  nav a:hover {
-    background: var(--hermes-orange-text);
-    color: white;
-    box-shadow: 0 8px 25px rgba(255, 124, 59, 0.6);
-    transform: translateY(-2px);
-  }
+    .menu-text {
+      position: absolute;
+      bottom: 33.34%;
+      right: 33.34%; 
+      display: flex;
+      flex-direction: column;
+      gap: 1.2vh;
+      z-index: 20;
+      text-align: right;
+      pointer-events: none;
+    }
 
-  /* Hero */
-  .hero {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: linear-gradient(135deg, rgba(255, 124, 59, 0.15) 0%, rgba(255, 216, 180, 0.1) 100%);
-    color: var(--hermes-orange-text);
-    border: 2px solid rgba(255, 124, 59, 0.4);
-    border-radius: 30px;
-    box-shadow: 
-      0 25px 50px rgba(42, 77, 155, 0.5),
-      0 0 50px rgba(255, 124, 59, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    margin-bottom: 3rem;
-    position: relative;
-    overflow: hidden;
-  }
+    .menu-text span {
+      font-size: clamp(11px, 2.5vw, 14px);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #9fef00;
+      text-shadow: 0 0 3px #000;
+      white-space: nowrap;
+    }
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 30% 70%, rgba(255, 124, 59, 0.2) 0%, transparent 50%);
-    animation: heroGlow 3s ease-in-out infinite alternate;
-  }
+    /* FULL SCREEN LENGTH GRID LINES */
+    .grid-line {
+      position: absolute;
+      background: rgba(255,255,255,0.4);
+      z-index: 10;
+    }
+    .grid-v1, .grid-v2 { top: 0; bottom: 0; width: 2px; }
+    .grid-v1 { left: 33.33%; }
+    .grid-v2 { left: 66.66%; }
+    .grid-h1, .grid-h2 { left: 0; right: 0; height: 2px; }
+    .grid-h1 { top: 33.33%; }
+    .grid-h2 { top: 66.66%; }
 
-  @keyframes heroGlow {
-    0% { opacity: 0.4; }
-    100% { opacity: 0.7; }
-  }
+    /* Simple cross focus point */
+    .focus-box {
+      position: absolute;
+      width: clamp(30px, 4vw, 40px);
+      height: clamp(30px, 4vw, 40px);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 15;
+    }
 
-  .hero p {
-    font-size: 1.3rem;
-    max-width: 700px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
+    .focus-box::before,
+    .focus-box::after {
+      content: '';
+      position: absolute;
+      background: #9fef00;
+    }
 
-  /* Gallery */
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.8rem;
-    margin-top: 1rem;
-  }
+    .focus-box::before {
+      width: 100%;
+      height: 2px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
 
-  .gallery-item {
-    aspect-ratio: 4/3;
-    overflow: hidden;
-    border-radius: 25px;
-    box-shadow: 
-      0 12px 30px rgba(42, 77, 155, 0.3),
-      0 0 25px rgba(255, 124, 59, 0.2);
-    transition: all 0.4s ease;
-    border: 2px solid rgba(255, 124, 59, 0.2);
-  }
+    .focus-box::after {
+      width: 2px;
+      height: 100%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
 
-  .gallery-item:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 
-      0 25px 50px rgba(42, 77, 155, 0.5),
-      0 0 40px rgba(255, 124, 59, 0.5);
-  }
+    /* HUD */
+    .hud {
+      position: absolute;
+      left: 3vw;
+      right: 3vw;
+      bottom: 2vh;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: clamp(10px, 2vw, 14px);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-shadow: 0 0 3px #000;
+      z-index: 20;
+      background: linear-gradient(transparent, rgba(0,0,0,0.6));
+      padding: 1vh 0;
+    }
 
-  .gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-  }
+    .hud-left, .hud-center, .hud-right {
+      display: flex;
+      gap: clamp(1em, 2.5vw, 1.8em);
+    }
 
-  .gallery-item:hover img {
-    transform: scale(1.12);
-  }
+    .jpeg-fine {
+      cursor: pointer;
+    }
 
-  /* Footer */
-  footer {
-    text-align: center;
-    padding: 2.5rem 2rem;
-    color: var(--text-light);
-    font-size: 1rem;
-    border-top: 2px solid rgba(255, 124, 59, 0.6);
-  }
-</style>
+    .jpeg-fine:hover {
+      color: #ccff00;
+    }
+
+    .scale {
+      font-size: clamp(9px, 1.8vw, 12px);
+      letter-spacing: 0.15em;
+    }
+
+    .battery {
+      border: 2px solid #9fef00;
+      padding: 2px 6px;
+      font-size: clamp(9px, 1.8vw, 12px);
+      background: rgba(0,0,0,0.7);
+    }
+  </style>
 </head>
 <body>
-  <header class="container">
-    <div class="genius-title">
-      <span class="sans-serif-part">ELÉGANCE</span>
-      <span class="handwritten-part">Mariage</span>
-    </div>
-    <nav>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#about">À Propos</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+  <video class="bg-video" autoplay loop muted playsinline>
+    <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+  </video>
 
-  <section class="container">
-    <div class="hero">
-      <h2 class="genius-subtitle">Photography de Mariage Luxe</h2>
-      <p>Instants éternels capturés avec élégance dans les couleurs Hermès orange et bleu royal.</p>
+  <div class="camera-screen">
+    <h1 class="title">CArl de la Chapelle</h1>
+    
+    <div class="menu-text">
+      <span>CONTACT</span>
+      <span>PORTFOLIO</span>
+      <span>PRESENTATION</span>
     </div>
 
-    <main id="portfolio">
-      <div class="gallery">
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Moment 1" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1497551060073-4c5ab6435f21" alt="Moment 2" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1" alt="Moment 3" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7" alt="Moment 4" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1505685296765-3a2736de412f" alt="Moment 5" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7" alt="Moment 6" />
-        </div>
+    <div class="grid-line grid-v1"></div>
+    <div class="grid-line grid-v2"></div>
+    <div class="grid-line grid-h1"></div>
+    <div class="grid-line grid-h2"></div>
+
+    <div class="focus-box"></div>
+
+    <div class="hud">
+      <div class="hud-left">
+        <span>AF-S</span>
+        <span>F3.5</span>
+        <span>1/125</span>
+        <span>ISO 400</span>
       </div>
-    </main>
-  </section>
+      <div class="hud-center">
+        <span class="scale">-  |  |  |  |  0  |  |  |  |  +</span>
+      </div>
+      <div class="hud-right">
+        <span class="battery">▮▮▯▯</span>
+        <span class="jpeg-fine" onclick="cycleLink()">DeLaChapelle.JPEG</span>
+        <span>101/329</span>
+      </div>
+    </div>
+  </div>
 
-  <footer class="container">
-    <p>&copy; 2025 Élégance Mariage. Créé avec amour et couleurs royales.</p>
-  </footer>
+  <script>
+    // Cycle through links on JPEG FINE clicks only
+    const links = ['contact.html', 'portfolio.html', 'presentation.html'];
+    let currentLink = 0;
+    
+    function cycleLink() {
+      window.location.href = links[currentLink];
+      currentLink = (currentLink + 1) % links.length;
+    }
+  </script>
 </body>
 </html>
