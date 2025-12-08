@@ -65,7 +65,7 @@ video {
 
 .bottom-text {
     position: fixed;
-    bottom: 30px;
+    bottom: 30px !important; /* Force en bas */
     font-size: 1.1rem;
     font-weight: 300;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
@@ -74,11 +74,13 @@ video {
 }
 
 .bottom-text.left {
-    left: 30px;
+    left: 30px !important;  /* Force à gauche */
+    right: auto !important; /* Supprime tout alignement droit */
 }
 
 .bottom-text.right {
-    right: 30px;
+    right: 30px !important; /* Force à droite */
+    left: auto !important;  /* Supprime tout alignement gauche */
 }
 
 @media (max-width: 768px) {
