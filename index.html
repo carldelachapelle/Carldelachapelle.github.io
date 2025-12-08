@@ -39,7 +39,7 @@
         radial-gradient(circle at center, rgba(34,34,34,0.9) 0%, rgba(0,0,0,0.98) 70%);
       background-blend-mode: overlay;
       filter: blur(0.5px);
-      overflow: hidden;
+      overflow: visible; /* FIXED: allow HUD to show */
       color: #9fef00;
       aspect-ratio: 4/5;
     }
@@ -47,9 +47,9 @@
     /* SMALLER TITLE - LEFT ALIGNED, ONE WORD PER LINE */
     .title {
       position: absolute;
-      top: 30vh;
-      left: 32vw;
-      font-size: clamp(12px, 3vw, 18px);
+      top: 28vh; /* Moved up slightly */
+      left: 30vw;
+      font-size: clamp(11px, 2.8vw, 16px); /* Smaller */
       letter-spacing: 0.2em;
       text-shadow: 0 0 4px #000;
       z-index: 20;
@@ -58,22 +58,22 @@
       white-space: pre-line;
     }
 
-    /* Menu text - smaller */
+    /* Menu text - moved up and smaller */
     .menu-text {
       position: absolute;
-      bottom: 32vh;
-      right: 32vw;
+      bottom: 28vh; /* FIXED: moved up */
+      right: 30vw;
       display: flex;
       flex-direction: column;
-      gap: 0.8vh;
+      gap: 0.6vh;
       z-index: 20;
       text-align: right;
       pointer-events: none;
     }
 
     .menu-text span {
-      font-size: clamp(9px, 2vw, 12px);
-      letter-spacing: 0.25em;
+      font-size: clamp(8px, 1.8vw, 11px); /* Smaller */
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: #9fef00;
       text-shadow: 0 0 3px #000;
@@ -96,8 +96,8 @@
     /* Focus cross */
     .focus-box {
       position: absolute;
-      width: clamp(20px, 3.5vw, 30px);
-      height: clamp(20px, 3.5vw, 30px);
+      width: clamp(18px, 3vw, 28px);
+      height: clamp(18px, 3vw, 28px);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -111,43 +111,46 @@
     .focus-box::before { width: 100%; height: 2px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
     .focus-box::after { width: 2px; height: 100%; left: 50%; top: 50%; transform: translate(-50%, -50%); }
 
-    /* Compact HUD */
+    /* FIXED HUD - VISIBLE ON ALL DEVICES */
     .hud {
       position: absolute;
-      left: 3vw;
-      right: 3vw;
-      bottom: 1.5vh;
+      left: 2.5vw;
+      right: 2.5vw;
+      bottom: 0.5vh; /* FIXED: Much higher up */
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      font-size: clamp(8px, 1.8vw, 11px);
-      letter-spacing: 0.15em;
+      font-size: clamp(7px, 1.6vw, 10px); /* Smaller */
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       text-shadow: 0 0 3px #000;
-      z-index: 20;
-      background: linear-gradient(transparent, rgba(0,0,0,0.8));
-      padding: 0.8vh 0;
+      z-index: 30; /* Higher z-index */
+      background: linear-gradient(transparent, rgba(0,0,0,0.9));
+      padding: 0.5vh 0;
+      min-height: 18px;
     }
     .hud-left, .hud-center, .hud-right { 
       display: flex; 
-      gap: clamp(0.6em, 1.2vw, 1.5em); 
+      gap: clamp(0.4em, 1vw, 1.2em); 
+      flex-wrap: nowrap; /* FIXED: no wrapping */
     }
     .scale { 
-      font-size: clamp(7px, 1.6vw, 10px); 
-      letter-spacing: 0.12em; 
+      font-size: clamp(6px, 1.4vw, 9px); 
+      letter-spacing: 0.1em; 
+      white-space: nowrap;
     }
     .battery { 
       border: 1px solid #9fef00; 
-      padding: 1px 3px; 
-      font-size: clamp(7px, 1.6vw, 10px); 
-      background: rgba(0,0,0,0.9); 
+      padding: 1px 2px; 
+      font-size: clamp(6px, 1.4vw, 9px); 
+      background: rgba(0,0,0,1); 
     }
 
-    /* JPEG FINE - easy touch target */
+    /* JPEG FINE - bigger touch target */
     .jpeg-fine {
       cursor: pointer;
-      padding: 3px 6px;
-      min-height: 20px;
+      padding: 2px 5px;
+      min-height: 18px;
       display: inline-flex;
       align-items: center;
       touch-action: manipulation;
@@ -162,7 +165,7 @@
   </video>
 
   <div class="camera-screen">
-    <!-- SMALL TITLE - ONE WORD PER LINE, LEFT ALIGNED -->
+    <!-- SMALL TITLE - ONE WORD PER LINE -->
     <h1 class="title">PHOTO
 GRAPHER</h1>
     
@@ -182,7 +185,7 @@ GRAPHER</h1>
     <!-- Focus -->
     <div class="focus-box"></div>
 
-    <!-- Compact HUD -->
+    <!-- FIXED VISIBLE HUD -->
     <div class="hud">
       <div class="hud-left">
         <span>AF-S</span>
@@ -191,10 +194,10 @@ GRAPHER</h1>
         <span>ISO 400</span>
       </div>
       <div class="hud-center">
-        <span class="scale">- | | | | 0 | | | | +</span>
+        <span class="scale">- | | | 0 | | | +</span>
       </div>
       <div class="hud-right">
-        <span class="battery">▮▮▯▯</span>
+        <span class="battery">▮▮▯</span>
         <span class="jpeg-fine" onclick="cycleLink()">JPEG FINE</span>
         <span>101/329</span>
       </div>
@@ -209,18 +212,6 @@ GRAPHER</h1>
       window.location.href = links[currentLink];
       currentLink = (currentLink + 1) % links.length;
     }
-    
-    // Touch fixes
-    document.addEventListener('touchstart', e => {
-      if (e.touches.length > 1) e.preventDefault();
-    }, { passive: false });
-    
-    let lastTouchEnd = 0;
-    document.addEventListener('touchend', e => {
-      const now = Date.now();
-      if (now - lastTouchEnd <= 300) e.preventDefault();
-      lastTouchEnd = now;
-    }, false);
   </script>
 </body>
 </html>
