@@ -1,248 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Nikon Style Screen</title>
-  <style>
-    /* Page base */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      width: 100%;
-      height: 100%;
-      background: #000;
-      font-family: "Courier New", monospace;
-      overflow: hidden;
-      touch-action: manipulation;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nikon Style Screen</title>
+<style>
+  /* Base styles */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    font-family: "Courier New", monospace;
+    overflow: hidden;
+    touch-action: manipulation;
+  }
 
-    /* Background video - FULL SCREEN */
-    .bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -100;
-    }
+  /* Background video - fullscreen */
+  .bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -100;
+  }
 
-    /* Full-screen camera screen - FULL SCREEN ALWAYS */
-    .camera-screen {
+  /* The container that limits aspect ratio and centers */
+  .aspect-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: radial-gradient(
+      circle at center,
+      rgba(34, 34, 34, 0.9) 0%,
+      rgba(0, 0, 0, 0.98) 70%
+    );
+    background-blend-mode: overlay;
+    filter: blur(0.5px);
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  /* Default aspect ratio (desktop) 4:3 */
+  .aspect-4-3 {
+    max-width: 75vh; /* 75vh width for 4:3 height */
+    max-height: 56.25vh; /* 75 * 3/4 = 56.25 */
+  }
+
+  /* Mobile portrait: aspect ratio 4:5 (width < height) */
+  @media (max-width: 768px) and (orientation: portrait) {
+    .aspect-container {
+      max-width: 80vh; /* width smaller than height */
+      max-height: 100vh;
+      width: 80vh; /* width fixed */
+      height: 100vh; /* height fixed */
+    }
+  }
+
+  /* Mobile landscape: aspect ratio 5:4 */
+  @media (max-width: 768px) and (orientation: landscape) {
+    .aspect-container {
+      max-width: 100vw;
+      max-height: 80vw; /* height smaller than width */
       width: 100vw;
-      height: 100vh;
-      position: relative;
-      overflow: hidden;
-      color: #9fef00;
-      
-      /* Dark overlay on video */
-      background: 
-        radial-gradient(circle at center, rgba(34,34,34,0.9) 0%, rgba(0,0,0,0.98) 70%);
-      background-blend-mode: overlay;
-      filter: blur(0.5px);
+      height: 80vw;
     }
+  }
 
-    /* DESKTOP: 4:3 (letterbox black bars) */
-    @media (min-width: 769px) {
-      .camera-screen {
-        aspect-ratio: 4/3;
-        width: 75vh;
-        height: 56.25vh;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
+  /* Title styles */
+  .title {
+    position: absolute;
+    top: 33.33%;
+    left: 33.33%;
+    font-size: clamp(16px, 5vw, 28px);
+    letter-spacing: 0.3em;
+    text-shadow: 0 0 4px #000, 0 0 8px rgba(159, 239, 0, 0.5);
+    z-index: 20;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transform: translate(-100%, 0); /* Align bottom-left corner on the grid lines */
+  }
 
-    /* MOBILE PORTRAIT: 4:5 (pillarbox black bars) */
-    @media (max-width: 768px) and (orientation: portrait) {
-      .camera-screen {
-        aspect-ratio: 4/5;
-        width: 80vw;
-        height: 100vh;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
+  /* Menu text */
+  .menu-text {
+    position: absolute;
+    bottom: 33.33%;
+    right: 33.33%;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.8vh, 1.2vh, 1.5vh);
+    z-index: 20;
+    text-align: right;
+    pointer-events: none;
+    transform: translate(0, 100%); /* Align top-right corner on grid */
+  }
 
-    /* MOBILE LANDSCAPE: 5:4 (letterbox black bars) */
-    @media (max-width: 768px) and (orientation: landscape) {
-      .camera-screen {
-        aspect-ratio: 5/4;
-        width: 100vw;
-        height: 80vh;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
+  .menu-text span {
+    font-size: clamp(9px, 2.2vw, 13px);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #9fef00;
+    text-shadow: 0 0 3px #000;
+    white-space: nowrap;
+  }
 
-    /* Title - RESPONSIVE */
-    .title {
-      position: absolute;
-      top: clamp(25vh, 34vh, 40vh);
-      left: clamp(28vw, 34vw, 40vw);
-      font-size: clamp(16px, 5vw, 28px);
-      letter-spacing: 0.3em;
-      text-shadow: 0 0 4px #000, 0 0 8px rgba(159,239,0,0.5);
-      z-index: 20;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
+  /* Grid lines */
+  .grid-line {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 10;
+  }
+  .grid-v1,
+  .grid-v2 {
+    top: 0;
+    bottom: 0;
+    width: 2px;
+  }
+  .grid-v1 {
+    left: 33.33%;
+  }
+  .grid-v2 {
+    left: 66.66%;
+  }
+  .grid-h1,
+  .grid-h2 {
+    left: 0;
+    right: 0;
+    height: 2px;
+  }
+  .grid-h1 {
+    top: 33.33%;
+  }
+  .grid-h2 {
+    top: 66.66%;
+  }
 
-    /* STATIC MENU TEXT */
-    .menu-text {
-      position: absolute;
-      bottom: clamp(28vh, 33.34vh, 38vh);
-      right: clamp(28vw, 33.34vw, 38vw);
-      display: flex;
-      flex-direction: column;
-      gap: clamp(0.8vh, 1.2vh, 1.5vh);
-      z-index: 20;
-      text-align: right;
-      pointer-events: none;
-    }
+  /* Focus cross */
+  .focus-box {
+    position: absolute;
+    width: clamp(24px, 4vw, 36px);
+    height: clamp(24px, 4vw, 36px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 15;
+  }
+  .focus-box::before,
+  .focus-box::after {
+    content: "";
+    position: absolute;
+    background: #9fef00;
+  }
+  .focus-box::before {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .focus-box::after {
+    width: 2px;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-    .menu-text span {
-      font-size: clamp(9px, 2.2vw, 13px);
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: #9fef00;
-      text-shadow: 0 0 3px #000;
-      white-space: nowrap;
-    }
-
-    /* FULL SCREEN LENGTH GRID LINES */
-    .grid-line {
-      position: absolute;
-      background: rgba(255,255,255,0.5);
-      z-index: 10;
-    }
-    .grid-v1, .grid-v2 { top: 0; bottom: 0; width: 2px; }
-    .grid-v1 { left: 33.33%; }
-    .grid-v2 { left: 66.66%; }
-    .grid-h1, .grid-h2 { left: 0; right: 0; height: 2px; }
-    .grid-h1 { top: 33.33%; }
-    .grid-h2 { top: 66.66%; }
-
-    /* Simple cross focus point */
-    .focus-box {
-      position: absolute;
-      width: clamp(24px, 4vw, 36px);
-      height: clamp(24px, 4vw, 36px);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 15;
-    }
-
-    .focus-box::before,
-    .focus-box::after {
-      content: '';
-      position: absolute;
-      background: #9fef00;
-    }
-
-    .focus-box::before {
-      width: 100%;
-      height: 2px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .focus-box::after {
-      width: 2px;
-      height: 100%;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    /* HUD - MOBILE TOUCH FRIENDLY */
-    .hud {
-      position: absolute;
-      left: clamp(2vw, 3vw, 4vw);
-      right: clamp(2vw, 3vw, 4vw);
-      bottom: clamp(1vh, 2vh, 3vh);
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      font-size: clamp(8px, 2.2vw, 12px);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      text-shadow: 0 0 3px #000;
-      z-index: 20;
-      background: linear-gradient(transparent, rgba(0,0,0,0.7));
-      padding: clamp(0.5vh, 1vh, 1.5vh) 0;
-      min-height: clamp(20px, 4vh, 30px);
-    }
-
-    .hud-left, .hud-center, .hud-right {
-      display: flex;
-      gap: clamp(0.5em, 1.5vw, 1.8em);
-      flex-wrap: wrap;
-    }
-
-    /* ONLY "JPEG FINE" CLICKABLE */
-    .jpeg-fine {
-      cursor: pointer;
-      padding: 4px 8px;
-      min-height: 24px;
-      display: inline-flex;
-      align-items: center;
-      touch-action: manipulation;
-    }
-
-    .jpeg-fine:hover,
-    .jpeg-fine:active {
-      color: #ccff00;
-    }
-
-    .scale {
-      font-size: clamp(7px, 1.8vw, 11px);
-      letter-spacing: 0.12em;
-    }
-
-    .battery {
-      border: 2px solid #9fef00;
-      padding: 1px 4px;
-      font-size: clamp(7px, 1.8vw, 11px);
-      background: rgba(0,0,0,0.8);
-    }
-  </style>
+  /* HUD */
+  .hud {
+    position: absolute;
+    left: 3vw;
+    right: 3vw;
+    bottom: 2vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: clamp(8px, 2vw, 14px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-shadow: 0 0 3px #000;
+    z-index: 20;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    padding: 1vh 0;
+  }
+  .hud-left,
+  .hud-center,
+  .hud-right {
+    display: flex;
+    gap: clamp(1em, 2.5vw, 1.8em);
+  }
+  .jpeg-fine {
+    cursor: pointer;
+    padding: 4px 8px;
+    min-height: 24px;
+    display: inline-flex;
+    align-items: center;
+    touch-action: manipulation;
+  }
+  .jpeg-fine:hover,
+  .jpeg-fine:active {
+    color: #ccff00;
+  }
+</style>
 </head>
 <body>
-  <!-- Looping background video -->
+  <!-- Background video -->
   <video class="bg-video" autoplay loop muted playsinline preload="auto">
-    <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+    <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4" />
   </video>
 
-  <div class="camera-screen">
-    <!-- Title -->
+  <div class="aspect-container aspect-4-3">
     <h1 class="title">PHOTOGRAPHER</h1>
-    
-    <!-- STATIC MENU TEXT -->
+
     <div class="menu-text">
       <span>CONTACT</span>
       <span>PORTFOLIO</span>
       <span>PRESENTATION</span>
     </div>
 
-    <!-- FULL SCREEN GRID LINES -->
     <div class="grid-line grid-v1"></div>
     <div class="grid-line grid-v2"></div>
     <div class="grid-line grid-h1"></div>
     <div class="grid-line grid-h2"></div>
 
-    <!-- Simple cross focus point -->
     <div class="focus-box"></div>
 
-    <!-- HUD -->
     <div class="hud">
       <div class="hud-left">
         <span>AF-S</span>
@@ -261,26 +253,15 @@
     </div>
   </div>
 
-  <script>
-    const links = ['contact.html', 'portfolio.html', 'presentation.html'];
-    let currentLink = 0;
-    
-    function cycleLink() {
-      window.location.href = links[currentLink];
-      currentLink = (currentLink + 1) % links.length;
-    }
-    
-    // Prevent zoom on iOS
-    document.addEventListener('touchstart', function(event) {
-      if (event.touches.length > 1) event.preventDefault();
-    }, { passive: false });
-    
-    let lastTouchEnd = 0;
-    document.addEventListener('touchend', function(event) {
-      const now = (new Date()).getTime();
-      if (now - lastTouchEnd <= 300) event.preventDefault();
-      lastTouchEnd = now;
-    }, false);
-  </script>
+<script>
+  // Cycle through links on JPEG FINE clicks only
+  const links = ['contact.html', 'portfolio.html', 'presentation.html'];
+  let currentLink = 0;
+  
+  function cycleLink() {
+    window.location.href = links[currentLink];
+    currentLink = (currentLink + 1) % links.length;
+  }
+</script>
 </body>
 </html>
