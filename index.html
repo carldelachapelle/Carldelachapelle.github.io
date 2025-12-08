@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Nikon Style Screen</title>
   <style>
-    /* Page base */
+    /* PHONE ONLY - PERFECT 4:5 */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       width: 100%;
@@ -16,7 +16,7 @@
       touch-action: manipulation;
     }
 
-    /* Background video - FULL SCREEN */
+    /* Full screen video background */
     .bg-video {
       position: fixed;
       top: 0;
@@ -27,87 +27,63 @@
       z-index: -100;
     }
 
-    /* Camera screen container - ALWAYS FIXED ASPECT */
+    /* PERFECT 4:5 CAMERA SCREEN - FULL HEIGHT */
     .camera-screen {
+      width: 80vw;
+      height: 100vh;
       position: absolute;
-      top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      top: 0;
+      transform: translateX(-50%);
       background: 
         radial-gradient(circle at center, rgba(34,34,34,0.9) 0%, rgba(0,0,0,0.98) 70%);
       background-blend-mode: overlay;
       filter: blur(0.5px);
       overflow: hidden;
       color: #9fef00;
+      aspect-ratio: 4/5;
     }
 
-    /* MOBILE PORTRAIT: FIXED 4:5 - height full, width fits */
-    @media (max-width: 768px) and (orientation: portrait) {
-      .camera-screen {
-        width: 80vw;  /* Fits width */
-        height: 100vh; /* Full height */
-        aspect-ratio: 4/5; /* Forces 4:5 - black bars on sides */
-      }
-    }
-
-    /* MOBILE LANDSCAPE: FIXED 5:4 - width full, height fits */
-    @media (max-width: 768px) and (orientation: landscape) {
-      .camera-screen {
-        width: 100vw; /* Full width */
-        height: 80vh; /* Fits height */
-        aspect-ratio: 5/4; /* Forces 5:4 - black bars top/bottom */
-      }
-    }
-
-    /* DESKTOP: FIXED 4:3 - height fits, width adjusts */
-    @media (min-width: 769px) {
-      .camera-screen {
-        height: 75vw; /* Fits based on width */
-        width: 100vw; /* Full width */
-        max-height: 75vh;
-        max-width: 100vh;
-        aspect-ratio: 4/3; /* Forces 4:3 - black bars top/bottom if needed */
-      }
-    }
-
-    /* All elements inside camera screen */
+    /* SMALLER TITLE - LEFT ALIGNED, ONE WORD PER LINE */
     .title {
       position: absolute;
-      top: 34vh;
-      left: 34vw;
-      font-size: clamp(16px, 5vw, 32px);
-      letter-spacing: 0.4em;
-      text-shadow: 0 0 4px #000, 0 0 8px rgba(159,239,0,0.5);
+      top: 30vh;
+      left: 32vw;
+      font-size: clamp(12px, 3vw, 18px);
+      letter-spacing: 0.2em;
+      text-shadow: 0 0 4px #000;
       z-index: 20;
       text-transform: uppercase;
-      white-space: nowrap;
+      line-height: 1.1em;
+      white-space: pre-line;
     }
 
+    /* Menu text - smaller */
     .menu-text {
       position: absolute;
-      bottom: 33.34vh;
-      right: 33.34vw;
+      bottom: 32vh;
+      right: 32vw;
       display: flex;
       flex-direction: column;
-      gap: 1.2vh;
+      gap: 0.8vh;
       z-index: 20;
       text-align: right;
       pointer-events: none;
     }
 
     .menu-text span {
-      font-size: clamp(11px, 2.5vw, 14px);
-      letter-spacing: 0.3em;
+      font-size: clamp(9px, 2vw, 12px);
+      letter-spacing: 0.25em;
       text-transform: uppercase;
       color: #9fef00;
       text-shadow: 0 0 3px #000;
       white-space: nowrap;
     }
 
-    /* FULL SCREEN LENGTH GRID LINES */
+    /* Grid lines */
     .grid-line {
       position: absolute;
-      background: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.6);
       z-index: 10;
     }
     .grid-v1, .grid-v2 { top: 0; bottom: 0; width: 2px; }
@@ -117,11 +93,11 @@
     .grid-h1 { top: 33.33%; }
     .grid-h2 { top: 66.66%; }
 
-    /* Simple cross focus point */
+    /* Focus cross */
     .focus-box {
       position: absolute;
-      width: clamp(30px, 4vw, 50px);
-      height: clamp(30px, 4vw, 50px);
+      width: clamp(20px, 3.5vw, 30px);
+      height: clamp(20px, 3.5vw, 30px);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -135,32 +111,43 @@
     .focus-box::before { width: 100%; height: 2px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
     .focus-box::after { width: 2px; height: 100%; left: 50%; top: 50%; transform: translate(-50%, -50%); }
 
-    /* HUD */
+    /* Compact HUD */
     .hud {
       position: absolute;
       left: 3vw;
       right: 3vw;
-      bottom: 2vh;
+      bottom: 1.5vh;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      font-size: clamp(10px, 2vw, 14px);
-      letter-spacing: 0.2em;
+      font-size: clamp(8px, 1.8vw, 11px);
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       text-shadow: 0 0 3px #000;
       z-index: 20;
-      background: linear-gradient(transparent, rgba(0,0,0,0.7));
-      padding: 1vh 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      padding: 0.8vh 0;
     }
-    .hud-left, .hud-center, .hud-right { display: flex; gap: clamp(1em, 2.5vw, 1.8em); }
-    .scale { font-size: clamp(9px, 1.8vw, 12px); letter-spacing: 0.15em; }
-    .battery { border: 2px solid #9fef00; padding: 2px 6px; font-size: clamp(9px, 1.8vw, 12px); background: rgba(0,0,0,0.7); }
+    .hud-left, .hud-center, .hud-right { 
+      display: flex; 
+      gap: clamp(0.6em, 1.2vw, 1.5em); 
+    }
+    .scale { 
+      font-size: clamp(7px, 1.6vw, 10px); 
+      letter-spacing: 0.12em; 
+    }
+    .battery { 
+      border: 1px solid #9fef00; 
+      padding: 1px 3px; 
+      font-size: clamp(7px, 1.6vw, 10px); 
+      background: rgba(0,0,0,0.9); 
+    }
 
-    /* ONLY JPEG FINE CLICKABLE - TOUCH FRIENDLY */
+    /* JPEG FINE - easy touch target */
     .jpeg-fine {
       cursor: pointer;
-      padding: 4px 8px;
-      min-height: 24px;
+      padding: 3px 6px;
+      min-height: 20px;
       display: inline-flex;
       align-items: center;
       touch-action: manipulation;
@@ -169,32 +156,33 @@
   </style>
 </head>
 <body>
-  <!-- Full screen looping video -->
+  <!-- Full screen video -->
   <video class="bg-video" autoplay loop muted playsinline preload="auto">
     <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
   </video>
 
   <div class="camera-screen">
-    <!-- Title -->
-    <h1 class="title">PHOTOGRAPHER</h1>
+    <!-- SMALL TITLE - ONE WORD PER LINE, LEFT ALIGNED -->
+    <h1 class="title">PHOTO
+GRAPHER</h1>
     
-    <!-- Static menu text -->
+    <!-- Menu text -->
     <div class="menu-text">
       <span>CONTACT</span>
       <span>PORTFOLIO</span>
       <span>PRESENTATION</span>
     </div>
 
-    <!-- Rule of thirds grid -->
+    <!-- Grid -->
     <div class="grid-line grid-v1"></div>
     <div class="grid-line grid-v2"></div>
     <div class="grid-line grid-h1"></div>
     <div class="grid-line grid-h2"></div>
 
-    <!-- Focus cross -->
+    <!-- Focus -->
     <div class="focus-box"></div>
 
-    <!-- Nikon HUD -->
+    <!-- Compact HUD -->
     <div class="hud">
       <div class="hud-left">
         <span>AF-S</span>
@@ -203,7 +191,7 @@
         <span>ISO 400</span>
       </div>
       <div class="hud-center">
-        <span class="scale">-  |  |  |  |  0  |  |  |  |  +</span>
+        <span class="scale">- | | | | 0 | | | | +</span>
       </div>
       <div class="hud-right">
         <span class="battery">▮▮▯▯</span>
@@ -222,7 +210,7 @@
       currentLink = (currentLink + 1) % links.length;
     }
     
-    // iOS touch fixes
+    // Touch fixes
     document.addEventListener('touchstart', e => {
       if (e.touches.length > 1) e.preventDefault();
     }, { passive: false });
