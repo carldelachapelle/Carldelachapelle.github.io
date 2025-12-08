@@ -1,25 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Background with Blur Boxes</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://images.unsplash.com/photo-1503264116251-35a269479413') 
+                        no-repeat center center/cover;
+            height: 100vh;
+            color: white;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        section {
+            max-width: 800px;
+            margin: 3rem auto;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        section p {
+            line-height: 1.6;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <div class="bg-image"></div>
-    
-    <div class="content">
-        <section class="box">
-            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400" alt="Mountain Overlay" class="overlay-img">
-            <h2>Section 1</h2>
-            <p>Blurred image background with overlay.</p>
-        </section>
-        <section class="box">
-            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400" alt="Ocean Overlay" class="overlay-img">
-            <h2>Section 2</h2>
-            <p>Sections blur the scenic background.</p>
-        </section>
-    </div>
+    <header>
+        <h1>My Portfolio</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Projects</a>
+            <a href="#">Skills</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Welcome</h2>
+        <p>Welcome to my portfolio! This section uses a blur effect to make the text readable while preserving the background image aesthetics.</p>
+    </section>
+
+    <section>
+        <h2>Projects</h2>
+        <p>Here you can showcase your work, programming projects, or designs.</p>
+    </section>
 </body>
 </html>
