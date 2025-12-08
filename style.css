@@ -61,3 +61,36 @@ video {
         font-size: 1rem;
     }
 }
+/* Ajoutez ces règles à la fin de votre style.css existant */
+
+.bottom-text {
+    position: fixed;
+    bottom: 30px;
+    font-size: 1.1rem;
+    font-weight: 300;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+    padding: 10px 20px;
+    z-index: 10;
+}
+
+.bottom-text.left {
+    left: 30px;
+}
+
+.bottom-text.right {
+    right: 30px;
+}
+
+@media (max-width: 768px) {
+    .bottom-text {
+        font-size: 0.9rem;
+        bottom: 20px;
+        padding: 8px 15px;
+    }
+    .bottom-text.left, .bottom-text.right {
+        left: 20px;
+        right: 20px;
+        text-align: center;
+        width: auto;
+    }
+}
