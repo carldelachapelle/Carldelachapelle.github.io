@@ -8,14 +8,23 @@
 </head>
 <body>
     <div class="video-background">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted loop playsinline preload="auto">
             <source src="background-video.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
         </video>
     </div>
     <div class="overlay">
         <h1 class="title">Raw Photographic Style</h1>
         <p class="subtitle">A blurred video background with crisp text overlay</p>
+    </div>
+    
+    <!-- Nouveau : Texte bas gauche -->
+    <div class="bottom-text left">
+        <p>Votre texte gauche</p>
+    </div>
+    
+    <!-- Nouveau : Texte bas droite -->
+    <div class="bottom-text right">
+        <p>Votre texte droite</p>
     </div>
 </body>
 </html>
