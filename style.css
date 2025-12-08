@@ -44,6 +44,7 @@ video {
     font-size: 3.8rem;
     font-weight: 90;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    white-space:nowrap;
 }
 
 .subtitle {
