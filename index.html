@@ -2,212 +2,194 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Nikon Style Screen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nikon Camera Screen</title>
   <style>
-    /* PHONE ONLY - PERFECT 4:5 */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
     html, body {
-      width: 100%;
       height: 100%;
       background: #000;
       font-family: "Courier New", monospace;
       overflow: hidden;
-      touch-action: manipulation;
     }
 
-    /* Full screen video background */
+    /* FULL SCREEN VIDEO */
     .bg-video {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       object-fit: cover;
-      z-index: -100;
+      z-index: -2;
     }
 
-    /* PERFECT 4:5 CAMERA SCREEN - FULL HEIGHT */
+    /* CAMERA SCREEN - FULL HEIGHT, PROPER WIDTH */
     .camera-screen {
-      width: 80vw;
+      position: fixed;
+      width: 90vw; max-width: 420px;
       height: 100vh;
-      position: absolute;
+      margin: 0 auto;
       left: 50%;
-      top: 0;
       transform: translateX(-50%);
-      background: 
-        radial-gradient(circle at center, rgba(34,34,34,0.9) 0%, rgba(0,0,0,0.98) 70%);
+      background: radial-gradient(circle at center, rgba(20,20,20,0.95) 0%, rgba(0,0,0,0.98) 70%);
       background-blend-mode: overlay;
-      filter: blur(0.5px);
-      overflow: visible; /* FIXED: allow HUD to show */
       color: #9fef00;
-      aspect-ratio: 4/5;
+      z-index: -1;
     }
 
-    /* SMALLER TITLE - LEFT ALIGNED, ONE WORD PER LINE */
+    /* TITLE - SMALL, LEFT, WORD PER LINE */
     .title {
       position: absolute;
-      top: 28vh; /* Moved up slightly */
-      left: 30vw;
-      font-size: clamp(11px, 2.8vw, 16px); /* Smaller */
-      letter-spacing: 0.2em;
-      text-shadow: 0 0 4px #000;
-      z-index: 20;
-      text-transform: uppercase;
-      line-height: 1.1em;
+      top: 25vh;
+      left: 8%;
+      font-size: 18px;
+      line-height: 1.1;
+      letter-spacing: 0.1em;
+      text-shadow: 0 0 5px #000;
       white-space: pre-line;
+      z-index: 20;
     }
 
-    /* Menu text - moved up and smaller */
+    /* MENU TEXT */
     .menu-text {
       position: absolute;
-      bottom: 28vh; /* FIXED: moved up */
-      right: 30vw;
+      top: 38vh;
+      right: 8%;
       display: flex;
       flex-direction: column;
-      gap: 0.6vh;
+      gap: 8px;
       z-index: 20;
-      text-align: right;
-      pointer-events: none;
     }
-
     .menu-text span {
-      font-size: clamp(8px, 1.8vw, 11px); /* Smaller */
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.15em;
       color: #9fef00;
       text-shadow: 0 0 3px #000;
-      white-space: nowrap;
     }
 
-    /* Grid lines */
+    /* GRID LINES */
     .grid-line {
       position: absolute;
-      background: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.4);
       z-index: 10;
     }
-    .grid-v1, .grid-v2 { top: 0; bottom: 0; width: 2px; }
-    .grid-v1 { left: 33.33%; }
-    .grid-v2 { left: 66.66%; }
-    .grid-h1, .grid-h2 { left: 0; right: 0; height: 2px; }
-    .grid-h1 { top: 33.33%; }
-    .grid-h2 { top: 66.66%; }
+    .grid-v1 { left: 33%; top: 0; bottom: 12%; width: 1px; }
+    .grid-v2 { left: 66%; top: 0; bottom: 12%; width: 1px; }
+    .grid-h1 { top: 33%; left: 0; right: 0; height: 1px; }
+    .grid-h2 { top: 66%; left: 0; right: 0; height: 1px; }
 
-    /* Focus cross */
+    /* FOCUS CROSS */
     .focus-box {
       position: absolute;
-      width: clamp(18px, 3vw, 28px);
-      height: clamp(18px, 3vw, 28px);
       top: 50%;
       left: 50%;
+      width: 32px; height: 32px;
       transform: translate(-50%, -50%);
       z-index: 15;
     }
-    .focus-box::before, .focus-box::after {
-      content: '';
-      position: absolute;
-      background: #9fef00;
+    .focus-box::before {
+      content: ''; position: absolute;
+      width: 100%; height: 2px; background: #9fef00;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
     }
-    .focus-box::before { width: 100%; height: 2px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-    .focus-box::after { width: 2px; height: 100%; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+    .focus-box::after {
+      content: ''; position: absolute;
+      width: 2px; height: 100%; background: #9fef00;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
 
-    /* FIXED HUD - VISIBLE ON ALL DEVICES */
+    /* HUD - HUGE, BOTTOM 12% OF SCREEN */
     .hud {
-      position: absolute;
-      left: 2.5vw;
-      right: 2.5vw;
-      bottom: 0.5vh; /* FIXED: Much higher up */
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      height: 12vh;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(5px);
       display: flex;
-      justify-content: space-between;
       align-items: flex-end;
-      font-size: clamp(7px, 1.6vw, 10px); /* Smaller */
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      padding: 12px 24px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: #9fef00;
       text-shadow: 0 0 3px #000;
-      z-index: 30; /* Higher z-index */
-      background: linear-gradient(transparent, rgba(0,0,0,0.9));
-      padding: 0.5vh 0;
-      min-height: 18px;
+      z-index: 100;
+      box-sizing: border-box;
     }
-    .hud-left, .hud-center, .hud-right { 
-      display: flex; 
-      gap: clamp(0.4em, 1vw, 1.2em); 
-      flex-wrap: nowrap; /* FIXED: no wrapping */
+    .hud > div {
+      display: flex;
+      gap: 12px;
+      flex: 1;
     }
-    .scale { 
-      font-size: clamp(6px, 1.4vw, 9px); 
-      letter-spacing: 0.1em; 
-      white-space: nowrap;
+    .hud-right span {
+      padding: 4px 6px;
     }
-    .battery { 
-      border: 1px solid #9fef00; 
-      padding: 1px 2px; 
-      font-size: clamp(6px, 1.4vw, 9px); 
-      background: rgba(0,0,0,1); 
+    .battery {
+      border: 2px solid #9fef00;
+      background: rgba(0,0,0,1);
     }
-
-    /* JPEG FINE - bigger touch target */
+    
     .jpeg-fine {
       cursor: pointer;
-      padding: 2px 5px;
-      min-height: 18px;
-      display: inline-flex;
-      align-items: center;
-      touch-action: manipulation;
+      border: 1px solid rgba(159,239,0,0.5);
+      padding: 6px 12px !important;
     }
-    .jpeg-fine:hover, .jpeg-fine:active { color: #ccff00; }
+    .jpeg-fine:hover, .jpeg-fine:active {
+      background: rgba(159,239,0,0.2);
+      color: #ccff00;
+    }
+
+    /* PHONE OPTIMIZATION */
+    @media (max-width: 480px) {
+      .hud { font-size: 10px; padding: 8px 16px; }
+      .title { font-size: 16px; }
+      .menu-text span { font-size: 11px; }
+    }
   </style>
 </head>
 <body>
-  <!-- Full screen video -->
   <video class="bg-video" autoplay loop muted playsinline preload="auto">
     <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
   </video>
 
   <div class="camera-screen">
-    <!-- SMALL TITLE - ONE WORD PER LINE -->
     <h1 class="title">PHOTO
 GRAPHER</h1>
     
-    <!-- Menu text -->
     <div class="menu-text">
       <span>CONTACT</span>
       <span>PORTFOLIO</span>
       <span>PRESENTATION</span>
     </div>
 
-    <!-- Grid -->
     <div class="grid-line grid-v1"></div>
     <div class="grid-line grid-v2"></div>
     <div class="grid-line grid-h1"></div>
     <div class="grid-line grid-h2"></div>
 
-    <!-- Focus -->
     <div class="focus-box"></div>
+  </div>
 
-    <!-- FIXED VISIBLE HUD -->
-    <div class="hud">
-      <div class="hud-left">
-        <span>AF-S</span>
-        <span>F3.5</span>
-        <span>1/125</span>
-        <span>ISO 400</span>
-      </div>
-      <div class="hud-center">
-        <span class="scale">- | | | 0 | | | +</span>
-      </div>
-      <div class="hud-right">
-        <span class="battery">▮▮▯</span>
-        <span class="jpeg-fine" onclick="cycleLink()">JPEG FINE</span>
-        <span>101/329</span>
-      </div>
+  <!-- MASSIVE BOTTOM HUD -->
+  <div class="hud">
+    <div>
+      <span>AF-S</span>
+      <span>F3.5</span>
+      <span>1/125</span>
+      <span>ISO 400</span>
+    </div>
+    <div style="justify-content: center;">
+      <span>- | | | 0 | | | +</span>
+    </div>
+    <div class="hud-right">
+      <span class="battery">▮▮▯▯</span>
+      <span class="jpeg-fine" onclick="cycleLink()">JPEG FINE</span>
+      <span>101/329</span>
     </div>
   </div>
 
   <script>
     const links = ['contact.html', 'portfolio.html', 'presentation.html'];
     let currentLink = 0;
-    
     function cycleLink() {
       window.location.href = links[currentLink];
       currentLink = (currentLink + 1) % links.length;
