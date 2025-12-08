@@ -1,100 +1,283 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photographe Mariage & Événement</title>
+
+    <!-- Exact typography you liked -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- PAGE ACCUEIL (accueil.html) -->
+    <div id="accueil" class="page active">
+        <header>
+            <div class="header-inner">
+                <a href="accueil.html" class="logo">Photographe</a>
+            </div>
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="accueil.html" class="nav-link active">Accueil</a></li>
+                    <li><a href="apropos.html" class="nav-link">À propos</a></li>
+                    <li><a href="tarifs.html" class="nav-link">Tarifs</a></li>
+                    <li><a href="mariages.html" class="nav-link">Mariages</a></li>
+                    <li><a href="soirees.html" class="nav-link">Soirées</a></li>
+                    <li><a href="couples.html" class="nav-link">Couples</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <main class="page-content">
+            <div class="hero-sub">Mariage & Événement</div>
+            <h1>Images sincères et intemporelles</h1>
+            <p>Photographe basé à Bordeaux, disponible partout en France pour capturer vos moments uniques avec élégance et discrétion.</p>
+            <div class="hero-image"></div>
+        </main>
+    </div>
+
+    <!-- TOUS LES FICHIERS CSS/JS EN 1 SEUL -->
+
     <style>
+        :root {
+            --bg: #ffffff;
+            --text: #1f1f1f;
+            --muted: #777777;
+            --border: #e5e5e5;
+            --max-width: 980px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            margin: 0;
-            padding: 0;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background: url('https://images.unsplash.com/photo-1503264116251-35a269479413') 
-                        no-repeat center center/cover;
-            min-height: 100vh;
-            color: white;
+            font-family: 'Work Sans', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 16px;
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
         header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .header-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 16px 24px;
             text-align: center;
-            padding: 2rem 0;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(5px);
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            letter-spacing: 2px;
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text);
+            font-weight: 400;
+            text-decoration: none;
         }
 
-        nav {
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px 8px;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .nav-links {
+            list-style: none;
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-top: 1rem;
+            gap: 2px;
         }
 
-        nav a {
-            color: white;
+        .nav-links li {
+            flex: 1;
+            min-width: 105px;
+            max-width: 125px;
+        }
+
+        .nav-links a {
+            display: block;
             text-decoration: none;
-            font-weight: bold;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: background 0.3s ease;
+            color: var(--muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 12px 6px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
         }
 
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.2);
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text);
+            background: rgba(209, 155, 108, 0.12);
+            border-color: rgba(209, 155, 108, 0.4);
         }
 
-        main {
-            padding: 3rem 2rem;
+        .page-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 20px 24px 40px;
         }
 
-        section {
-            max-width: 800px;
-            margin: 2rem auto; /* centers and adds horizontal spacing */
-            background: rgba(0, 0, 0, 0.4);
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-size: 2rem;
+            margin: 24px 0 16px;
+        }
+
+        .hero-sub {
+            font-size: 0.9rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        p { margin-bottom: 16px; font-size: 1.05rem; max-width: 650px; }
+
+        .hero-image {
+            height: 420px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.06), rgba(0,0,0,0.12)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23f0f0f0" width="1200" height="800"/><text x="600" y="400" font-size="42" text-anchor="middle" fill="%23bbb">Hero Image</text></svg>');
+            background-size: cover;
+            background-position: center;
+            margin: 24px 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin: 32px 0;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
             backdrop-filter: blur(10px);
-            padding: 2rem;
+        }
+
+        .gallery-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .gallery-item {
+            aspect-ratio: 4/3;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f8f8f8, #e9e9e9);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border);
             border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+            transition: all 0.3s ease;
         }
 
-        section h2 {
-            text-align: center;
-            margin-bottom: 1rem;
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--text);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(209,155,108,0.15);
         }
 
-        section p {
-            line-height: 1.6;
-            text-align: center;
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--text);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .btn:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .price-highlight {
+            font-size: 2.4rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--text);
+            font-weight: 400;
+            display: block;
+            margin: 12px 0;
+        }
+
+        @media (max-width: 768px) {
+            .logo { font-size: 1.7rem; }
+            .nav-links { flex-direction: column; gap: 2px; }
+            .nav-links li { min-width: auto; max-width: none; flex: none; }
+            .content-grid { grid-template-columns: 1fr; gap: 24px; }
+            .page-content { padding: 16px 16px 32px; }
+            h1 { font-size: 2.4rem; }
         }
     </style>
-</head>
-<body>
-    <header>
-        <h1>My Portfolio</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Projects</a>
-            <a href="#">Skills</a>
-            <a href="#">Contact</a>
-        </nav>
-    </header>
 
-    <main>
-        <section>
-            <h2>Welcome</h2>
-            <p>Welcome to my portfolio! This section uses a blur effect to make the text readable while preserving the background image aesthetics.</p>
-        </section>
-
-        <section>
-            <h2>Projects</h2>
-            <p>Here you can showcase your work, programming projects, or designs.</p>
-        </section>
-    </main>
+    <script>
+        // Navigation entre vraies pages HTML
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href !== window.location.pathname.split('/').pop()) {
+                    // Ne recharge que si changement de page
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
