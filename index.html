@@ -16,7 +16,7 @@
       touch-action: manipulation;
     }
 
-    /* Background video - MOBILE OPTIMIZED */
+    /* Background video - FULL SCREEN */
     .bg-video {
       position: fixed;
       top: 0;
@@ -27,7 +27,7 @@
       z-index: -100;
     }
 
-    /* Full-screen camera screen */
+    /* Full-screen camera screen - FULL SCREEN ALWAYS */
     .camera-screen {
       width: 100vw;
       height: 100vh;
@@ -42,24 +42,12 @@
       filter: blur(0.5px);
     }
 
-    /* DESKTOP: 4:3 */
+    /* DESKTOP: 4:3 (letterbox black bars) */
     @media (min-width: 769px) {
       .camera-screen {
         aspect-ratio: 4/3;
-        max-width: 100vw;
-        max-height: 100vh;
-        margin: auto;
-      }
-    }
-
-    /* MOBILE PORTRAIT: EXACTLY 5:4 */
-    @media (max-width: 768px) and (orientation: portrait) {
-      .camera-screen {
-        aspect-ratio: 5/4 !important;
-        width: 80vw;
-        height: 64vw;
-        max-height: 100vh;
-        max-width: 100vw;
+        width: 75vh;
+        height: 56.25vh;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -67,12 +55,29 @@
       }
     }
 
-    /* MOBILE LANDSCAPE: 4:3 */
+    /* MOBILE PORTRAIT: 4:5 (pillarbox black bars) */
+    @media (max-width: 768px) and (orientation: portrait) {
+      .camera-screen {
+        aspect-ratio: 4/5;
+        width: 80vw;
+        height: 100vh;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    /* MOBILE LANDSCAPE: 5:4 (letterbox black bars) */
     @media (max-width: 768px) and (orientation: landscape) {
       .camera-screen {
-        aspect-ratio: 4/3 !important;
+        aspect-ratio: 5/4;
         width: 100vw;
-        height: 100vh;
+        height: 80vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
     }
 
