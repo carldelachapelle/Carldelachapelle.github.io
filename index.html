@@ -11,7 +11,7 @@
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             background: url('https://images.unsplash.com/photo-1503264116251-35a269479413') 
                         no-repeat center center/cover;
-            height: 100vh;
+            min-height: 100vh;
             color: white;
         }
 
@@ -31,6 +31,7 @@
         nav {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 1.5rem;
             margin-top: 1rem;
         }
@@ -48,9 +49,13 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
+        main {
+            padding: 3rem 2rem;
+        }
+
         section {
             max-width: 800px;
-            margin: 3rem auto;
+            margin: 2rem auto; /* centers and adds horizontal spacing */
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
             padding: 2rem;
@@ -80,14 +85,16 @@
         </nav>
     </header>
 
-    <section>
-        <h2>Welcome</h2>
-        <p>Welcome to my portfolio! This section uses a blur effect to make the text readable while preserving the background image aesthetics.</p>
-    </section>
+    <main>
+        <section>
+            <h2>Welcome</h2>
+            <p>Welcome to my portfolio! This section uses a blur effect to make the text readable while preserving the background image aesthetics.</p>
+        </section>
 
-    <section>
-        <h2>Projects</h2>
-        <p>Here you can showcase your work, programming projects, or designs.</p>
-    </section>
+        <section>
+            <h2>Projects</h2>
+            <p>Here you can showcase your work, programming projects, or designs.</p>
+        </section>
+    </main>
 </body>
 </html>
