@@ -4,13 +4,16 @@ body {
     overflow-x: hidden;
 }
 
-#bg-video {
+.bg-image {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1920&fit=cover');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     z-index: -1;
 }
 
@@ -25,6 +28,7 @@ body {
 }
 
 .box {
+    position: relative;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -34,18 +38,35 @@ body {
     text-align: center;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s;
+    overflow: hidden;
 }
 
-.box:hover {
-    transform: translateY(-10px);
+.overlay-img {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.5);
+    z-index: 2;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-.box h2 {
+.box h2, .box p {
     color: white;
+    position: relative;
+    z-index: 3;
     margin: 0 0 1rem;
 }
 
 .box p {
-    color: rgba(255, 255, 255, 0.9);
     line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.box:hover {
+    transform: translateY(-10px);
 }
