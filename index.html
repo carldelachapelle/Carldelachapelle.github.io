@@ -1,330 +1,512 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Photographe Mariage & Événement</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      --bg: #ffffff;
-      --text: #1f1f1f;
-      --muted: #777;
-      --highlight: rgba(209,155,108,0.8);
-      --max-width: 980px;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Work Sans', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 16px;
-      line-height: 1.7;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      padding-top: 160px;
-    }
-
-    /* HEADER */
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(255,255,255,0.98);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0,0,0,0.04);
-      transition: transform 0.3s ease;
-    }
-    .hide-header { transform: translateY(-100%); }
-
-    .header-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 14px 24px 8px;
-      text-align: center;
-    }
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.9rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    .nav-container { background: rgba(255,255,255,0.97); }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 6px;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 6px 12px 10px;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      padding: 8px 12px;
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      border-radius: 6px;
-      transition: all 0.3s ease;
-    }
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--text);
-      background: rgba(209,155,108,0.15);
-      border: 1px solid rgba(209,155,108,0.35);
-      box-shadow: 0 0 8px rgba(209,155,108,0.5);
-    }
-
-    /* PAGE LAYOUT */
-    .page { display: none; flex: 1; animation: fadein 0.4s ease; }
-    .page.active { display: flex; flex-direction: column; }
-
-    @keyframes fadein { from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);} }
-
-    .page-content { max-width: var(--max-width); margin: 0 auto; padding: 24px; flex: 1; }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      margin-bottom: 16px;
-    }
-    .hero-sub { font-size: 0.9rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
-    p { margin-bottom: 18px; max-width: 650px; font-size: 1.05rem; line-height: 1.7; }
-
-    /* GALERIES défilantes + fondu */
-    .auto-scroll-gallery {
-      overflow: hidden;
-      height: 360px;
-      margin: 40px 0;
-      border-radius: 16px;
-      position: relative;
-      cursor: grab;
-    }
-    .auto-scroll-gallery:active { cursor: grabbing; }
-
-    .gallery-track {
-      display: flex;
-      gap: 24px;
-      transition: transform 0.1s linear;
-      will-change: transform;
-    }
-    .gallery-item {
-      flex: 0 0 340px;
-      height: 360px;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      background-size: cover;
-      background-position: center;
-      opacity: 0.8;
-      transition: opacity 1.2s ease-in-out, transform 0.6s ease;
-    }
-    .gallery-item:hover { opacity: 1; transform: scale(1.03); }
-
-    /* FOOTER – effet boîte lumineuse */
-    .footer {
-      background: rgba(31,31,31,0.95);
-      color: white;
-      text-align: center;
-      padding: 32px 16px 28px;
-      border-top: 1px solid rgba(209,155,108,0.4);
-      box-shadow: 0 -4px 18px rgba(209,155,108,0.4);
-    }
-    .footer a {
-      color: var(--highlight);
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    .footer a:hover { color: #ffce88; }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      body { padding-top: 150px; }
-      h1 { font-size: 2.4rem; }
-      .gallery-item { flex: 0 0 260px; height: 260px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photographe Mariage & Événement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <header>
-    <div class="header-inner">
-      <a href="#accueil" class="logo">Photographe</a>
+    <!-- HEADER FIXE (se cache au scroll down) -->
+    <header>
+        <div class="header-inner">
+            <a href="#accueil" class="logo">Photographe</a>
+        </div>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#accueil" class="nav-link active">Accueil</a></li>
+                <li><a href="#apropos" class="nav-link">À propos</a></li>
+                <li><a href="#tarifs" class="nav-link">Tarifs</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#mariages" class="nav-link">Mariages</a></li>
+                <li><a href="#soirees" class="nav-link">Soirées</a></li>
+                <li><a href="#couples" class="nav-link">Couples</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- PAGES -->
+    <div id="accueil" class="page active">
+        <main class="page-content">
+            <div class="hero-sub">Mariage & Événement</div>
+            <h1>Images sincères et intemporelles</h1>
+            <p>Photographe basé à Bordeaux, disponible partout en France pour capturer vos moments uniques avec élégance et discrétion.</p>
+            <div class="hero-image"></div>
+        </main>
     </div>
-    <div class="nav-container">
-      <ul class="nav-links">
-        <li><a href="#accueil" class="nav-link active">Accueil</a></li>
-        <li><a href="#apropos" class="nav-link">À propos</a></li>
-        <li><a href="#tarifs" class="nav-link">Tarifs</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-        <li><a href="#mariages" class="nav-link">Mariages</a></li>
-        <li><a href="#soirees" class="nav-link">Soirées</a></li>
-        <li><a href="#couples" class="nav-link">Couples</a></li>
-      </ul>
+
+    <div id="apropos" class="page">
+        <main class="page-content">
+            <h1>À propos</h1>
+            <p>Je suis passionné par la lumière naturelle et les émotions vraies. Mon approche est documentaire et élégante : observer, capter discrètement, sans forcer les poses.</p>
+            <p>Je crois qu’une belle image est celle qui reflète votre authenticité. Après plusieurs années à photographier paysages et portraits, je me suis spécialisé dans les reportages de mariages et d’événements privés.</p>
+        </main>
     </div>
-  </header>
 
-  <div id="accueil" class="page active">
-    <main class="page-content">
-      <div class="hero-sub">Mariage & Événement</div>
-      <h1>Images sincères et intemporelles</h1>
-      <p>Photographe basé à Bordeaux, je capture vos moments précieux avec élégance et discrétion, en France et ailleurs.</p>
-    </main>
-  </div>
+    <div id="tarifs" class="page">
+        <main class="page-content">
+            <h1>Tarifs</h1>
+            <div class="hero-sub">Des formules transparentes et adaptables</div>
+            <p>Chaque histoire est unique. Voici quelques repères pour vous aider à vous projeter :</p>
+            <ul>
+                <li><strong>Séance couple</strong> – à partir de 250 € (1 h de prise de vue, galerie en ligne incluse).</li>
+                <li><strong>Reportage mariage</strong> – à partir de 1 200 € (des préparatifs à la première danse).</li>
+                <li><strong>Soirée privée / événement</strong> – devis sur mesure selon la durée, le lieu et le nombre d’invités.</li>
+            </ul>
+            <p>Toutes les formules incluent la sélection, la retouche et la livraison des photos en haute définition via une galerie en ligne privée.</p>
+        </main>
+    </div>
 
-  <div id="apropos" class="page">
-    <main class="page-content">
-      <h1>À propos</h1>
-      <p>Je privilégie les émotions naturelles et la lumière douce. Mon but : immortaliser vos instants avec authenticité et esthétisme.</p>
-    </main>
-  </div>
+    <div id="contact" class="page">
+        <main class="page-content">
+            <h1>Contact</h1>
+            <p>Parlez-moi de votre projet, de votre date et de vos envies. Je vous répondrai rapidement avec une proposition adaptée.</p>
+            <form action="#" method="post" style="display:flex;flex-direction:column;gap:12px;max-width:420px;">
+                <input type="text" name="nom" placeholder="Votre nom" required>
+                <input type="email" name="email" placeholder="Votre email" required>
+                <input type="text" name="date" placeholder="Date de l'événement (optionnel)">
+                <textarea name="message" rows="5" placeholder="Parlez-moi de votre projet..." required></textarea>
+                <button type="submit" style="background:#d19b6c;color:#fff;border:none;padding:12px;border-radius:6px;cursor:pointer;">Envoyer</button>
+            </form>
+        </main>
+    </div>
 
-  <div id="tarifs" class="page">
-    <main class="page-content">
-      <h1>Tarifs</h1>
-      <p>Formules adaptables selon vos besoins :</p>
-      <ul>
-        <li><strong>Séance couple</strong> – 250 €</li>
-        <li><strong>Mariage journée complète</strong> – 1 200 €</li>
-        <li><strong>Événement privé</strong> – sur devis</li>
-      </ul>
-    </main>
-  </div>
+    <div id="mariages" class="page">
+        <main class="page-content">
+            <h1>Mariages</h1>
+            <section class="gallery-section">
+                <h2>Galerie</h2>
+                <div class="auto-scroll-gallery">
+                    <div class="gallery-track">
+                        <div class="gallery-item" style="background-image:url('https://picsum.photos/900/600?1');"></div>
+                        <div class="gallery-item" style="background-image:url('https://picsum.photos/900/600?2');"></div>
+                        <div class="gallery-item" style="background-image:url('https://picsum.photos/900/600?3');"></div>
+                        <div class="gallery-item" style="background-image:url('https://picsum.photos/900/600?4');"></div>
+                        <div class="gallery-item" style="background-image:url('https://picsum.photos/900/600?5');"></div>
+                    </div>
+                </div>
+            </section>
+            <section class="text-section">
+                <h2>Une journée inoubliable</h2>
+                <div class="hero-sub">Capturer l'émotion pure</div>
+                <p>Vos vœux, vos regards, vos premiers pas de danse. Chaque instant compte et mérite d'être immortalisé avec finesse et élégance.</p>
+            </section>
+        </main>
+    </div>
 
-  <div id="contact" class="page">
-    <main class="page-content">
-      <h1>Contact</h1>
-      <p>Envoyez-moi un message, je vous répondrai rapidement :</p>
-      <form style="display:flex;flex-direction:column;gap:10px;max-width:400px;">
-        <input type="text" placeholder="Nom" required>
-        <input type="email" placeholder="Email" required>
-        <textarea rows="4" placeholder="Message"></textarea>
-        <button style="padding:10px;border:none;border-radius:6px;background:var(--highlight);color:#fff;cursor:pointer;">Envoyer</button>
-      </form>
-    </main>
-  </div>
+    <div id="soirees" class="page">
+        <main class="page-content">
+            <h1>Soirées</h1>
+            <section class="gallery-section">
+                <h2>Galerie</h2>
+                <div class="auto-scroll-gallery">
+                    <div class="gallery-track">
+                        <div class="gallery-item" style="background-image:url('https://picsum.photos/900/600?6');"></div>
+                        <div class="gallery-item" style="background-image:url('https://picsum.photos/900/600?7');"></div>
+                        <div class="gallery-item" style="background-image:url('https://picsum.photos/900/600?8');"></div>
+                        <div class="gallery-item" style="background-image:url('https://picsum.photos/900/600?9');"></div>
+                        <div class="gallery-item" style="background-image:url('https://picsum.photos/900/600?10');"></div>
+                    </div>
+                </div>
+            </section>
+            <section class="text-section">
+                <h2>L'ambiance électrique</h2>
+                <div class="hero-sub">Les nuits qui marquent</div>
+                <p>Entre rires, danses et regards complices, vos soirées prennent vie sous l'objectif.</p>
+            </section>
+        </main>
+    </div>
 
-  <div id="mariages" class="page">
-    <main class="page-content">
-      <h1>Mariages</h1>
-      <p>Des préparatifs à la fête, j’immortalise votre journée avec discrétion et élégance.</p>
-      <div class="auto-scroll-gallery">
-        <div class="gallery-track">
-          <div class="gallery-item" style="background-image:url('https://picsum.photos/800/600?1');"></div>
-          <div class="gallery-item" style="background-image:url('https://picsum.photos/800/600?2');"></div>
-          <div class="gallery-item" style="background-image:url('https://picsum.photos/800/600?3');"></div>
-          <div class="gallery-item" style="background-image:url('https://picsum.photos/800/600?4');"></div>
-          <div class="gallery-item" style="background-image:url('https://picsum.photos/800/600?5');"></div>
+    <div id="couples" class="page">
+        <main class="page-content">
+            <h1>Couples</h1>
+            <section class="gallery-section">
+                <h2>Galerie</h2>
+                <div class="auto-scroll-gallery">
+                    <div class="gallery-track">
+                        <div class="gallery-item" style="background-image:url('https://picsum.photos/900/600?11');"></div>
+                        <div class="gallery-item" style="background-image:url('https://picsum.photos/900/600?12');"></div>
+                        <div class="gallery-item" style="background-image:url('https://picsum.photos/900/600?13');"></div>
+                        <div class="gallery-item" style="background-image:url('https://picsum.photos/900/600?14');"></div>
+                        <div class="gallery-item" style="background-image:url('https://picsum.photos/900/600?15');"></div>
+                    </div>
+                </div>
+            </section>
+            <section class="text-section">
+                <h2>Votre histoire d'amour</h2>
+                <div class="hero-sub">Authenticité et tendresse</div>
+                <p>Sessions naturelles en lumière dorée pour célébrer votre complicité.</p>
+            </section>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="page-content">
+            <div class="footer-content">
+                <p>Photographe Mariage & Événement | Basé à Bordeaux</p>
+                <p>Disponible partout en France | <a href="#contact">Contactez-moi</a></p>
+                <p>&copy; 2025 Tous droits réservés</p>
+            </div>
         </div>
-      </div>
-    </main>
-  </div>
+    </footer>
 
-  <div id="soirees" class="page">
-    <main class="page-content">
-      <h1>Soirées</h1>
-      <p>Ambiance, énergie, lumière : je capture l’intensité de vos soirées avec un regard artistique.</p>
-      <div class="auto-scroll-gallery">
-        <div class="gallery-track">
-          <div class="gallery-item" style="background-image:url('https://picsum.photos/800/600?6');"></div>
-          <div class="gallery-item" style="background-image:url('https://picsum.photos/800/600?7');"></div>
-          <div class="gallery-item" style="background-image:url('https://picsum.photos/800/600?8');"></div>
-          <div class="gallery-item" style="background-image:url('https://picsum.photos/800/600?9');"></div>
-          <div class="gallery-item" style="background-image:url('https://picsum.photos/800/600?10');"></div>
-        </div>
-      </div>
-    </main>
-  </div>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #1f1f1f;
+            --muted: #777777;
+            --border: #e5e5e5;
+            --max-width: 980px;
+        }
 
-  <div id="couples" class="page">
-    <main class="page-content">
-      <h1>Couples</h1>
-      <p>L’amour sincère et les connexions fortes méritent des images intemporelles.</p>
-      <div class="auto-scroll-gallery">
-        <div class="gallery-track">
-          <div class="gallery-item" style="background-image:url('https://picsum.photos/800/600?11');"></div>
-          <div class="gallery-item" style="background-image:url('https://picsum.photos/800/600?12');"></div>
-          <div class="gallery-item" style="background-image:url('https://picsum.photos/800/600?13');"></div>
-          <div class="gallery-item" style="background-image:url('https://picsum.photos/800/600?14');"></div>
-          <div class="gallery-item" style="background-image:url('https://picsum.photos/800/600?15');"></div>
-        </div>
-      </div>
-    </main>
-  </div>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  <footer class="footer">
-    <p>© 2025 Photographe – Bordeaux</p>
-    <p><a href="#contact">Contact</a> | De la Chapelle</p>
-  </footer>
+        body {
+            font-family: 'Work Sans', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 16px;
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: 120px; /* Espace pour header fixe */
+        }
 
-  <script>
-    // --- NAVIGATION SPA ---
-    const navLinks = document.querySelectorAll('.nav-link');
-    const pages = document.querySelectorAll('.page');
-    function activatePage(id) {
-      pages.forEach(p => p.classList.remove('active'));
-      document.getElementById(id)?.classList.add('active');
-      navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    navLinks.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        activatePage(link.getAttribute('href').replace('#',''));
-      });
-    });
+        /* HEADER FIXE - SE CACHE AU SCROLL */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            transition: transform 0.28s ease, height 0.28s ease;
+            will-change: transform;
+        }
 
-    // --- HEADER HIDE ON SCROLL ---
-    const header = document.querySelector('header');
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-      const current = window.scrollY;
-      header.classList.toggle('hide-header', current > lastScroll && current > 60);
-      lastScroll = current;
-    });
+        .header-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 16px 24px;
+            text-align: center;
+        }
 
-    // --- GALERIES DÉFILANTES + EFFET FONDU ---
-    document.querySelectorAll('.auto-scroll-gallery').forEach(gallery => {
-      const track = gallery.querySelector('.gallery-track');
-      let pos = 0;
-      let isDown = false, startX = 0, scrollStart = 0;
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text);
+            font-weight: 400;
+            text-decoration: none;
+        }
 
-      function autoScroll() {
-        pos -= 0.3;
-        if (Math.abs(pos) >= track.scrollWidth / 2) pos = 0;
-        track.style.transform = `translateX(${pos}px)`;
-        track.querySelectorAll('.gallery-item').forEach((img, i) => {
-          const fade = 1 - Math.abs((pos/300 + i) % 6 - 3)/3;
-          img.style.opacity = 0.7 + 0.3 * fade;
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px 8px;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2px;
+            flex-wrap: wrap; /* permet 2 lignes si besoin */
+        }
+
+        .nav-links li { flex: 1; min-width: 105px; max-width: 125px; }
+
+        .nav-links a {
+            display: block;
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 12px 6px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text);
+            background: rgba(209, 155, 108, 0.12);
+            border-color: rgba(209, 155, 108, 0.4);
+            box-shadow: 0 0 8px rgba(209,155,108,0.5);
+        }
+
+        /* HEADER CACHE */
+        .hide-header {
+            transform: translateY(-100%);
+        }
+
+        /* PAGES */
+        .page { display: none; flex: 1; animation: fadein 0.4s ease; }
+        .page.active { display: flex; flex-direction: column; }
+
+        @keyframes fadein {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 20px 24px 40px;
+            flex: 1;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .hero-sub {
+            font-size: 0.9rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        p { margin-bottom: 16px; font-size: 1.05rem; max-width: 650px; }
+
+        .hero-image {
+            height: 420px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.06), rgba(0,0,0,0.12)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23f0f0f0" width="1200" height="800"/><text x="600" y="400" font-size="42" text-anchor="middle" fill="%23bbb">Hero Image</text></svg>');
+            background-size: cover;
+            background-position: center;
+            margin: 24px 0;
+        }
+
+        /* GALERIE */
+        .gallery-section { margin: 40px 0; }
+        .gallery-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .auto-scroll-gallery {
+            height: 360px;
+            overflow: hidden;
+            border-radius: 16px;
+            cursor: grab;
+            position: relative;
+        }
+        .auto-scroll-gallery:active { cursor: grabbing; }
+
+        .gallery-track {
+            display: flex;
+            height: 100%;
+            gap: 24px;
+            transition: transform 0.1s linear;
+            will-change: transform;
+        }
+
+        .gallery-item {
+            flex: 0 0 340px;
+            height: 360px;
+            border-radius: 20px;
+            background-size: cover !important;
+            background-position: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            opacity: 0.8;
+            transition: opacity 1.2s ease-in-out, transform 0.6s ease;
+        }
+
+        .gallery-item:hover {
+            opacity: 1;
+            transform: scale(1.03);
+        }
+
+        .text-section {
+            margin: 60px 0;
+            text-align: center;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .text-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: rgba(31, 31, 31, 0.95);
+            color: white;
+            padding: 32px 0 24px;
+            margin-top: auto;
+            border-top: 1px solid rgba(209,155,108,0.4);
+            box-shadow: 0 -4px 18px rgba(209,155,108,0.4);
+        }
+
+        .footer-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-content p {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .footer-content a {
+            color: rgba(209,155,108,0.9);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-content a:hover {
+            color: #ffce88;
+        }
+
+        /* MOBILE RESPONSIVE - GALERIE + HEADER */
+        @media (max-width: 768px) {
+            body { padding-top: 100px; }
+            .logo { font-size: 1.4rem; }
+            .nav-links { flex-direction: column; gap: 2px; }
+            .nav-links li { min-width: auto; max-width: none; flex: none; }
+            .nav-links a { padding: 8px 6px; font-size: 0.66rem; }
+
+            .page-content { padding: 14px 16px 28px; }
+            h1 { font-size: 2.4rem; }
+            .hero-image { height: 240px; border-radius: 12px; }
+
+            .auto-scroll-gallery { height: 260px; }
+            .gallery-item {
+                flex: 0 0 240px;
+                height: 260px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            body { padding-top: 90px; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+
+    <script>
+        // Navigation SPA
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').replace('#', '');
+                
+                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+                document.getElementById(targetId)?.classList.add('active');
+                
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         });
-        requestAnimationFrame(autoScroll);
-      }
 
-      gallery.addEventListener('mousedown', e => {
-        isDown = true; startX = e.clientX; scrollStart = pos; gallery.style.cursor='grabbing';
-      });
-      gallery.addEventListener('mouseup', () => { isDown = false; gallery.style.cursor='grab'; });
-      gallery.addEventListener('mouseleave', () => isDown=false);
-      gallery.addEventListener('mousemove', e => { if(!isDown)return; e.preventDefault(); pos = scrollStart + (e.clientX - startX); track.style.transform = `translateX(${pos}px)`; });
-      gallery.addEventListener('wheel', e => { e.preventDefault(); pos -= e.deltaY * 0.5; track.style.transform = `translateX(${pos}px)`; }, { passive:false });
+        // HEADER SE CACHE AU SCROLL DOWN
+        (function() {
+            const header = document.querySelector('header');
+            let lastScroll = 0;
+            let ticking = false;
+            
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        const current = window.pageYOffset;
+                        if (current > lastScroll && current > 60) {
+                            header.classList.add('hide-header');
+                        } else {
+                            header.classList.remove('hide-header');
+                        }
+                        lastScroll = current <= 0 ? 0 : current;
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
+        })();
 
-      autoScroll();
-    });
-  </script>
+        // GALERIE : auto-scroll + drag + scroll souris + léger fondu
+        document.querySelectorAll('.auto-scroll-gallery').forEach(gallery => {
+            const track = gallery.querySelector('.gallery-track');
+            let pos = 0;
+            let isDown = false;
+            let startX = 0;
+            let startPos = 0;
+
+            function applyFade() {
+                const items = track.querySelectorAll('.gallery-item');
+                items.forEach((item, index) => {
+                    const base = (pos / 300) + index;
+                    const fade = 1 - Math.abs((base % 6) - 3) / 3;
+                    item.style.opacity = 0.7 + 0.3 * fade;
+                });
+            }
+
+            function loop() {
+                pos -= 0.4;
+                if (Math.abs(pos) >= track.scrollWidth / 2) pos = 0;
+                track.style.transform = `translateX(${pos}px)`;
+                applyFade();
+                requestAnimationFrame(loop);
+            }
+
+            gallery.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX;
+                startPos = pos;
+                gallery.style.cursor = 'grabbing';
+            });
+
+            gallery.addEventListener('mouseleave', () => {
+                isDown = false;
+                gallery.style.cursor = 'grab';
+            });
+
+            gallery.addEventListener('mouseup', () => {
+                isDown = false;
+                gallery.style.cursor = 'grab';
+            });
+
+            gallery.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const delta = e.pageX - startX;
+                pos = startPos + delta;
+                track.style.transform = `translateX(${pos}px)`;
+                applyFade();
+            });
+
+            gallery.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                pos -= e.deltaY * 0.5;
+                track.style.transform = `translateX(${pos}px)`;
+                applyFade();
+            }, { passive: false });
+
+            loop();
+        });
+    </script>
 </body>
 </html>
