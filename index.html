@@ -1,490 +1,179 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photographe Mariage & Événement</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photographe Mariage & Événement</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#fff; --text:#1f1f1f; --muted:#777; --border:#e5e5e5; --max-width:980px; }
+    * {margin:0;padding:0;box-sizing:border-box;}
+    body {
+      font-family:'Work Sans',sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      min-height:100vh;
+      padding-top:120px;
+      display:flex;flex-direction:column;
+    }
+
+    header {
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      background:rgba(255,255,255,0.98);
+      backdrop-filter:blur(10px);
+      transition:transform 0.28s ease;
+      border-bottom:1px solid rgba(0,0,0,0.05);
+    }
+    .hide-header{ transform:translateY(-100%); }
+    .header-inner { max-width:var(--max-width);margin:0 auto;padding:16px 24px;text-align:center;}
+    .logo { font-family:'Playfair Display',serif;font-size:2rem;letter-spacing:0.08em;color:var(--text);text-decoration:none; }
+    .nav-container {max-width:var(--max-width);margin:0 auto;padding:0 24px;}
+    .nav-links {list-style:none;display:flex;justify-content:center;flex-wrap:wrap;}
+    .nav-links a {
+      text-decoration:none;color:var(--muted);padding:10px 14px;font-size:0.72rem;
+      text-transform:uppercase;letter-spacing:0.15em;transition:all 0.3s ease;border-radius:6px;
+    }
+    .nav-links a.active, .nav-links a:hover {color:var(--text);background:rgba(209,155,108,0.1);}
+
+    .page{display:none;flex:1;animation:fadein 0.4s ease;}
+    .page.active{display:flex;flex-direction:column;}
+    @keyframes fadein {from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);} }
+
+    .page-content{max-width:var(--max-width);margin:0 auto;padding:20px 24px 40px;}
+    h1{font-family:'Playfair Display',serif;font-size:3rem;font-weight:400;margin-bottom:16px;}
+    .hero-sub{font-size:0.9rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+    p{margin-bottom:18px;max-width:680px;font-size:1.05rem;line-height:1.7;}
+    .hero-image {height:420px;border-radius:16px;background:linear-gradient(135deg,#ddd,#bbb);margin:24px 0;}
+    .text-section{text-align:center;max-width:700px;margin:80px auto;}
+    .text-section h2{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:14px;}
+
+    .footer{background:#1f1f1f;color:#fff;padding:40px 0;margin-top:auto;text-align:center;}
+    .footer a{color:#d19b6c;text-decoration:none;}
+    .footer a:hover{opacity:0.9;}
+
+    @media(max-width:768px){
+      body{padding-top:100px;}
+      .nav-links{flex-direction:column;align-items:center;}
+      h1{font-size:2.2rem;}
+      .hero-image{height:260px;}
+    }
+  </style>
 </head>
 <body>
-    <!-- HEADER FIXE (se cache au scroll down) -->
-    <header>
-        <div class="header-inner">
-            <a href="#accueil" class="logo">Photographe</a>
-        </div>
-        <div class="nav-container">
-            <ul class="nav-links">
-                <li><a href="#accueil" class="nav-link active">Accueil</a></li>
-                <li><a href="#apropos" class="nav-link">À propos</a></li>
-                <li><a href="#tarifs" class="nav-link">Tarifs</a></li>
-                <li><a href="#mariages" class="nav-link">Mariages</a></li>
-                <li><a href="#soirees" class="nav-link">Soirées</a></li>
-                <li><a href="#couples" class="nav-link">Couples</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-        </div>
-    </header>
 
-    <!-- PAGES -->
-    <div id="accueil" class="page active">
-        <main class="page-content">
-            <div class="hero-sub">Mariage & Événement</div>
-            <h1>Images sincères et intemporelles</h1>
-            <p>Photographe basé à Bordeaux, disponible partout en France pour capturer vos moments uniques avec élégance et discrétion.</p>
-            <div class="hero-image"></div>
-        </main>
+  <header>
+    <div class="header-inner"><a href="#accueil" class="logo">Photographe</a></div>
+    <div class="nav-container">
+      <ul class="nav-links">
+        <li><a href="#accueil" class="nav-link active">Accueil</a></li>
+        <li><a href="#apropos" class="nav-link">À propos</a></li>
+        <li><a href="#tarifs" class="nav-link">Tarifs</a></li>
+        <li><a href="#mariages" class="nav-link">Mariages</a></li>
+        <li><a href="#soirees" class="nav-link">Soirées</a></li>
+        <li><a href="#couples" class="nav-link">Couples</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
     </div>
+  </header>
 
-    <div id="mariages" class="page">
-        <main class="page-content">
-            <h1>Mariages</h1>
-            <section class="gallery-section">
-                <h2>Galerie</h2>
-                <div class="auto-scroll-gallery">
-                    <div class="gallery-track">
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #f5e8c7, #e8d5b7);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #d4a5a5, #c68a8a);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #b7d4c6, #8ac68a);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #a5b7d4, #8a8ac6);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #d4b7a5, #c68a6e);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #c7b7d4, #a58ac6);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #f5e8c7, #e8d5b7);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #d4a5a5, #c68a8a);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #b7d4c6, #8ac68a);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #a5b7d4, #8a8ac6);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #d4b7a5, #c68a6e);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #c7b7d4, #a58ac6);"></div>
-                    </div>
-                </div>
-            </section>
-            <section class="text-section">
-                <h2>Une journée inoubliable</h2>
-                <div class="hero-sub">Capturer l'émotion pure</div>
-                <p>Vos vœux, vos regards, vos premiers pas de danse. Chaque instant compte et mérite d'être immortalisé avec finesse et élégance.</p>
-            </section>
-        </main>
-    </div>
+  <div id="accueil" class="page active">
+    <main class="page-content">
+      <div class="hero-sub">Mariage & Événement</div>
+      <h1>Images sincères et intemporelles</h1>
+      <p>Photographe basé à Bordeaux, je capture vos moments précieux avec discrétion et sensibilité, en France et au-delà.</p>
+      <div class="hero-image"></div>
+    </main>
+  </div>
 
-    <div id="soirees" class="page">
-        <main class="page-content">
-            <h1>Soirées</h1>
-            <section class="gallery-section">
-                <h2>Galerie</h2>
-                <div class="auto-scroll-gallery">
-                    <div class="gallery-track">
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #ff9a9e, #fecfef);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #a8edea, #fed6e3);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #ffecd2, #fcb69f);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #a1c4fd, #c2e9fb);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #d299c2, #fef9d7);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #ff9a9e, #fecfef);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #a8edea, #fed6e3);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #ffecd2, #fcb69f);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #a1c4fd, #c2e9fb);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #d299c2, #fef9d7);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
-                    </div>
-                </div>
-            </section>
-            <section class="text-section">
-                <h2>L'ambiance électrique</h2>
-                <div class="hero-sub">Les nuits qui marquent</div>
-                <p>Entre rires, danses et regards complices, vos soirées prennent vie sous l'objectif.</p>
-            </section>
-        </main>
-    </div>
+  <div id="apropos" class="page">
+    <main class="page-content">
+      <h1>À propos</h1>
+      <p>Je suis passionné par la lumière naturelle et les émotions vraies. Mon approche est documentaire et élégante : observer, capter discrètement, sans forcer les poses. 
+      Je crois qu’une belle image est celle qui reflète votre authenticité.</p>
+      <p>Mon parcours débute dans la photographie de paysage avant de me consacrer aux reportages mariage et événementiels, où chaque instant compte.</p>
+    </main>
+  </div>
 
-    <div id="couples" class="page">
-        <main class="page-content">
-            <h1>Couples</h1>
-            <section class="gallery-section">
-                <h2>Galerie</h2>
-                <div class="auto-scroll-gallery">
-                    <div class="gallery-track">
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #f7971e, #ffd200);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #667eea, #764ba2);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #43e97b, #38f9d7);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #fa709a, #fee140);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #f7971e, #ffd200);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #667eea, #764ba2);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #43e97b, #38f9d7);"></div>
-                        <div class="gallery-item" style="background: linear-gradient(135deg, #fa709a, #fee140);"></div>
-                    </div>
-                </div>
-            </section>
-            <section class="text-section">
-                <h2>Votre histoire d'amour</h2>
-                <div class="hero-sub">Authenticité et tendresse</div>
-                <p>Sessions naturelles en lumière dorée pour célébrer votre complicité.</p>
-            </section>
-        </main>
-    </div>
+  <div id="tarifs" class="page">
+    <main class="page-content">
+      <h1>Tarifs</h1>
+      <div class="hero-sub">Des formules transparentes, adaptées à vos besoins</div>
+      <p>Chaque événement est unique, c’est pourquoi mes prestations s’adaptent à votre projet. Voici une idée des offres disponibles :</p>
+      <ul>
+        <li><strong>Séance couple</strong> – à partir de 250 € (1 h de prise de vue, galerie en ligne incluse).</li>
+        <li><strong>Mariage classique</strong> – à partir de 1 200 € (des préparatifs jusqu’à la soirée).</li>
+        <li><strong>Événement privé</strong> – devis personnalisé selon la durée et le lieu.</li>
+      </ul>
+      <p>Chaque formule comprend la sélection, la retouche et la livraison haute définition via galerie sécurisée.</p>
+    </main>
+  </div>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="page-content">
-            <div class="footer-content">
-                <p>Photographe Marriage & Événement | Basé à Bordeaux</p>
-                <p>Disponible partout en France | <a href="#contact">Contactez-moi</a></p>
-                <p>&copy; 2025 Tous droits réservés</p>
-            </div>
-        </div>
-    </footer>
+  <div id="mariages" class="page">
+    <main class="page-content">
+      <h1>Mariages</h1>
+      <p>Des vœux à la première danse, chaque sourire et émotion est capturé avec élégance. Mon style privilégie les instants vrais et la spontanéité.</p>
+    </main>
+  </div>
 
-    <style>
-        :root {
-            --bg: #ffffff;
-            --text: #1f1f1f;
-            --muted: #777777;
-            --border: #e5e5e5;
-            --max-width: 980px;
-        }
+  <div id="soirees" class="page">
+    <main class="page-content">
+      <h1>Soirées</h1>
+      <p>Les soirées racontent une autre énergie : la danse, la lumière, la joie collective. Mon œil cherche la vibration et le mouvement qui rendent chaque instant unique.</p>
+    </main>
+  </div>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <div id="couples" class="page">
+    <main class="page-content">
+      <h1>Couples</h1>
+      <p>Vos gestes, vos regards, cette complicité naturelle : une séance photo couple permet de figer la tendresse dans un cadre intime ou en pleine nature.</p>
+    </main>
+  </div>
 
-        body {
-            font-family: 'Work Sans', system-ui, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            font-size: 16px;
-            line-height: 1.7;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            padding-top: 120px; /* Espace pour header fixe */
-        }
+  <div id="contact" class="page">
+    <main class="page-content">
+      <h1>Contact</h1>
+      <p>Pour toute demande de réservation ou d’information, n’hésitez pas à me contacter via le formulaire ci-dessous :</p>
+      <form action="#" method="post" style="display:flex;flex-direction:column;gap:12px;max-width:400px;">
+        <input type="text" name="nom" placeholder="Votre nom" required>
+        <input type="email" name="email" placeholder="Votre email" required>
+        <textarea name="message" rows="5" placeholder="Votre message..."></textarea>
+        <button type="submit" style="background:#d19b6c;color:#fff;border:none;padding:12px;border-radius:6px;cursor:pointer;">Envoyer</button>
+      </form>
+    </main>
+  </div>
 
-        /* HEADER FIXE - SE CACHE AU SCROLL */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-            transition: transform 0.28s ease, height 0.28s ease;
-            will-change: transform;
-        }
+  <footer class="footer">
+    <p>© 2025 Photographe Mariage & Événement – Bordeaux</p>
+    <p><a href="#contact">Contactez-moi</a> | Disponible partout en France</p>
+  </footer>
 
-        .header-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 16px 24px;
-            text-align: center;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text);
-            font-weight: 400;
-            text-decoration: none;
-        }
-
-        .nav-container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 24px 8px;
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2px;
-        }
-
-        .nav-links li { flex: 1; min-width: 105px; max-width: 125px; }
-
-        .nav-links a {
-            display: block;
-            text-decoration: none;
-            color: var(--muted);
-            font-size: 0.72rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            text-align: center;
-            padding: 12px 6px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--text);
-            background: rgba(209, 155, 108, 0.12);
-            border-color: rgba(209, 155, 108, 0.4);
-        }
-
-        /* HEADER CACHE */
-        .hide-header {
-            transform: translateY(-100%);
-        }
-
-        /* PAGES */
-        .page { display: none; flex: 1; }
-        .page.active { display: flex; flex-direction: column; }
-
-        .page-content {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 20px 24px 40px;
-            flex: 1;
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 400;
-            letter-spacing: 0.02em;
-            font-size: 3rem;
-            margin-bottom: 16px;
-        }
-
-        .hero-sub {
-            font-size: 0.9rem;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 12px;
-        }
-
-        p { margin-bottom: 16px; font-size: 1.05rem; max-width: 650px; }
-
-        .hero-image {
-            height: 420px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(0,0,0,0.06), rgba(0,0,0,0.12)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23f0f0f0" width="1200" height="800"/><text x="600" y="400" font-size="42" text-anchor="middle" fill="%23bbb">Hero Image</text></svg>');
-            background-size: cover;
-            background-position: center;
-            margin: 24px 0;
-        }
-
-        /* GALERIE */
-        .gallery-section { margin: 60px 0; }
-        .gallery-section h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .auto-scroll-gallery {
-            height: 500px;
-            overflow: hidden;
-            border-radius: 16px;
-            cursor: grab;
-            position: relative;
-        }
-        .auto-scroll-gallery:active { cursor: grabbing; }
-
-        .gallery-track {
-            display: flex;
-            height: 100%;
-            transition: transform 0.1s ease-out;
-        }
-
-        .gallery-item {
-            flex: 0 0 380px;
-            height: 500px;
-            margin-right: 30px;
-            border-radius: 20px;
-            background-size: cover !important;
-            background-position: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-        }
-
-        .text-section {
-            margin: 80px 0;
-            text-align: center;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .text-section h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            margin-bottom: 16px;
-        }
-
-        /* FOOTER */
-        .footer {
-            background: rgba(31, 31, 31, 0.95);
-            color: white;
-            padding: 40px 0 20px;
-            margin-top: auto;
-        }
-
-        .footer-content {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .footer-content p {
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-            color: rgba(255,255,255,0.8);
-        }
-
-        .footer-content a {
-            color: rgba(209,155,108,0.9);
-            text-decoration: none;
-        }
-
-        .footer-content a:hover {
-            color: rgba(209,155,108,1);
-        }
-
-        /* MOBILE RESPONSIVE - GALERIE + HEADER */
-         /* AJOUTE ÇA dans la section @media (max-width: 768px) existante */
-
-@media (max-width: 768px) {
-    body { padding-top: 100px; }
-    
-    .logo { font-size: 1.4rem; }
-    .nav-links { flex-direction: column; gap: 2px; }
-    .nav-links li { min-width: auto; max-width: none; flex: none; }
-    .nav-links a { padding: 8px 6px; font-size: 0.66rem; }
-    
-    .page-content { padding: 14px 16px 28px; }
-    h1 { font-size: 2.4rem; }
-    .hero-image { height: 240px; border-radius: 12px; }
-    
-    /* GALERIE MOBILE - PLUS ÉTROITE */
-    .auto-scroll-gallery { 
-        height: 320px; 
-        overflow-x: hidden !important; /* Force le masquage */
+  <script>
+    // --- Gestion navigation SPA ---
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pages = document.querySelectorAll('.page');
+    function activatePage(id) {
+      pages.forEach(p => p.classList.remove('active'));
+      document.getElementById(id)?.classList.add('active');
+      navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    .gallery-item { 
-        flex: 0 0 220px !important; /* PLUS PETIT: 220px au lieu de 260px */
-        height: 320px; 
-        margin-right: 12px !important; /* Moins d'espace */
-        border-radius: 14px; 
-    }
-}
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        activatePage(link.getAttribute('href').replace('#',''));
+      });
+    });
 
-/* EXTRA PETIT ÉCRAN */
-@media (max-width: 420px) {
-    body { padding-top: 90px; }
-    .auto-scroll-gallery { height: 280px; }
-    .gallery-item { 
-        flex: 0 0 190px !important; /* ENCORE PLUS PETIT: 190px */
-        height: 280px; 
-        margin-right: 10px !important; 
-    }
-    h1 { font-size: 1.8rem; }
-
-    </style>
-
-    <script>
-        // Navigation SPA
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href').replace('#', '');
-                
-                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-                document.getElementById(targetId)?.classList.add('active');
-                
-                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-                
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
-
-        // HEADER SE CACHE AU SCROLL DOWN
-        (function() {
-            const header = document.querySelector('header');
-            let lastScroll = 0;
-            let ticking = false;
-            
-            window.addEventListener('scroll', () => {
-                if (!ticking) {
-                    requestAnimationFrame(() => {
-                        const current = window.pageYOffset;
-                        if (current > lastScroll && current > 60) {
-                            header.classList.add('hide-header');
-                        } else {
-                            header.classList.remove('hide-header');
-                        }
-                        lastScroll = current <= 0 ? 0 : current;
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
-            }, { passive: true });
-        })();
-
-        // GALERIE DRAG (fonctionne parfaitement)
-        document.querySelectorAll('.auto-scroll-gallery').forEach(gallery => {
-            const track = gallery.querySelector('.gallery-track');
-            let pos = 0;
-            let isDown = false;
-            let startX;
-
-            function loop() {
-                pos -= 0.5;
-                if (pos <= -track.scrollWidth / 2) {
-                    pos = 0;
-                }
-                track.style.transform = `translateX(${pos}px)`;
-                requestAnimationFrame(loop);
-            }
-
-            gallery.addEventListener('mousedown', (e) => {
-                isDown = true;
-                startX = e.pageX - pos;
-                gallery.style.cursor = 'grabbing';
-            });
-
-            gallery.addEventListener('mouseleave', () => {
-                isDown = false;
-            });
-
-            gallery.addEventListener('mouseup', () => {
-                isDown = false;
-                gallery.style.cursor = 'grab';
-            });
-
-            gallery.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                pos = e.pageX - startX;
-                track.style.transform = `translateX(${pos}px)`;
-            });
-
-            gallery.addEventListener('touchstart', (e) => {
-                startX = e.changedTouches[0].pageX - pos;
-                isDown = true;
-            });
-
-            gallery.addEventListener('touchmove', (e) => {
-                if (!isDown) return;
-                pos = e.changedTouches[0].pageX - startX;
-                track.style.transform = `translateX(${pos}px)`;
-            });
-
-            gallery.addEventListener('touchend', () => {
-                isDown = false;
-            });
-
-            loop();
-        });
-    </script>
+    // --- Header hide on scroll ---
+    const header = document.querySelector('header');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const current = window.scrollY;
+      header.classList.toggle('hide-header', current > lastScroll && current > 60);
+      lastScroll = current;
+    });
+  </script>
 </body>
 </html>
