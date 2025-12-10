@@ -350,34 +350,44 @@
         }
 
         /* MOBILE RESPONSIVE - GALERIE + HEADER */
-        @media (max-width: 768px) {
-            body { padding-top: 100px; } /* Moins d'espace header mobile */
-            
-            .logo { font-size: 1.4rem; }
-            .nav-links { flex-direction: column; gap: 2px; }
-            .nav-links li { min-width: auto; max-width: none; flex: none; }
-            .nav-links a { padding: 8px 6px; font-size: 0.66rem; }
-            
-            .page-content { padding: 14px 16px 28px; }
-            h1 { font-size: 2.4rem; }
-            .hero-image { height: 240px; border-radius: 12px; }
-            
-            /* GALERIE MOBILE - PLUS PETITE */
-            .auto-scroll-gallery { height: 320px; }
-            .gallery-item { 
-                flex: 0 0 260px; 
-                height: 320px; 
-                margin-right: 18px; 
-                border-radius: 14px; 
-            }
-        }
+         /* AJOUTE ÇA dans la section @media (max-width: 768px) existante */
 
-        @media (max-width: 420px) {
-            body { padding-top: 90px; }
-            .auto-scroll-gallery { height: 260px; }
-            .gallery-item { flex: 0 0 220px; height: 260px; margin-right: 14px; }
-            h1 { font-size: 1.8rem; }
-        }
+@media (max-width: 768px) {
+    body { padding-top: 100px; }
+    
+    .logo { font-size: 1.4rem; }
+    .nav-links { flex-direction: column; gap: 2px; }
+    .nav-links li { min-width: auto; max-width: none; flex: none; }
+    .nav-links a { padding: 8px 6px; font-size: 0.66rem; }
+    
+    .page-content { padding: 14px 16px 28px; }
+    h1 { font-size: 2.4rem; }
+    .hero-image { height: 240px; border-radius: 12px; }
+    
+    /* GALERIE MOBILE - PLUS ÉTROITE */
+    .auto-scroll-gallery { 
+        height: 320px; 
+        overflow-x: hidden !important; /* Force le masquage */
+    }
+    .gallery-item { 
+        flex: 0 0 220px !important; /* PLUS PETIT: 220px au lieu de 260px */
+        height: 320px; 
+        margin-right: 12px !important; /* Moins d'espace */
+        border-radius: 14px; 
+    }
+}
+
+/* EXTRA PETIT ÉCRAN */
+@media (max-width: 420px) {
+    body { padding-top: 90px; }
+    .auto-scroll-gallery { height: 280px; }
+    .gallery-item { 
+        flex: 0 0 190px !important; /* ENCORE PLUS PETIT: 190px */
+        height: 280px; 
+        margin-right: 10px !important; 
+    }
+    h1 { font-size: 1.8rem; }
+
     </style>
 
     <script>
