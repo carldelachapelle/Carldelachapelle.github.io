@@ -40,8 +40,8 @@
     <div id="apropos" class="page">
         <main class="page-content">
             <h1>À propos</h1>
-            <p>Je suis passionné par la lumière naturelle et les émotions vraies. Mon approche est documentaire et élégante : observer, capter discrètement, sans forcer les poses.</p>
-            <p>Je crois qu’une belle image est celle qui reflète votre authenticité. Après plusieurs années à photographier paysages et portraits, je me suis spécialisé dans les reportages de mariages et d’événements privés.</p>
+            <p>Je suis passionné par la lumière naturelle et les émotions vraies. Mon approche est documentaire et élégante : observer, capter discrètement, sans forcer les poses.</p>
+            <p>Je crois qu'une belle image est celle qui reflète votre authenticité. Après plusieurs années à photographier paysages et portraits, je me suis spécialisé dans les reportages de mariages et d'événements privés.</p>
         </main>
     </div>
 
@@ -51,9 +51,9 @@
             <div class="hero-sub">Des formules transparentes et adaptables</div>
             <p>Chaque histoire est unique. Voici quelques repères pour vous aider à vous projeter :</p>
             <ul>
-                <li><strong>Séance couple</strong> – à partir de 250 € (1 h de prise de vue, galerie en ligne incluse).</li>
-                <li><strong>Reportage mariage</strong> – à partir de 1 200 € (des préparatifs à la première danse).</li>
-                <li><strong>Soirée privée / événement</strong> – devis sur mesure selon la durée, le lieu et le nombre d’invités.</li>
+                <li><strong>Séance couple</strong> – à partir de 250 € (1 h de prise de vue, galerie en ligne incluse).</li>
+                <li><strong>Reportage mariage</strong> – à partir de 1 200 € (des préparatifs à la première danse).</li>
+                <li><strong>Soirée privée / événement</strong> – devis sur mesure selon la durée, le lieu et le nombre d'invités.</li>
             </ul>
             <p>Toutes les formules incluent la sélection, la retouche et la livraison des photos en haute définition via une galerie en ligne privée.</p>
         </main>
@@ -116,7 +116,7 @@
                 <div class="hero-sub">Les nuits qui marquent</div>
                 <p>Entre rires, danses et regards complices, vos soirées prennent vie sous l'objectif.</p>
             </section>
-        </main>
+        </main>        </main>
     </div>
 
     <div id="couples" class="page">
@@ -173,7 +173,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            padding-top: 120px; /* Espace pour header fixe */
+            padding-top: 120px;
         }
 
         /* HEADER FIXE - SE CACHE AU SCROLL */
@@ -219,7 +219,7 @@
             display: flex;
             justify-content: center;
             gap: 2px;
-            flex-wrap: wrap; /* permet 2 lignes si besoin */
+            flex-wrap: wrap;
         }
 
         .nav-links li { flex: 1; min-width: 105px; max-width: 125px; }
@@ -245,7 +245,6 @@
             box-shadow: 0 0 8px rgba(209,155,108,0.5);
         }
 
-        /* HEADER CACHE */
         .hide-header {
             transform: translateY(-100%);
         }
@@ -294,7 +293,7 @@
             margin: 24px 0;
         }
 
-        /* GALERIE */
+        /* GALERIE OPTIMISÉE */
         .gallery-section { margin: 40px 0; }
         .gallery-section h2 {
             font-family: 'Playfair Display', serif;
@@ -309,8 +308,28 @@
             border-radius: 16px;
             cursor: grab;
             position: relative;
+            touch-action: pan-y pinch-zoom;
         }
         .auto-scroll-gallery:active { cursor: grabbing; }
+
+        /* Indicateur tactile mobile */
+        .auto-scroll-gallery::after {
+            content: '👆 Glisse pour explorer';
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: rgba(119,119,119,0.7);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+        .auto-scroll-gallery:hover::after,
+        .auto-scroll-gallery:active::after {
+            opacity: 1;
+        }
 
         .gallery-track {
             display: flex;
@@ -382,7 +401,7 @@
             color: #ffce88;
         }
 
-        /* MOBILE RESPONSIVE - GALERIE + HEADER */
+        /* MOBILE RESPONSIVE OPTIMISÉ */
         @media (max-width: 768px) {
             body { padding-top: 100px; }
             .logo { font-size: 1.4rem; }
@@ -394,16 +413,32 @@
             h1 { font-size: 2.4rem; }
             .hero-image { height: 240px; border-radius: 12px; }
 
-            .auto-scroll-gallery { height: 260px; }
+            .auto-scroll-gallery { 
+                height: 280px; 
+                touch-action: pan-y pinch-zoom;
+            }
+            .auto-scroll-gallery::after {
+                display: block;
+                opacity: 1;
+                font-size: 0.7rem;
+            }
             .gallery-item {
-                flex: 0 0 240px;
-                height: 260px;
+                flex: 0 0 260px;
+                height: 280px;
+                border-radius: 16px;
+            }
+            .gallery-track {
+                gap: 16px;
             }
         }
 
         @media (max-width: 420px) {
             body { padding-top: 90px; }
             h1 { font-size: 1.8rem; }
+            .gallery-item {
+                flex: 0 0 220px;
+                height: 240px;
+            }
         }
     </style>
 
@@ -447,13 +482,15 @@
             }, { passive: true });
         })();
 
-        // GALERIE : auto-scroll + drag + scroll souris + léger fondu
+        // GALERIE OPTIMISÉE MOBILE + TOUCH (CODE COMPLET)
         document.querySelectorAll('.auto-scroll-gallery').forEach(gallery => {
             const track = gallery.querySelector('.gallery-track');
             let pos = 0;
             let isDown = false;
             let startX = 0;
             let startPos = 0;
+            let rafId = null;
+            let autoScrollSpeed = window.innerWidth < 768 ? 0.2 : 0.4;
 
             function applyFade() {
                 const items = track.querySelectorAll('.gallery-item');
@@ -465,47 +502,93 @@
             }
 
             function loop() {
-                pos -= 0.4;
+                pos -= autoScrollSpeed;
                 if (Math.abs(pos) >= track.scrollWidth / 2) pos = 0;
                 track.style.transform = `translateX(${pos}px)`;
                 applyFade();
-                requestAnimationFrame(loop);
+                rafId = requestAnimationFrame(loop);
             }
 
+            function pauseAutoScroll() {
+                if (rafId) cancelAnimationFrame(rafId);
+            }
+            function resumeAutoScroll() {
+                rafId = requestAnimationFrame(loop);
+            }
+
+            // MOUSE EVENTS (desktop)
             gallery.addEventListener('mousedown', (e) => {
                 isDown = true;
                 startX = e.pageX;
                 startPos = pos;
                 gallery.style.cursor = 'grabbing';
+                pauseAutoScroll();
             });
 
             gallery.addEventListener('mouseleave', () => {
                 isDown = false;
                 gallery.style.cursor = 'grab';
+                resumeAutoScroll();
             });
 
             gallery.addEventListener('mouseup', () => {
                 isDown = false;
                 gallery.style.cursor = 'grab';
+                resumeAutoScroll();
             });
 
             gallery.addEventListener('mousemove', (e) => {
                 if (!isDown) return;
                 e.preventDefault();
                 const delta = e.pageX - startX;
-                pos = startPos + delta;
+                pos = startPos + delta * 0.8;
                 track.style.transform = `translateX(${pos}px)`;
                 applyFade();
             });
 
-            gallery.addEventListener('wheel', (e) => {
+            // TOUCH EVENTS (mobile prioritaire)
+            gallery.addEventListener('touchstart', (e) => {
+                isDown = true;
+                startX = e.touches[0].pageX;
+                startPos = pos;
+                gallery.style.cursor = 'grabbing';
+                pauseAutoScroll();
                 e.preventDefault();
-                pos -= e.deltaY * 0.5;
+            }, { passive: false });
+
+            gallery.addEventListener('touchend', (e) => {
+                isDown = false;
+                gallery.style.cursor = 'grab';
+                resumeAutoScroll();
+                e.preventDefault();
+            }, { passive: false });
+
+            gallery.addEventListener('touchmove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const delta = e.touches[0].pageX - startX;
+                pos = startPos + delta * 0.8;
                 track.style.transform = `translateX(${pos}px)`;
                 applyFade();
             }, { passive: false });
 
+            // WHEEL (tous appareils)
+            gallery.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                pos -= e.deltaY * 0.3;
+                track.style.transform = `translateX(${pos}px)`;
+                applyFade();
+                pauseAutoScroll();
+                setTimeout(resumeAutoScroll, 1000);
+            }, { passive: false });
+
+            // Démarrage auto-scroll
             loop();
+
+            // Ajustement responsive
+            window.addEventListener('resize', () => {
+                autoScrollSpeed = window.innerWidth < 768 ? 0.2 : 0.4;
+            });
         });
     </script>
 </body>
