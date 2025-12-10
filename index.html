@@ -9,14 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- HEADER FIXE SUR TOUTES LES PAGES -->
+    <!-- HEADER FIXE (se cache au scroll down) -->
     <header>
         <div class="header-inner">
             <a href="#accueil" class="logo">Photographe</a>
         </div>
         <div class="nav-container">
             <ul class="nav-links">
-                <li><a href="#accueil" class="nav-link">Accueil</a></li>
+                <li><a href="#accueil" class="nav-link active">Accueil</a></li>
                 <li><a href="#apropos" class="nav-link">À propos</a></li>
                 <li><a href="#tarifs" class="nav-link">Tarifs</a></li>
                 <li><a href="#mariages" class="nav-link">Mariages</a></li>
@@ -27,7 +27,7 @@
         </div>
     </header>
 
-    <!-- PAGE ACCUEIL -->
+    <!-- PAGES -->
     <div id="accueil" class="page active">
         <main class="page-content">
             <div class="hero-sub">Mariage & Événement</div>
@@ -37,7 +37,6 @@
         </main>
     </div>
 
-    <!-- PAGE MARIAGES -->
     <div id="mariages" class="page">
         <main class="page-content">
             <h1>Mariages</h1>
@@ -68,7 +67,6 @@
         </main>
     </div>
 
-    <!-- PAGE SOIREES -->
     <div id="soirees" class="page">
         <main class="page-content">
             <h1>Soirées</h1>
@@ -99,7 +97,6 @@
         </main>
     </div>
 
-    <!-- PAGE COUPLES -->
     <div id="couples" class="page">
         <main class="page-content">
             <h1>Couples</h1>
@@ -130,7 +127,7 @@
         </main>
     </div>
 
-    <!-- FOOTER SUR TOUTES LES PAGES -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="page-content">
             <div class="footer-content">
@@ -161,16 +158,21 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            padding-top: 120px; /* Espace pour header fixe */
         }
 
-        /* HEADER */
+        /* HEADER FIXE - SE CACHE AU SCROLL */
         header {
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 100;
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            transition: transform 0.28s ease, height 0.28s ease;
+            will-change: transform;
         }
 
         .header-inner {
@@ -224,6 +226,11 @@
             color: var(--text);
             background: rgba(209, 155, 108, 0.12);
             border-color: rgba(209, 155, 108, 0.4);
+        }
+
+        /* HEADER CACHE */
+        .hide-header {
+            transform: translateY(-100%);
         }
 
         /* PAGES */
@@ -342,32 +349,47 @@
             color: rgba(209,155,108,1);
         }
 
-        /* RESPONSIVE */
+        /* MOBILE RESPONSIVE - GALERIE + HEADER */
         @media (max-width: 768px) {
-            .logo { font-size: 1.7rem; }
+            body { padding-top: 100px; } /* Moins d'espace header mobile */
+            
+            .logo { font-size: 1.4rem; }
             .nav-links { flex-direction: column; gap: 2px; }
             .nav-links li { min-width: auto; max-width: none; flex: none; }
-            .page-content { padding: 16px 16px 32px; }
+            .nav-links a { padding: 8px 6px; font-size: 0.66rem; }
+            
+            .page-content { padding: 14px 16px 28px; }
             h1 { font-size: 2.4rem; }
-            .hero-image { height: 300px; }
-            .auto-scroll-gallery { height: 400px; }
-            .gallery-item { flex: 0 0 280px; height: 400px; margin-right: 20px; }
-            .footer { padding: 30px 0 15px; }
+            .hero-image { height: 240px; border-radius: 12px; }
+            
+            /* GALERIE MOBILE - PLUS PETITE */
+            .auto-scroll-gallery { height: 320px; }
+            .gallery-item { 
+                flex: 0 0 260px; 
+                height: 320px; 
+                margin-right: 18px; 
+                border-radius: 14px; 
+            }
+        }
+
+        @media (max-width: 420px) {
+            body { padding-top: 90px; }
+            .auto-scroll-gallery { height: 260px; }
+            .gallery-item { flex: 0 0 220px; height: 260px; margin-right: 14px; }
+            h1 { font-size: 1.8rem; }
         }
     </style>
 
     <script>
-        // Navigation (active la bonne page + nav-link)
+        // Navigation SPA
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetId = link.getAttribute('href').replace('#', '');
                 
-                // Changer page active
                 document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
                 document.getElementById(targetId)?.classList.add('active');
                 
-                // Changer nav active
                 document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
                 
@@ -375,16 +397,38 @@
             });
         });
 
-        // Galerie (identique, fonctionne parfaitement)
+        // HEADER SE CACHE AU SCROLL DOWN
+        (function() {
+            const header = document.querySelector('header');
+            let lastScroll = 0;
+            let ticking = false;
+            
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        const current = window.pageYOffset;
+                        if (current > lastScroll && current > 60) {
+                            header.classList.add('hide-header');
+                        } else {
+                            header.classList.remove('hide-header');
+                        }
+                        lastScroll = current <= 0 ? 0 : current;
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
+        })();
+
+        // GALERIE DRAG (fonctionne parfaitement)
         document.querySelectorAll('.auto-scroll-gallery').forEach(gallery => {
             const track = gallery.querySelector('.gallery-track');
             let pos = 0;
             let isDown = false;
             let startX;
-            let velocity = 0.5;
 
             function loop() {
-                pos -= velocity;
+                pos -= 0.5;
                 if (pos <= -track.scrollWidth / 2) {
                     pos = 0;
                 }
