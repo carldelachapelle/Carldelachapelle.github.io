@@ -3,358 +3,262 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Photographe mariage et événement à Bordeaux. Capturer vos émotions avec naturel et élégance, disponible partout en France.">
-  <title>Photographe Mariage & Événement</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="description" content="Photographe mariage et événement à Bordeaux. Captures authentiques et intemporelles pour vos moments uniques.">
+  <title>Photographe Mariage & Événement | Bordeaux</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:#fff; --text:#1f1f1f; --muted:#777; --border:#e5e5e5; --accent:#d19b6c;
-      --max-width:980px;
+      --text:#222; --muted:#777; --accent:#d19b6c; --bg:#fff;
+      --max-w:980px;
     }
-    *{margin:0;padding:0;box-sizing:border-box;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     body {
-      font-family:'Work Sans',sans-serif;background:var(--bg);color:var(--text);
-      font-size:16px;line-height:1.7;min-height:100vh;display:flex;flex-direction:column;
-      padding-top:120px;transition:background 0.4s ease;
+      font-family:'Playfair Display',serif;background:var(--bg);color:var(--text);
+      min-height:100vh;display:flex;flex-direction:column;padding-top:120px;
+      scroll-behavior:smooth;
     }
-
-    /* HEADER FIXE */
     header {
-      position:fixed;top:0;left:0;right:0;z-index:100;
-      background:rgba(255,255,255,0.98);backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(0,0,0,.05);
-      transition:transform 0.28s ease, height 0.28s ease;
+      position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,0.95);
+      backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,.05);
+      z-index:100;transition:transform .3s ease;
     }
-    .hide-header {transform:translateY(-100%);}
-    .header-inner {
-      max-width:var(--max-width);margin:0 auto;padding:16px 24px;text-align:center;
-    }
+    .hide-header{transform:translateY(-100%);}
     .logo {
-      font-family:'Playfair Display',serif;font-size:2rem;letter-spacing:.08em;
-      text-transform:uppercase;color:var(--text);text-decoration:none;font-weight:400;
+      display:block;text-align:center;padding:16px;font-size:1.9rem;
+      letter-spacing:.08em;text-transform:uppercase;color:var(--text);
+      text-decoration:none;transition:color .3s;
     }
-
-    .nav-container {max-width:var(--max-width);margin:0 auto;padding:0 24px 8px;}
-    .nav-links {
-      list-style:none;display:flex;justify-content:center;gap:2px;flex-wrap:wrap;
+    .logo:hover{color:var(--accent);}
+    nav ul {
+      display:flex;justify-content:center;flex-wrap:wrap;gap:6px;
+      list-style:none;background:rgba(255,255,255,0.9);
+      padding-bottom:12px;
     }
-    .nav-links li {flex:1;min-width:105px;max-width:125px;}
-    .nav-links a {
-      display:block;text-decoration:none;color:var(--muted);
-      font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;text-align:center;
-      padding:12px 6px;border-radius:6px;border:1px solid transparent;
+    nav a {
+      display:block;padding:8px 16px;border-radius:4px;text-transform:uppercase;
+      font-size:.7rem;letter-spacing:.18em;text-decoration:none;color:var(--muted);
       transition:all .3s ease;
     }
-    .nav-links a:hover,
-    .nav-links a.active {
-      color:var(--accent);
-      background:rgba(209,155,108,0.12);
-      border-color:rgba(209,155,108,0.4);
-      box-shadow:0 0 8px rgba(209,155,108,.3);
-      font-weight:600;
+    nav a:hover,nav a.active{color:var(--accent);font-weight:600;}
+    main {
+      max-width:var(--max-w);margin:0 auto;padding:24px;
+      flex:1;transition:opacity .6s ease,transform .6s ease;
+    }
+    section{margin-bottom:48px;}
+    h1 {font-size:2.7rem;font-weight:400;margin-bottom:12px;}
+    h2 {font-size:1.8rem;font-weight:400;margin:24px 0 12px;}
+    .hero-sub{text-transform:uppercase;letter-spacing:.16em;font-size:.9rem;color:var(--muted);}
+    p{margin-bottom:16px;font-size:1.1rem;line-height:1.7;}
+    .hero{
+      height:420px;border-radius:14px;overflow:hidden;
+      background:url('https://picsum.photos/1200/800?grayscale') center/cover;
+      margin:28px 0;position:relative;
+    }
+    .hero::after{
+      content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.15),transparent);
     }
 
-    /* PAGES */
-    .page {
-      display:none;flex:1;opacity:0;transform:translateY(12px);
-      transition:opacity .6s ease,transform .6s ease;
+    /* GALERIE */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;}
+    .gallery img{
+      width:100%;height:280px;object-fit:cover;border-radius:8px;cursor:pointer;
+      transition:transform .4s ease,filter .3s;
     }
-    .page.active {
-      display:flex;flex-direction:column;opacity:1;transform:translateY(0);
+    .gallery img:hover{transform:scale(1.03);filter:brightness(1.1);}
+    
+    /* LIGHTBOX */
+    .lightbox {
+      position:fixed;inset:0;background:rgba(0,0,0,0.95);display:none;
+      justify-content:center;align-items:center;z-index:1000;
     }
-    .page-content {
-      max-width:var(--max-width);margin:0 auto;padding:20px 24px 40px;flex:1;
+    .lightbox.active{display:flex;}
+    .lightbox img{max-width:90%;max-height:85vh;border-radius:12px;box-shadow:0 0 20px rgba(0,0,0,.6);}
+    .lightbox button{
+      position:absolute;top:50%;transform:translateY(-50%);
+      background:rgba(255,255,255,0.4);border:none;width:50px;height:50px;
+      border-radius:50%;cursor:pointer;font-size:22px;color:#fff;
+      transition:background .3s;
     }
+    .lightbox button:hover{background:rgba(255,255,255,0.7);}
+    .lightbox-close{
+      top:20px;right:20px;transform:none;width:40px;height:40px;
+      font-size:22px;border-radius:8px;
+    }
+    .lightbox-prev{left:40px;}
+    .lightbox-next{right:40px;}
 
-    h1 {
-      font-family:'Playfair Display',serif;font-weight:400;
-      font-size:3rem;letter-spacing:.02em;margin-bottom:16px;
-    }
-    .hero-sub {
-      font-size:.9rem;letter-spacing:.16em;text-transform:uppercase;
-      color:var(--muted);margin-bottom:12px;
-    }
-    p {margin-bottom:16px;font-size:1.05rem;max-width:650px;}
-
-    .hero-image {
-      height:420px;border-radius:16px;
-      background:linear-gradient(135deg,rgba(0,0,0,0.06),rgba(0,0,0,0.12)),
-                 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23f0f0f0" width="1200" height="800"/><text x="600" y="400" font-size="42" text-anchor="middle" fill="%23bbb">Hero Image</text></svg>');
-      background-size:cover;background-position:center;margin:24px 0;
-    }
-
-    /* CARROUSEL */
-    .gallery-section {margin:40px 0;}
-    .gallery-section h2 {
-      font-family:'Playfair Display',serif;font-size:2rem;
-      margin-bottom:24px;text-align:center;
-    }
-    .carousel-container {
-      position:relative;width:100%;max-width:800px;height:500px;margin:0 auto;
-      overflow:hidden;border-radius:12px;
-      box-shadow:0 10px 30px rgba(0,0,0,0.1);
-    }
-    .carousel-track {
-      display:flex;height:100%;transition:transform .5s ease-in-out;
-    }
-    .carousel-item {
-      min-width:100%;height:100%;background-size:cover;background-position:center;
-      cursor:pointer;
-    }
-    .carousel-item[role="img"] {outline:none;}
-    .carousel-nav {
-      position:absolute;top:50%;width:100%;display:flex;
-      justify-content:space-between;transform:translateY(-50%);z-index:10;
-    }
-    .carousel-nav button {
-      background:rgba(255,255,255,0.6);border:none;width:50px;height:50px;
-      border-radius:50%;cursor:pointer;margin:0 20px;
-      font-size:20px;transition:background .3s;
-    }
-    .carousel-nav button:hover {background:rgba(255,255,255,0.85);}
-    .carousel-dots {
-      position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
-      display:flex;gap:8px;z-index:10;
-    }
-    .carousel-dot {
-      width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.5);
-      cursor:pointer;transition:background .3s;
-    }
-    .carousel-dot.active {background:#fff;}
-
-    /* FORMULAIRE */
-    form input, form textarea {
-      border:1px solid var(--border);padding:10px;border-radius:6px;font-family:inherit;
+    /* FORM */
+    form{display:flex;flex-direction:column;gap:12px;max-width:420px;}
+    input,textarea{
+      border:1px solid #ddd;border-radius:6px;padding:10px;font-family:inherit;
       transition:border .3s;
     }
-    form input:focus, form textarea:focus {border-color:var(--accent);outline:none;}
-    form button {
-      background:var(--accent);color:#fff;border:none;padding:12px;border-radius:6px;
-      cursor:pointer;font-size:1rem;font-weight:500;transition:background .3s ease;
+    input:focus,textarea:focus{border-color:var(--accent);outline:none;}
+    button{
+      align-self:start;background:var(--accent);color:#fff;border:none;
+      padding:12px 20px;border-radius:6px;cursor:pointer;transition:background .3s;
     }
-    form button:hover {background:#c28b58;}
+    button:hover{background:#c08b58;}
 
-    /* FOOTER */
-    .footer {
-      background:rgba(31,31,31,0.95);color:#fff;
-      padding:32px 0 24px;margin-top:auto;
+    footer{
+      background:#1f1f1f;color:#fff;text-align:center;padding:28px;
       border-top:1px solid rgba(209,155,108,0.4);
-      box-shadow:0 -4px 18px rgba(209,155,108,0.4);
+      font-size:0.9rem;
     }
-    .footer-content {
-      text-align:center;max-width:600px;margin:0 auto;
-    }
-    .footer-content a {
-      color:var(--accent);text-decoration:none;transition:color .3s;
-    }
-    .footer-content a:hover {color:#ffce88;}
-
-    @media (max-width:768px){
-      body{padding-top:100px;}
-      .logo{font-size:1.4rem;}
-      .nav-links{flex-direction:column;}
-      .page-content{padding:14px 16px 28px;}
-      h1{font-size:2.4rem;}
-      .hero-image{height:240px;}
-      .carousel-container{height:350px;}
+    footer a{color:var(--accent);text-decoration:none;}
+    footer a:hover{text-decoration:underline;}
+    @media(max-width:768px){
+      h1{font-size:2rem;} .hero{height:260px;}
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="header-inner"><a href="#accueil" class="logo">Photographe</a></div>
-    <div class="nav-container">
-      <ul class="nav-links">
+    <a href="#accueil" class="logo">Photographe</a>
+    <nav>
+      <ul>
         <li><a href="#accueil" class="nav-link active">Accueil</a></li>
         <li><a href="#apropos" class="nav-link">À propos</a></li>
-        <li><a href="#tarifs" class="nav-link">Tarifs</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
         <li><a href="#mariages" class="nav-link">Mariages</a></li>
         <li><a href="#soirees" class="nav-link">Soirées</a></li>
         <li><a href="#couples" class="nav-link">Couples</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
-    </div>
+    </nav>
   </header>
 
-  <!-- Pages -->
-  <div id="accueil" class="page active">
-    <main class="page-content">
+  <!-- ACCUEIL -->
+  <main id="accueil" class="page active">
+    <section>
       <div class="hero-sub">Mariage & Événement</div>
       <h1>Images sincères et intemporelles</h1>
-      <p>Photographe basé à Bordeaux, disponible partout en France pour capturer vos moments uniques avec élégance et discrétion.</p>
-      <div class="hero-image" role="img" aria-label="Photographe mariage à Bordeaux"></div>
-    </main>
-  </div>
+      <p>Photographe basé à Bordeaux, je capture vos instants de vie : mariages,
+        couples, soirées et portraits, avec un style lumineux, naturel et sincère.</p>
+      <div class="hero"></div>
+    </section>
+  </main>
 
-  <div id="apropos" class="page">
-    <main class="page-content">
-      <h1>À propos</h1>
-      <p>Je suis passionné par la lumière naturelle et les émotions vraies. Mon approche est documentaire et élégante : observer, capter discrètement, sans forcer les poses.</p>
-      <p>Je crois qu'une belle image est celle qui reflète votre authenticité. Après plusieurs années à photographier paysages et portraits, je me suis spécialisé dans les reportages de mariages et d'événements privés.</p>
-    </main>
-  </div>
+  <!-- À PROPOS -->
+  <main id="apropos" class="page">
+    <h1>À propos</h1>
+    <p>Curieux de nature et passionné par la lumière sincère, je mêle reportage et esthétique élégante. Mon travail s’attache à raconter votre journée sans l’interrompre — capter l’émotion sans la mettre en scène.</p>
+    <p>Basé à Bordeaux, je me déplace partout en France pour offrir à chaque couple des souvenirs intemporels.</p>
+  </main>
 
-  <div id="tarifs" class="page">
-    <main class="page-content">
-      <h1>Tarifs</h1>
-      <div class="hero-sub">Des formules transparentes et adaptables</div>
-      <p>Chaque histoire est unique. Voici quelques repères pour vous aider à vous projeter :</p>
-      <ul>
-        <li><strong>Séance couple</strong> – à partir de 250 € (1 h de prise de vue, galerie en ligne incluse).</li>
-        <li><strong>Reportage mariage</strong> – à partir de 1 200 € (des préparatifs à la première danse).</li>
-        <li><strong>Soirée privée / événement</strong> – devis sur mesure selon la durée, le lieu et le nombre d'invités.</li>
-      </ul>
-      <p>Toutes les formules incluent la sélection, la retouche et la livraison des photos en haute définition via une galerie en ligne privée.</p>
-    </main>
-  </div>
-
-  <div id="contact" class="page">
-    <main class="page-content">
-      <h1>Contact</h1>
-      <p>Parlez-moi de votre projet, de votre date et de vos envies. Je vous répondrai rapidement avec une proposition adaptée.</p>
-      <form action="#" method="post">
-        <input type="text" name="nom" placeholder="Votre nom" required>
-        <input type="email" name="email" placeholder="Votre email" required>
-        <input type="text" name="date" placeholder="Date de l'événement (optionnel)">
-        <textarea name="message" rows="5" placeholder="Parlez-moi de votre projet..." required></textarea>
-        <button type="submit">Envoyer</button>
-      </form>
-    </main>
-  </div>
-
-  <!-- Galeries (Mariages, Soirées, Couples) -->
-  <div id="mariages" class="page">
-    <main class="page-content">
-      <h1>Mariages</h1>
-      <section class="gallery-section">
-        <h2>Galerie</h2>
-        <div class="carousel-container">
-          <div class="carousel-track">
-            <div class="carousel-item" style="background-image:url('https://picsum.photos/1200/800?1')" role="img" aria-label="Photo mariage 1"></div>
-            <div class="carousel-item" style="background-image:url('https://picsum.photos/1200/800?2')"></div>
-            <div class="carousel-item" style="background-image:url('https://picsum.photos/1200/800?3')"></div>
-          </div>
-          <div class="carousel-nav">
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-          </div>
-          <div class="carousel-dots"></div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <div id="soirees" class="page">
-    <main class="page-content">
-      <h1>Soirées</h1>
-      <section class="gallery-section">
-        <h2>Galerie</h2>
-        <div class="carousel-container">
-          <div class="carousel-track">
-            <div class="carousel-item" style="background-image:url('https://picsum.photos/1200/800?11')"></div>
-            <div class="carousel-item" style="background-image:url('https://picsum.photos/1200/800?12')"></div>
-            <div class="carousel-item" style="background-image:url('https://picsum.photos/1200/800?13')"></div>
-          </div>
-          <div class="carousel-nav">
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-          </div>
-          <div class="carousel-dots"></div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <div id="couples" class="page">
-    <main class="page-content">
-      <h1>Couples</h1>
-      <section class="gallery-section">
-        <h2>Galerie</h2>
-        <div class="carousel-container">
-          <div class="carousel-track">
-            <div class="carousel-item" style="background-image:url('https://picsum.photos/1200/800?21')"></div>
-            <div class="carousel-item" style="background-image:url('https://picsum.photos/1200/800?22')"></div>
-            <div class="carousel-item" style="background-image:url('https://picsum.photos/1200/800?23')"></div>
-          </div>
-          <div class="carousel-nav">
-            <button class="carousel-prev">←</button>
-            <button class="carousel-next">→</button>
-          </div>
-          <div class="carousel-dots"></div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <footer class="footer">
-    <div class="page-content">
-      <div class="footer-content">
-        <p>Photographe Mariage & Événement | Basé à Bordeaux</p>
-        <p>Disponible partout en France | <a href="#contact">Contactez-moi</a></p>
-        <p>&copy; 2025 Tous droits réservés</p>
-      </div>
+  <!-- GALERIE MARIAGES -->
+  <main id="mariages" class="page">
+    <h1>Mariages</h1>
+    <p>Les regards, les larmes, les éclats de rire — un mariage est un récit d’émotions. Voici quelques extraits capturés au fil des saisons.</p>
+    <div class="gallery">
+      <img src="https://picsum.photos/id/1005/800/600" alt="Mariage 1">
+      <img src="https://picsum.photos/id/1011/800/600" alt="Mariage 2">
+      <img src="https://picsum.photos/id/1015/800/600" alt="Mariage 3">
+      <img src="https://picsum.photos/id/1021/800/600" alt="Mariage 4">
+      <img src="https://picsum.photos/id/1035/800/600" alt="Mariage 5">
     </div>
+  </main>
+
+  <!-- SOIRÉES -->
+  <main id="soirees" class="page">
+    <h1>Soirées</h1>
+    <p>Ambiance, énergie et lumière — vos événements prennent vie sous mon objectif.</p>
+    <div class="gallery">
+      <img src="https://picsum.photos/id/1042/800/600" alt="Soirée 1">
+      <img src="https://picsum.photos/id/1052/800/600" alt="Soirée 2">
+      <img src="https://picsum.photos/id/1062/800/600" alt="Soirée 3">
+    </div>
+  </main>
+
+  <!-- COUPLES -->
+  <main id="couples" class="page">
+    <h1>Couples</h1>
+    <p>En lumière naturelle, dans la simplicité du moment — retrouvez l’essence de votre complicité.</p>
+    <div class="gallery">
+      <img src="https://picsum.photos/id/1080/800/600" alt="Couple 1">
+      <img src="https://picsum.photos/id/1084/800/600" alt="Couple 2">
+      <img src="https://picsum.photos/id/1085/800/600" alt="Couple 3">
+      <img src="https://picsum.photos/id/1089/800/600" alt="Couple 4">
+    </div>
+  </main>
+
+  <!-- CONTACT -->
+  <main id="contact" class="page">
+    <h1>Contact</h1>
+    <p>Racontez-moi votre projet, vos envies, votre date. Je vous répondrai rapidement avec une proposition adaptée à votre histoire.</p>
+    <form action="#" method="post">
+      <input type="text" name="nom" placeholder="Votre nom" required>
+      <input type="email" name="email" placeholder="Votre email" required>
+      <input type="text" name="date" placeholder="Date de l'événement (optionnel)">
+      <textarea name="message" rows="5" placeholder="Votre message..." required></textarea>
+      <button type="submit">Envoyer</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>© 2025 Photographe Mariage & Événement | Bordeaux • <a href="#contact">Me contacter</a></p>
   </footer>
 
-  <script>
-    /* Header hiding */
-    (function(){
-      const header=document.querySelector('header');
-      let lastScroll=0, ticking=false;
-      window.addEventListener('scroll',()=>{
-        if(!ticking){
-          requestAnimationFrame(()=>{
-            const current=window.pageYOffset;
-            if(current>lastScroll && current>60) header.classList.add('hide-header');
-            else header.classList.remove('hide-header');
-            lastScroll=current<=0?0:current; ticking=false;
-          }); ticking=true;
-        }
-      },{passive:true});
-    })();
+  <!-- LIGHTBOX HTML -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-prev">←</button>
+    <img src="" alt="">
+    <button class="lightbox-next">→</button>
+    <button class="lightbox-close">✕</button>
+  </div>
 
-    /* SPA navigation */
-    const pages=document.querySelectorAll('.page');
+  <script>
+    // Header hide on scroll
+    let lastScroll=0;const header=document.querySelector('header');
+    window.addEventListener('scroll',()=>{
+      const cur=window.pageYOffset;
+      header.classList.toggle('hide-header',cur>lastScroll && cur>60);
+      lastScroll=cur<=0?0:cur;
+    });
+
+    // Navigation SPA
     const links=document.querySelectorAll('.nav-link');
-    links.forEach(link=>{
-      link.addEventListener('click',e=>{
+    const pages=document.querySelectorAll('.page');
+    links.forEach(l=>{
+      l.addEventListener('click',e=>{
         e.preventDefault();
-        const id=link.getAttribute('href').replace('#','');
+        links.forEach(x=>x.classList.remove('active'));
+        l.classList.add('active');
+        const id=l.getAttribute('href').replace('#','');
         pages.forEach(p=>p.classList.remove('active'));
-        document.getElementById(id)?.classList.add('active');
-        links.forEach(l=>l.classList.remove('active'));
-        link.classList.add('active');
-        document.title="Photographe | "+link.textContent;
+        const target=document.getElementById(id);
+        if(target){target.classList.add('active');document.title="Photographe | "+l.textContent;}
         window.scrollTo({top:0,behavior:'smooth'});
       });
     });
 
-    /* Carousel setup */
-    function setupCarousel(container){
-      const track=container.querySelector('.carousel-track');
-      const items=[...track.children];
-      const prev=container.querySelector('.carousel-prev');
-      const next=container.querySelector('.carousel-next');
-      const dotsContainer=container.querySelector('.carousel-dots');
-      let current=0;
-      items.forEach((_,i)=>{
-        const dot=document.createElement('div');
-        dot.className='carousel-dot'+(i===0?' active':'');
-        dot.addEventListener('click',()=>goTo(i));
-        dotsContainer.appendChild(dot);
+    // Lightbox logic
+    const lightbox=document.getElementById('lightbox');
+    const lightImg=lightbox.querySelector('img');
+    let galleryImgs=[]; let current=0;
+    document.querySelectorAll('.gallery img').forEach(img=>{
+      img.addEventListener('click',()=>{
+        galleryImgs=[...img.closest('.gallery').querySelectorAll('img')];
+        current=galleryImgs.indexOf(img);
+        showLightbox();
       });
-      const dots=dotsContainer.querySelectorAll('.carousel-dot');
-      function update(){track.style.transform=`translateX(-${current*100}%)`;dots.forEach((d,i)=>d.classList.toggle('active',i===current));}
-      function nextSlide(){current=(current+1)%items.length;update();}
-      function prevSlide(){current=(current-1+items.length)%items.length;update();}
-      function goTo(i){current=i;update();}
-      next.addEventListener('click',nextSlide);
-      prev.addEventListener('click',prevSlide);
-      items.forEach(it=>it.addEventListener('click',nextSlide));
+    });
+    function showLightbox(){
+      const src=galleryImgs[current].src;
+      lightImg.src=src;lightbox.classList.add('active');
     }
-    document.querySelectorAll('.carousel-container').forEach(setupCarousel);
+    function closeLightbox(){lightbox.classList.remove('active');}
+    function nextImg(){current=(current+1)%galleryImgs.length;showLightbox();}
+    function prevImg(){current=(current-1+galleryImgs.length)%galleryImgs.length;showLightbox();}
+    document.querySelector('.lightbox-close').onclick=closeLightbox;
+    document.querySelector('.lightbox-next').onclick=nextImg;
+    document.querySelector('.lightbox-prev').onclick=prevImg;
+    lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox();});
+    document.addEventListener('keydown',e=>{
+      if(!lightbox.classList.contains('active'))return;
+      if(e.key==='ArrowRight')nextImg();
+      if(e.key==='ArrowLeft')prevImg();
+      if(e.key==='Escape')closeLightbox();
+    });
   </script>
 </body>
 </html>
