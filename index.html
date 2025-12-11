@@ -14,7 +14,8 @@
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     body {
       font-family:'Playfair Display',serif;background:var(--bg);color:var(--text);
-      min-height:100vh;padding-top:120px;scroll-behavior:smooth;
+      min-height:100vh;display:flex;flex-direction:column;padding-top:120px;
+      scroll-behavior:smooth;
     }
     header {
       position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,0.95);
@@ -38,19 +39,19 @@
       font-size:.7rem;letter-spacing:.18em;text-decoration:none;color:var(--muted);
       transition:all .3s ease;
     }
-    nav a:hover,nav a:target{color:var(--accent);font-weight:600;}
-
-    /* MULTI-PAGE SYSTEM */
+    nav a:hover,nav a.active{color:var(--accent);font-weight:600;}
+    
+    main {
+      max-width:var(--max-w);margin:0 auto;padding:24px;
+      flex:1;transition:opacity .6s ease,transform .6s ease;
+    }
     .page {
       display:none;opacity:0;transform:translateY(20px);
-      max-width:var(--max-w);margin:0 auto;padding:80px 24px 48px;
       transition:opacity .6s ease,transform .6s ease;
-      min-height:100vh;
     }
-    .page:target,.page#accueil {
+    .page.active {
       display:block;opacity:1;transform:translateY(0);
     }
-
     section{margin-bottom:48px;}
     h1 {font-size:2.7rem;font-weight:400;margin-bottom:12px;}
     h2 {font-size:1.8rem;font-weight:400;margin:24px 0 12px;}
@@ -78,7 +79,7 @@
       position:fixed;inset:0;background:rgba(0,0,0,0.95);display:none;
       justify-content:center;align-items:center;z-index:1000;
     }
-    .lightbox:target{display:flex;}
+    .lightbox.active{display:flex;}
     .lightbox img{max-width:90%;max-height:85vh;border-radius:12px;box-shadow:0 0 20px rgba(0,0,0,.6);}
     .lightbox button{
       position:absolute;top:50%;transform:translateY(-50%);
@@ -114,10 +115,8 @@
     }
     footer a{color:var(--accent);text-decoration:none;}
     footer a:hover{text-decoration:underline;}
-    
     @media(max-width:768px){
       h1{font-size:2rem;} .hero{height:260px;}
-      .page{padding:60px 16px 48px;}
     }
   </style>
 </head>
@@ -126,34 +125,36 @@
     <a href="#accueil" class="logo">Photographe</a>
     <nav>
       <ul>
-        <li><a href="#accueil">Accueil</a></li>
-        <li><a href="#apropos">À propos</a></li>
-        <li><a href="#mariages">Mariages</a></li>
-        <li><a href="#soirees">Soirées</a></li>
-        <li><a href="#couples">Couples</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#accueil" class="nav-link active">Accueil</a></li>
+        <li><a href="#apropos" class="nav-link">À propos</a></li>
+        <li><a href="#mariages" class="nav-link">Mariages</a></li>
+        <li><a href="#soirees" class="nav-link">Soirées</a></li>
+        <li><a href="#couples" class="nav-link">Couples</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- PAGE ACCUEIL -->
-  <section id="accueil" class="page">
-    <div class="hero-sub">Mariage & Événement</div>
-    <h1>Images sincères et intemporelles</h1>
-    <p>Photographe basé à Bordeaux, je capture vos instants de vie : mariages,
-      couples, soirées et portraits, avec un style lumineux, naturel et sincère.</p>
-    <div class="hero"></div>
-  </section>
+  <!-- ACCUEIL -->
+  <main id="accueil" class="page active">
+    <section>
+      <div class="hero-sub">Mariage & Événement</div>
+      <h1>Images sincères et intemporelles</h1>
+      <p>Photographe basé à Bordeaux, je capture vos instants de vie : mariages,
+        couples, soirées et portraits, avec un style lumineux, naturel et sincère.</p>
+      <div class="hero"></div>
+    </section>
+  </main>
 
-  <!-- PAGE À PROPOS -->
-  <section id="apropos" class="page">
+  <!-- À PROPOS -->
+  <main id="apropos" class="page">
     <h1>À propos</h1>
     <p>Curieux de nature et passionné par la lumière sincère, je mêle reportage et esthétique élégante. Mon travail s'attache à raconter votre journée sans l'interrompre — capter l'émotion sans la mettre en scène.</p>
     <p>Basé à Bordeaux, je me déplace partout en France pour offrir à chaque couple des souvenirs intemporels.</p>
-  </section>
+  </main>
 
-  <!-- PAGE MARIAGES -->
-  <section id="mariages" class="page">
+  <!-- MARIAGES -->
+  <main id="mariages" class="page">
     <h1>Mariages</h1>
     <p>Les regards, les larmes, les éclats de rire — un mariage est un récit d'émotions. Voici quelques extraits capturés au fil des saisons.</p>
     <div class="gallery">
@@ -163,10 +164,10 @@
       <img src="https://picsum.photos/id/1021/800/600" alt="Mariage 4">
       <img src="https://picsum.photos/id/1035/800/600" alt="Mariage 5">
     </div>
-  </section>
+  </main>
 
-  <!-- PAGE SOIRÉES -->
-  <section id="soirees" class="page">
+  <!-- SOIRÉES -->
+  <main id="soirees" class="page">
     <h1>Soirées</h1>
     <p>Ambiance, énergie et lumière — vos événements prennent vie sous mon objectif.</p>
     <div class="gallery">
@@ -174,10 +175,10 @@
       <img src="https://picsum.photos/id/1052/800/600" alt="Soirée 2">
       <img src="https://picsum.photos/id/1062/800/600" alt="Soirée 3">
     </div>
-  </section>
+  </main>
 
-  <!-- PAGE COUPLES -->
-  <section id="couples" class="page">
+  <!-- COUPLES -->
+  <main id="couples" class="page">
     <h1>Couples</h1>
     <p>En lumière naturelle, dans la simplicité du moment — retrouvez l'essence de votre complicité.</p>
     <div class="gallery">
@@ -186,10 +187,10 @@
       <img src="https://picsum.photos/id/1085/800/600" alt="Couple 3">
       <img src="https://picsum.photos/id/1089/800/600" alt="Couple 4">
     </div>
-  </section>
+  </main>
 
-  <!-- PAGE CONTACT -->
-  <section id="contact" class="page">
+  <!-- CONTACT -->
+  <main id="contact" class="page">
     <h1>Contact</h1>
     <p>Racontez-moi votre projet, vos envies, votre date. Je vous répondrai rapidement avec une proposition adaptée à votre histoire.</p>
     <form action="#" method="post">
@@ -199,63 +200,81 @@
       <textarea name="message" rows="5" placeholder="Votre message..." required></textarea>
       <button type="submit">Envoyer</button>
     </form>
-  </section>
+  </main>
 
   <footer>
     <p>© 2025 Photographe Mariage & Événement | Bordeaux • <a href="#contact">Me contacter</a></p>
   </footer>
 
-  <!-- LIGHTBOX (activé via :target) -->
-  <div id="lightbox" class="lightbox">
-    <a href="#" class="lightbox-prev">←</a>
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-prev">←</button>
     <img src="" alt="">
-    <a href="#" class="lightbox-next">→</a>
-    <a href="#" class="lightbox-close">✕</a>
+    <button class="lightbox-next">→</button>
+    <button class="lightbox-close">✕</button>
   </div>
 
   <script>
-    // Header hide on scroll (conservé)
-    let lastScroll=0;const header=document.querySelector('header');
+    // Header hide on scroll
+    let lastScroll=0;
+    const header=document.querySelector('header');
     window.addEventListener('scroll',()=>{
       const cur=window.pageYOffset;
       header.classList.toggle('hide-header',cur>lastScroll && cur>60);
       lastScroll=cur<=0?0:cur;
     });
 
-    // Lightbox amélioré pour multi-page (navigation via hash)
-    document.querySelectorAll('.gallery img').forEach((img, index, gallery) => {
-      img.addEventListener('click', () => {
-        const lightbox = document.getElementById('lightbox');
-        const lightImg = lightbox.querySelector('img');
-        lightImg.src = img.src;
-        lightImg.dataset.galleryIndex = index;
-        lightImg.dataset.galleryTotal = gallery.length;
-        window.location.hash = 'lightbox';
+    // Navigation SPA
+    const links=document.querySelectorAll('.nav-link');
+    const pages=document.querySelectorAll('.page');
+    links.forEach(l=>{
+      l.addEventListener('click',e=>{
+        e.preventDefault();
+        links.forEach(x=>x.classList.remove('active'));
+        l.classList.add('active');
+        const id=l.getAttribute('href').replace('#','');
+        pages.forEach(p=>p.classList.remove('active'));
+        const target=document.getElementById(id);
+        if(target){
+          target.classList.add('active');
+          document.title="Photographe | "+l.textContent;
+        }
+        window.scrollTo({top:0,behavior:'smooth'});
       });
     });
 
-    // Lightbox navigation (sans JS lourd)
-    document.querySelector('.lightbox-close').onclick = () => window.location.hash = '';
-    document.querySelector('.lightbox-prev').onclick = (e) => {
-      e.preventDefault();
-      const lightImg = document.querySelector('#lightbox img');
-      // Simple fallback
-      window.location.hash = '';
-    };
-    document.querySelector('.lightbox-next').onclick = (e) => {
-      e.preventDefault();
-      const lightImg = document.querySelector('#lightbox img');
-      window.location.hash = '';
-    };
-
-    // Close lightbox on outside click ou Escape
-    document.getElementById('lightbox').addEventListener('click', e => {
-      if(e.target === e.currentTarget) window.location.hash = '';
+    // Lightbox logic
+    const lightbox=document.getElementById('lightbox');
+    const lightImg=lightbox.querySelector('img');
+    let galleryImgs=[]; let current=0;
+    
+    document.querySelectorAll('.gallery img').forEach(img=>{
+      img.addEventListener('click',()=>{
+        galleryImgs=[...img.closest('.gallery').querySelectorAll('img')];
+        current=galleryImgs.indexOf(img);
+        lightImg.src=galleryImgs[current].src;
+        lightbox.classList.add('active');
+      });
     });
-    document.addEventListener('keydown', e => {
-      if(e.key==='Escape' && window.location.hash === '#lightbox') {
-        window.location.hash = '';
-      }
+    
+    function showLightbox(){
+      lightImg.src=galleryImgs[current].src;
+      lightbox.classList.add('active');
+    }
+    function closeLightbox(){lightbox.classList.remove('active');}
+    function nextImg(){current=(current+1)%galleryImgs.length;showLightbox();}
+    function prevImg(){current=(current-1+galleryImgs.length)%galleryImgs.length;showLightbox();}
+    
+    document.querySelector('.lightbox-close').onclick=closeLightbox;
+    document.querySelector('.lightbox-next').onclick=nextImg;
+    document.querySelector('.lightbox-prev').onclick=prevImg;
+    lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox();});
+    
+    document.addEventListener('keydown',e=>{
+      if(!lightbox.classList.contains('active'))return;
+      if(e.key==='ArrowRight')nextImg();
+      if(e.key==='ArrowLeft')prevImg();
+      if(e.key==='Escape')closeLightbox();
     });
   </script>
 </body>
