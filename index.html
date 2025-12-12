@@ -262,7 +262,7 @@
 /* 3:2 = width : height = 3 : 2 */
 .click-gallery {
   width: 900px;              /* choose your exact pixel width */
-  height: autopx;             /* 3:2 => 900 * 2 / 3 = 600 */
+  height: 600px;             /* 3:2 => 900 * 2 / 3 = 600 */
   max-width: 100%;           /* still responsive if screen is smaller */
   aspect-ratio: 3 / 2;       /* keeps 3:2 when it shrinks [web:1][web:2] */
   border-radius: 16px;
@@ -299,7 +299,7 @@
 /* Optional: slightly lower height on small screens, still 3:2 */
 @media (max-width: 500px) {
   .click-gallery {
-    width: 100%;
+    width: 80%;
     height: auto;
     aspect-ratio: 3 / 2;     /* browser computes height from width [web:1][web:10] */
   }
