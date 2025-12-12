@@ -253,38 +253,27 @@
         }
 
 
-   @media (max-width: 768px) {
-  .nav-links {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 colonnes sur la 1re ligne */
-    grid-auto-rows: 1fr;
-    gap: 2px;
-    padding: 4px 8px;
-  }
 
-  .nav-links li {
-    min-width: auto;
-    max-width: none;
-    flex: none;
-  }
 
-  /* Ligne 1 */
-  .nav-links li:nth-child(1) { grid-column: 1; grid-row: 1; } /* Accueil */
-  .nav-links li:nth-child(2) { grid-column: 2; grid-row: 1; } /* À propos */
-  .nav-links li:nth-child(3) { grid-column: 3; grid-row: 1; } /* Tarifs */
-  .nav-links li:nth-child(7) { grid-column: 4; grid-row: 1; } /* Contact */
-
-  /* Ligne 2 */
-  .nav-links li:nth-child(4) { grid-column: 1 / span 2; grid-row: 2; } /* Mariages */
-  .nav-links li:nth-child(5) { grid-column: 3; grid-row: 2; }          /* Soirées */
-  .nav-links li:nth-child(6) { grid-column: 4; grid-row: 2; }          /* Couples */
-
-  .nav-links a {
-    padding: 6px 2px;
-    font-size: 0.6rem;
-  }
+        
+ @media (max-width: 768px) {
+    .nav-links { 
+        display: grid !important;
+        grid-template-columns: 1fr 1fr 1fr;  /* 3 colonnes */
+        grid-template-rows: 1fr 1fr;         /* 2 lignes */
+        gap: 2px;
+        padding: 6px 12px;
+        height: 72px;
+    }
+    
+    .nav-links a { 
+        padding: 8px 4px; 
+        font-size: 0.65rem; 
+    }
 }
 
+
+        
 
         
 
@@ -443,6 +432,42 @@
                 items[currentIndex].classList.add('active');
             });
         });
+
+
+
+
+
+
+
+        
+
+        // Navigation existante...
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').replace('#', '');
+        
+        // Masquer toutes les pages
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        document.getElementById(targetId)?.classList.add('active');
+        
+        // Retirer active des liens
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        
+        // ✅ NOUVEAU : Cacher le bouton actif
+        document.querySelectorAll('.nav-link').forEach(l => l.style.display = 'block');
+        link.style.display = 'none';  // Cache le bouton courant
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});
+
+// Au chargement : cacher Accueil (page active par défaut)
+window.addEventListener('load', () => {
+    document.querySelector('a[href="#accueil"]').style.display = 'none';
+});
+
     </script>
 </body>
 </html>
