@@ -213,15 +213,47 @@
         }
 
         /* PAGES */
-        .page { display: none; flex: 1; }
-        .page.active { display: flex; flex-direction: column; }
 
-        .page-content {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 20px 24px 40px;
-            flex: 1;
-        }
+.page {
+  display: none;
+  flex: 1;
+}
+
+.page.active {
+  display: block;
+}
+
+.page-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 32px 24px 40px;
+}
+
+.hero-image {
+  margin: 24px 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.hero-img-el {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+
+
+
+
+
+
+
+
+      
+
+
+
 
         h1 {
             font-family: 'Playfair Display', serif;
@@ -241,15 +273,7 @@
 
         p { margin-bottom: 16px; font-size: 1.05rem; max-width: 650px; }
 
-        .hero-image {
-            height: 420px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(0,0,0,0.06), rgba(0,0,0,0.12)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23f0f0f0" width="1200" height="800"/><text x="600" y="400" font-size="42" text-anchor="middle" fill="%23bbb">Hero Image</text></svg>');
-            background-size: cover;
-            background-position: center;
-            margin: 24px 0;
-        }
+    
 
      /* MOBILE & TABLET */
 @media (max-width: 768px) {
@@ -290,11 +314,6 @@
     padding: 20px 16px 40px;
   }
 
-  h1 {
-    font-size: 2rem;
-    line-height: 1.2;
-    margin-bottom: 10px;
-  }
 
   .hero-sub {
     font-size: 0.8rem;
@@ -302,23 +321,35 @@
     margin-bottom: 6px;
   }
 
+ 
+
+
+
+
+
+/* Mobile */
+@media (max-width: 768px) {
+  .page-content {
+    padding: 20px 16px 32px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
   p {
     font-size: 1rem;
-    margin-bottom: 14px;
     max-width: 100%;
   }
 
   .hero-image {
-    width: 100%;
-    max-width: 100%;
-    margin: 18px 0;
+    margin: 16px 0 24px;
     border-radius: 14px;
-    height: auto;
-    aspect-ratio: 3 / 2;
-    background-size: cover;
-    background-position: center;
   }
+}
 
+  
   .gallery-section {
     margin: 40px auto;
     max-width: 100%;
