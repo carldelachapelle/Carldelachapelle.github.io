@@ -253,52 +253,36 @@
         }
 
 
-        @media (max-width: 768px) {
-    .logo { font-size: 1.7rem; }
-    
-    .nav-links { 
-        flex-direction: column; 
-        gap: 1px;  /* Réduit l'espace entre lignes */
-    }
-    
-    .nav-links li { 
-        min-width: auto; 
-        max-width: none; 
-        flex: none; 
-    }
-    
-    /* NOUVELLE STRUCTURE : 2 lignes distinctes */
-    .nav-links {
-        display: grid;
-        grid-template-columns: 1fr 1fr;  /* 2 colonnes égales */
-        grid-template-rows: 1fr 1fr;     /* 2 lignes égales */
-        gap: 2px;
-        padding: 6px 12px;              /* Padding réduit */
-    }
-    
-    /* Positionnement précis des items */
-    .nav-links li:nth-child(1) { grid-area: 1 / 1; }  /* Accueil */
-    .nav-links li:nth-child(2) { grid-area: 1 / 2; }  /* À propos */
-    .nav-links li:nth-child(3) { grid-area: 2 / 1; }  /* Tarifs */
-    .nav-links li:nth-child(7) { grid-area: 2 / 2; }  /* Contact */
-    
-    /* Deuxième ligne : Mariages/Couples/Soirées (masqués ou regroupés) */
-    .nav-links li:nth-child(4), 
-    .nav-links li:nth-child(6), 
-    .nav-links li:nth-child(5) { 
-        display: none;  /* Cache temporairement - à adapter */
-    }
-    
-    .nav-links a {
-        padding: 8px 4px;  /* Padding vertical réduit */
-        font-size: 0.65rem; /* Texte plus petit */
-    }
-    
-    .page-content { padding: 16px 16px 32px; }
-    h1 { font-size: 2.4rem; }
-    .hero-image { height: 300px; }
-    .click-gallery { height: 400px; }
-    .footer { padding: 30px 0 15px; }
+   @media (max-width: 768px) {
+  .nav-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colonnes sur la 1re ligne */
+    grid-auto-rows: 1fr;
+    gap: 2px;
+    padding: 4px 8px;
+  }
+
+  .nav-links li {
+    min-width: auto;
+    max-width: none;
+    flex: none;
+  }
+
+  /* Ligne 1 */
+  .nav-links li:nth-child(1) { grid-column: 1; grid-row: 1; } /* Accueil */
+  .nav-links li:nth-child(2) { grid-column: 2; grid-row: 1; } /* À propos */
+  .nav-links li:nth-child(3) { grid-column: 3; grid-row: 1; } /* Tarifs */
+  .nav-links li:nth-child(7) { grid-column: 4; grid-row: 1; } /* Contact */
+
+  /* Ligne 2 */
+  .nav-links li:nth-child(4) { grid-column: 1 / span 2; grid-row: 2; } /* Mariages */
+  .nav-links li:nth-child(5) { grid-column: 3; grid-row: 2; }          /* Soirées */
+  .nav-links li:nth-child(6) { grid-column: 4; grid-row: 2; }          /* Couples */
+
+  .nav-links a {
+    padding: 6px 2px;
+    font-size: 0.6rem;
+  }
 }
 
 
