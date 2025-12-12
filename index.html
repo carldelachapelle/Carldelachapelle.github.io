@@ -252,6 +252,58 @@
             margin: 24px 0;
         }
 
+
+        @media (max-width: 768px) {
+    .logo { font-size: 1.7rem; }
+    
+    .nav-links { 
+        flex-direction: column; 
+        gap: 1px;  /* Réduit l'espace entre lignes */
+    }
+    
+    .nav-links li { 
+        min-width: auto; 
+        max-width: none; 
+        flex: none; 
+    }
+    
+    /* NOUVELLE STRUCTURE : 2 lignes distinctes */
+    .nav-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;  /* 2 colonnes égales */
+        grid-template-rows: 1fr 1fr;     /* 2 lignes égales */
+        gap: 2px;
+        padding: 6px 12px;              /* Padding réduit */
+    }
+    
+    /* Positionnement précis des items */
+    .nav-links li:nth-child(1) { grid-area: 1 / 1; }  /* Accueil */
+    .nav-links li:nth-child(2) { grid-area: 1 / 2; }  /* À propos */
+    .nav-links li:nth-child(3) { grid-area: 2 / 1; }  /* Tarifs */
+    .nav-links li:nth-child(7) { grid-area: 2 / 2; }  /* Contact */
+    
+    /* Deuxième ligne : Mariages/Couples/Soirées (masqués ou regroupés) */
+    .nav-links li:nth-child(4), 
+    .nav-links li:nth-child(6), 
+    .nav-links li:nth-child(5) { 
+        display: none;  /* Cache temporairement - à adapter */
+    }
+    
+    .nav-links a {
+        padding: 8px 4px;  /* Padding vertical réduit */
+        font-size: 0.65rem; /* Texte plus petit */
+    }
+    
+    .page-content { padding: 16px 16px 32px; }
+    h1 { font-size: 2.4rem; }
+    .hero-image { height: 300px; }
+    .click-gallery { height: 400px; }
+    .footer { padding: 30px 0 15px; }
+}
+
+
+        
+
 /* Same wrapper for all 3 galleries */
 .gallery-section {
   margin: 60px auto;
