@@ -401,21 +401,7 @@
     </style>
 
     <script>
-        // Navigation
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href').replace('#', '');
-                
-                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-                document.getElementById(targetId)?.classList.add('active');
-                
-                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-                
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
+
 
         // ✅ GALERIE CLICK CORRIGÉE - ANIMATION PARFAITE
         document.querySelectorAll('.click-gallery').forEach(gallery => {
