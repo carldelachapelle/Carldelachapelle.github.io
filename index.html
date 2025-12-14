@@ -22,6 +22,7 @@
                 <li><a href="#mariages" class="nav-link">Mariages</a></li>
                 <li><a href="#soirees" class="nav-link">Soirées</a></li>
                 <li><a href="#couples" class="nav-link">Couples</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </header>
@@ -29,10 +30,39 @@
     <!-- PAGE ACCUEIL -->
     <div id="accueil" class="page active">
         <main class="page-content">
-            <div class="hero-sub">Soir2es Couples Mariages</div>
             <h1>Du d2but jusqu'0 la fin!</h1>
+<div class="hero-sub">Soir2es Couples Mariages</div>
             <p>Photographe basé à Bordeaux, etc etc (2 3 phrases en vif)</p>
-            <div class="hero-image" > <img src="a.jpeg" alt="ImagePremAccueil" height="110%"></div>
+            <div class="hero-image" > <img src="a.jpeg" alt="ImagePremAccueil" class="hero-img-el"></div>
+        </main>
+    </div>
+
+    <!-- PAGE À PROPOS -->
+    <div id="apropos" class="page">
+        <main class="page-content">
+            <h1>À propos</h1>
+<div class="hero-sub">Qui suis-je?</div>
+            <section class="text-section">
+                <p>Photographe passionné basé à Bordeaux, j'ai commencé avec le scoutisme puis les mariages. J'aime les moments vrais, les regards qui en disent long. Discrétion et émotion garantie.</p>
+            </section>
+        </main>
+    </div>
+
+    <!-- PAGE TARIFFS -->
+    <div id="tarifs" class="page">
+        <main class="page-content">
+            <h1>Tarifs</h1>
+<div class="hero-sub">Si vous avez des questions n'h2sitez pas!</div>
+            <section class="text-section">
+                <h2>• Mariages</h2>
+                <p>texte</p>
+                
+                <h2>• Soirées</h2>
+                <p>texte</p>
+                
+                <h2>• Couples</h2>
+                <p>texte</p>
+            </section>
         </main>
     </div>
 
@@ -40,6 +70,7 @@
     <div id="mariages" class="page">
         <main class="page-content">
             <h1>Mariages</h1>
+<div class="hero-sub">Vive les mariés!</div>
             <section class="gallery-section">
                 <h2>Galerie</h2>
                 <div class="click-gallery">
@@ -61,7 +92,7 @@
             <section class="text-section">
                 <h2>Titre</h2>
                 <div class="hero-sub">Sous titre malicieux mdr</div>
-                <p>Robe blanche check costard check bouquet de lys check et.. photographe aussi check!</p>
+                <p>Robe blanche check costard check bouquet de lys check et.. photographe check!</p>
             </section>
         </main>
     </div>
@@ -70,6 +101,7 @@
     <div id="soirees" class="page">
         <main class="page-content">
             <h1>Soirées</h1>
+<div class="hero-sub">Rock, lambada, salsa, slow, valse, etc</div>
             <section class="gallery-section">
                 <h2>Galerie</h2>
                 <div class="click-gallery">
@@ -95,6 +127,7 @@
     <div id="couples" class="page">
         <main class="page-content">
             <h1>Couples</h1>
+<div class="hero-sub">Un coucher de soleil...</div>
             <section class="gallery-section">
                 <h2>Galerie</h2>
                 <div class="click-gallery">
@@ -116,18 +149,29 @@
         </main>
     </div>
 
+    <!-- PAGE CONTACT -->
+    <div id="contact" class="page">
+        <main class="page-content">
+            <h1>Contact</h1>
+            <section class="text-section">
+                <p>Envoyez-moi un mail à carldelachapelle@gmail.com ou appelez au 06.XX.XX.XX.XX. Basé Bordeaux, dispo partout France. Réponse en 24h max.</p>
+            </section>
+        </main>
+    </div>
+
     <!-- FOOTER -->
     <footer class="footer">
         <div class="page-content">
             <div class="footer-content">
                 <p>Carl de la Chapelle | Basé à Bordeaux</p>
-                <p>Disponible partout en France (je crois) | <a href="mailto:carldelachapelle@gmail.com" class="nav-link">Contactez-moi</a></p>
+                <p>Disponible partout en France (je crois) | <a href="#contact" class="nav-link">Contactez-moi</a></p>
                 <p>&copy; 2025 (pov tu mets un &copy; alors que t'as pas de copyrights mdr)</p>
             </div>
         </div>
     </footer>
 
     <style>
+        /* Ton CSS EXACT identique + hero image fix + petits ajouts */
         :root {
             --bg: #ffffff;
             --text: #1f1f1f;
@@ -213,47 +257,37 @@
         }
 
         /* PAGES */
+        .page {
+          display: none;
+          flex: 1;
+        }
 
-.page {
-  display: none;
-  flex: 1;
-}
+        .page.active {
+          display: block;
+        }
 
-.page.active {
-  display: block;
-}
+        .page-content {
+          max-width: var(--max-width);
+          margin: 0 auto;
+          padding: 32px 24px 40px;
+        }
 
-.page-content {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 32px 24px 40px;
-}
+        /* HERO IMAGE CORRIGÉ */
+        .hero-image {
+          margin: 24px 0;
+          border-radius: 16px;
+          overflow: hidden;
+          max-height: 480px;
+        }
 
-.hero-image {
-  margin: 24px 0;
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.hero-img-el {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-
-
-
-
-
-
-
-
-      
-
-
-
+        .hero-img-el {
+          display: block;
+          width: 100%;
+          height: 100%;
+          max-height: 480px;
+          object-fit: cover;
+          object-position: center;
+        }
 
         h1 {
             font-family: 'Playfair Display', serif;
@@ -273,176 +307,56 @@
 
         p { margin-bottom: 16px; font-size: 1.05rem; max-width: 650px; }
 
-    
+        /* GALLERY + TEXT SECTIONS (identique) */
+        .gallery-section {
+          margin: 60px auto;
+          max-width: 900px;
+          padding: 0 16px;
+        }
 
-     /* MOBILE & TABLET */
-@media (max-width: 768px) {
-  body {
-    font-size: 15px;
-    line-height: 1.8;
-  }
+        .click-gallery {
+          width: 100%;
+          max-width: 100%;
+          height: auto;
+          aspect-ratio: 3 / 2;
+          border-radius: 16px;
+          overflow: hidden;
+          cursor: pointer;
+          position: relative;
+          margin: 0 auto;
+        }
 
-  .header-inner {
-    padding: 12px 16px;
-  }
+        .gallery-container {
+          width: 100%;
+          height: 100%;
+          position: relative;
+        }
 
-  .logo {
-    font-size: 1.6rem;
-  }
+        .gallery-item {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 16px;
+          box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+          opacity: 0;
+          transform: translateX(100%);
+          transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
 
-  .nav-links {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 1fr;
-    gap: 2px;
-    padding: 6px 8px 10px;
-  }
+        .gallery-item img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          border-radius: inherit;
+          display: block;
+        }
 
-  .nav-links li {
-    min-width: auto;
-    max-width: none;
-    flex: none;
-  }
-
-  .nav-links a {
-    padding: 8px 4px;
-    font-size: 0.65rem;
-    letter-spacing: 0.13em;
-  }
-
-  .page-content {
-    padding: 20px 16px 40px;
-  }
-
-
-  .hero-sub {
-    font-size: 0.8rem;
-    letter-spacing: 0.14em;
-    margin-bottom: 6px;
-  }
-
- 
-
-
-
-
-
-/* Mobile */
-@media (max-width: 768px) {
-  .page-content {
-    padding: 20px 16px 32px;
-  }
-
-  h1 {
-    font-size: 2rem;
-    line-height: 1.2;
-  }
-
-  p {
-    font-size: 1rem;
-    max-width: 100%;
-  }
-
-  .hero-image {
-    margin: 16px 0 24px;
-    border-radius: 14px;
-  }
-}
-
-  
-  .gallery-section {
-    margin: 40px auto;
-    max-width: 100%;
-    padding: 0 12px;
-  }
-
-  .click-gallery {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    aspect-ratio: 3 / 2;
-    border-radius: 14px;
-  }
-
-  .text-section {
-    margin: 48px 0;
-    padding: 0 12px;
-  }
-
-  .text-section h2 {
-    font-size: 1.8rem;
-  }
-
-  .footer {
-    padding: 24px 0 14px;
-  }
-
-  .footer-content p {
-    font-size: 0.9rem;
-  }
-}
-   
-
-        
-
-/* GALLERY BASE */
-.gallery-section {
-  margin: 60px auto;
-  max-width: 900px;
-  padding: 0 16px;
-}
-
-.click-gallery {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 2;
-  border-radius: 16px;
-  overflow: hidden;
-  cursor: pointer;
-  position: relative;
-  margin: 0 auto;
-}
-
-
-
-
-.gallery-container {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-.gallery-item {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-  opacity: 0;
-  transform: translateX(100%);
-  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;      /* Remplit sans déformer */
-  object-position: center; /* Centre l'image */
-  border-radius: inherit;
-  display: block;
-}
-
-.gallery-item.active {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-
-
-
-
+        .gallery-item.active {
+          opacity: 1;
+          transform: translateX(0);
+        }
 
         .text-section {
             margin: 80px 0;
@@ -487,61 +401,121 @@
             color: rgba(209,155,108,1);
         }
 
-        /* RESPONSIVE */
+        /* MOBILE */
         @media (max-width: 768px) {
-            .logo { font-size: 1.7rem; }
-            .nav-links { flex-direction: column; gap: 2px; }
-            .nav-links li { min-width: auto; max-width: none; flex: none; }
-            .page-content { padding: 16px 16px 32px; }
-            h1 { font-size: 2.4rem; }
-            .hero-image { height: 300px; }
-            .click-gallery { height: 400px; }
-            .footer { padding: 30px 0 15px; }
+          body {
+            font-size: 15px;
+            line-height: 1.8;
+          }
+
+          .header-inner {
+            padding: 12px 16px;
+          }
+
+          .logo {
+            font-size: 1.6rem;
+          }
+
+          .nav-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 1fr;
+            gap: 2px;
+            padding: 6px 8px 10px;
+          }
+
+          .nav-links li {
+            min-width: auto;
+            max-width: none;
+            flex: none;
+          }
+
+          .nav-links a {
+            padding: 8px 4px;
+            font-size: 0.65rem;
+            letter-spacing: 0.13em;
+          }
+
+          .page-content {
+            padding: 20px 16px 40px;
+          }
+
+          h1 {
+            font-size: 2rem;
+            line-height: 1.2;
+          }
+
+          p {
+            font-size: 1rem;
+            max-width: 100%;
+          }
+
+          .hero-image {
+            margin: 16px 0 24px;
+            border-radius: 14px;
+            max-height: 320px;
+          }
+
+          .hero-img-el {
+            max-height: 320px;
+          }
+
+          .gallery-section {
+            margin: 40px auto;
+            max-width: 100%;
+            padding: 0 12px;
+          }
+
+          .click-gallery {
+            aspect-ratio: 3 / 2;
+            border-radius: 14px;
+          }
+
+          .text-section {
+            margin: 48px 0;
+            padding: 0 12px;
+          }
+
+          .text-section h2 {
+            font-size: 1.8rem;
+          }
+
+          .footer {
+            padding: 24px 0 14px;
+          }
+
+          .footer-content p {
+            font-size: 0.9rem;
+          }
         }
     </style>
 
     <script>
-
-
-        // ✅ GALERIE CLICK CORRIGÉE - ANIMATION PARFAITE
+        // GALERIE CLICK
         document.querySelectorAll('.click-gallery').forEach(gallery => {
             const container = gallery.querySelector('.gallery-container');
             const items = gallery.querySelectorAll('.gallery-item');
             let currentIndex = 0;
 
             gallery.addEventListener('click', () => {
-                // Retirer active de l'ancienne
                 items[currentIndex].classList.remove('active');
-                
-                // Nouvelle active
                 currentIndex = (currentIndex + 1) % items.length;
                 items[currentIndex].classList.add('active');
             });
         });
 
-
-
-
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').replace('#', '');
-        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-        document.getElementById(targetId)?.classList.add('active');
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-});
-
-
-
-        
-
-
-
-
+        // NAVIGATION
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').replace('#', '');
+                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+                document.getElementById(targetId)?.classList.add('active');
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
     </script>
 </body>
 </html>
-
