@@ -235,16 +235,10 @@
     white-space: nowrap;        /* empêche les liens de passer à la ligne */
     flex-wrap: nowrap;          /* sécurité, tout doit rester sur une seule ligne */
 }
-@media (max-width: 768px) {
-  .nav-links a {
-    padding: 6px 2px;
-    font-size: 0.6rem;
-    letter-spacing: 0.11em;
-  }
-}
 
 
-        .nav-links li { flex: 1; min-width: 30px; max-width: 125px; } /*105 or*/
+
+        .nav-links li { flex: 1; min-width: 10px; max-width: 50px; } /*105 125 or*/
 
         .nav-links a {
             display: block;
@@ -259,7 +253,13 @@
             transition: all 0.3s ease;
             border: 1px solid transparent;
         }
-
+@media (max-width: 500px) {
+  .nav-links a {
+    padding: 6px 2px;
+    font-size: 0.6rem;
+    letter-spacing: 0.11em;
+  }
+}
         .nav-links a:hover, .nav-links a.active {
             color: var(--text);
             background: rgba(209, 155, 108, 0.12);
