@@ -228,11 +228,21 @@
         }
 
         .nav-links {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2px;
-        }
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    white-space: nowrap;        /* empêche les liens de passer à la ligne */
+    flex-wrap: nowrap;          /* sécurité, tout doit rester sur une seule ligne */
+}
+@media (max-width: 768px) {
+  .nav-links a {
+    padding: 6px 2px;
+    font-size: 0.6rem;
+    letter-spacing: 0.11em;
+  }
+}
+
 
         .nav-links li { flex: 1; min-width: 105px; max-width: 125px; }
 
