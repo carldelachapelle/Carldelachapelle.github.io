@@ -252,9 +252,7 @@
             border-radius: 6px;
             transition: all 0.3s ease;
             border: 1px solid transparent;
-            white-space: nowrap;   /* prevent text from breaking */
-    overflow: hidden;      /* optional safety */
-    text-overflow: ellipsis; /* optional if you prefer ... instead of wrap */
+            
         }
 @media (max-width: 500px) {
   .nav-links a {
@@ -428,19 +426,22 @@
             font-size: 1.6rem;
           }
 
-          .nav-links {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-auto-rows: 1fr;
-            gap: 2px;
-            padding: 6px 8px 10px;
-          }
+          @media (max-width: 768px) {
+  .nav-links {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    overflow-x: auto;   /* scroll horizontal si trop serré */
+  }
 
-          .nav-links li {
-            min-width: auto;
-            max-width: none;
-            flex: none;
-          }
+  .nav-links li {
+    flex: 0 0 auto;
+    max-width: none;
+  }
+}
+
+
+         
 
           .nav-links a {
             padding: 8px 4px;
