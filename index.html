@@ -240,7 +240,12 @@
 
 
         .nav-links li { flex: 1; min-width: 60px; max-width: 125px; } /*105 125 or*/
-
+@media (max-width: 500px) {
+    .nav-links li {
+        flex: 0 0 auto; /* plus d'étirement, largeur = contenu */
+        max-width: none;
+    }
+}
         .nav-links a {
             display: block;
             text-decoration: none;
