@@ -21,9 +21,7 @@
                 <li><a href="#accueil" class="nav-link">Accueil</a></li>
                 <li><a href="#apropos" class="nav-link">À propos</a></li>
                 <li><a href="#tarifs" class="nav-link">Tarifs</a></li>
-                <li><a href="#mariages" class="nav-link">Mariages</a></li>
-                <li><a href="#soirees" class="nav-link">Soirées</a></li>
-                <li><a href="#couples" class="nav-link">Couples</a></li>
+                
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </div>
@@ -36,7 +34,23 @@
 <div class="hero-sub">Soirées Couples Mariages</div>
 <section class="text-section">
             <p>Photographe de mariage - Photos au naturel (non retouchées) - Bordeaux et Sud-Ouest</p>
-            <div class="hero-image" > <img src="a.jpeg" alt="ImagePremAccueil" class="hero-img-el"></div>
+            <section class="hero-cards">
+    <a href="#mariages" class="hero-card nav-link">
+        <img src="f.jpeg" alt="Mariages" class="hero-card-img">
+        <div class="hero-card-label">Mariages</div>
+    </a>
+
+    <a href="#soirees" class="hero-card nav-link">
+        <img src="h.jpeg" alt="Soirées" class="hero-card-img">
+        <div class="hero-card-label">Soirées</div>
+    </a>
+
+    <a href="#couples" class="hero-card nav-link">
+        <img src="k.jpeg" alt="Couples" class="hero-card-img">
+        <div class="hero-card-label">Couples</div>
+    </a>
+</section>
+
  </section>
         </main>
     </div>
@@ -123,9 +137,7 @@
                     <div class="gallery-container">
                         <div class="gallery-item active"><img src="k.jpeg" alt="Imariage"></div>
                         <div class="gallery-item"><img src="l.jpeg" alt="Imariage"></div>
-                        <div class="gallery-item"><img src="g.jpeg" alt="Imariage"></div>
-                        <div class="gallery-item"><img src="h.jpeg" alt="Imariage"></div>
-                        <div class="gallery-item"><img src="i.jpeg" alt="Imariage"></div>
+                        
                     </div>
                 </div>
             </section>
@@ -216,7 +228,7 @@
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 3px;
+    gap: 5px;
     white-space: nowrap;        /* empêche les liens de passer à la ligne */
     flex-wrap: nowrap;          /* sécurité, tout doit rester sur une seule ligne */
               scrollbar-width: none;
@@ -224,7 +236,7 @@
 
 
 
-        .nav-links li { flex: 1; min-width: 60px; max-width: 125px; } /*105 125 or*/
+        .nav-links li { flex: 1; min-width: 80px; max-width: 125px; } /*105 125 or*/
         .nav-links li:first-child {
     padding-left: 6px;
 }
@@ -252,7 +264,7 @@
         }
 @media (max-width: 500px) {
   .nav-links a {
-    padding: 6px 2px;
+    padding: 96px 20px;
     font-size: 0.6rem;
     letter-spacing: 0.11em;
   }
@@ -279,7 +291,6 @@
           padding: 32px 24px 40px;
         }
 
-        /* HERO IMAGE CORRIGÉ */
         .hero-image {
           margin: 24px 0;
           border-radius: 16px;
@@ -295,6 +306,72 @@
           object-fit: cover;
           object-position: center;
         }
+
+.hero-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.hero-card {
+    position: relative;
+    display: block;
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 26px 70px rgba(0,0,0,0.22);
+}
+
+.hero-card-img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-card-label {
+    position: absolute;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    padding: 10px 26px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0);  /* transparent au repos */
+    color: rgba(255, 255, 255, 0); /* texte transparent au repos */
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.hero-card:hover .hero-card-label {
+    background: rgba(0, 0, 0, 0.6);  /* bande sombre derrière le texte */
+    color: #ffffff;                  /* texte blanc lisible */
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-card-img {
+        aspect-ratio: 16 / 9;
+    }
+}
+
 
         h1 {
             font-family: 'Playfair Display', serif;
@@ -405,8 +482,8 @@
 
         /* FOOTER */
         .footer {
-            background: rgba(0,21,64,1);
-            color: #FFB15A;
+            background: rgba(255,255,255,0.9);
+            color: rgba(0,21,64,1);
             padding: 1px 20px;
             margin-top: auto;
         }
@@ -420,16 +497,16 @@
         .footer-content p {
             margin-bottom: 8px;
             font-size: 0.95rem;
-            color: #FFF4D9;
+            color: rgba(0,21,64,1);
         }
 
         .footer-content a {
-            color: #FFF4D9;
+            color: rgba(0,21,64,1);
             text-decoration: none;
         }
 
         .footer-content a:hover {
-            color: #FFB15A;
+            color: rgba(0,21,64,.8);
         }
 
         /* MOBILE */
